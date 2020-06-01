@@ -1,0 +1,10 @@
+FileVersion = 1
+
+[Project]
+Name = "DirectX"
+TargetType = "BeefLib"
+StartupObject = "Program"
+
+[Configs.Debug.Win64]
+BeefLibType = "DynamicDebug"
+PreprocessorMacros = ["DEBUG", "X64"]
