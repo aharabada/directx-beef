@@ -53,10 +53,11 @@ namespace DirectX.Common
 		 * @param result 	The address of a pointer to an interface with the IID specified in the riid parameter.
 		 *					If the object doesn't support the interface, the method sets *result (the dereferenced address) to null.
 		*/
-		public HResult QueryInterface<T>(T** result) mut where T : IUnknown, IComObject
+		public HResult QueryInterface<T>(out T* result) mut where T : IUnknown, IComObject
 		{
+			result = ?;
 			Guid riid = T.IID;
-			return mVT.QueryInterface(&this, ref riid, (.)result);
+			return mVT.QueryInterface(&this, ref riid, (.)&result);
 		}
 
 		/**

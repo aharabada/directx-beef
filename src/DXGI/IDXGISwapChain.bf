@@ -188,10 +188,11 @@ namespace DirectX.DXGI
 		* @param surface	A pointer to a back-buffer interface.
 		* @return Returns one of the DXGI_ERROR-Codes.
 		*/
-		public HResult GetBuffer<T>(uint32 buffer, T **surface) mut where T : IUnknown, IComObject
+		public HResult GetBuffer<T>(uint32 buffer, out T* surface) mut where T : IUnknown, IComObject
 		{
+			surface = ?;
 			Guid riid = T.IID;
-			return VT.GetBuffer(&this, buffer, &riid, (void**)surface);
+			return VT.GetBuffer(&this, buffer, &riid, (void**)&surface);
 		}
 	}
 }
