@@ -36,7 +36,8 @@ namespace DirectX.DXGI
 
 		public HResult CreateSwapChain(IUnknown* pDevice, ref SwapChainDescription desc, out IDXGISwapChain* swapChain) mut
 		{
-			return VT.CreateSwapChain(&this, pDevice, &desc, &(swapChain = ?));
+			swapChain = ?;
+			return VT.CreateSwapChain(&this, pDevice, &desc, &swapChain);
 		}
 	}
 }

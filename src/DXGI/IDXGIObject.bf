@@ -33,5 +33,12 @@ namespace DirectX.DXGI
 
 			return VT.GetParent(&this, ref guid, ppParent);
 		}
+
+		public HResult GetParent<T>(T** ppParent) mut where T : IUnknown, IComObject
+		{
+			Guid riid = T.IID;
+
+			return VT.GetParent(&this, ref riid, (.)ppParent);
+		}
 	}
 }

@@ -87,7 +87,8 @@ namespace DirectX.D3D11.SDKLayers
 		*/
 		public HResult GetSwapChain(out IDXGISwapChain* swapChain) mut
 		{
-			return VT.GetSwapChain(&this, &(swapChain = ?));
+			swapChain = ?;
+			return VT.GetSwapChain(&this, &swapChain);
 		}
 
 		/**

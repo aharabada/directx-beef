@@ -23,7 +23,8 @@ namespace DirectX.D3D11
 
 		public void GetResource(out ID3D11Resource* resource) mut
 		{
-			VT.GetResource(&this, &(resource = ?));
+			resource = ?;
+			VT.GetResource(&this, &resource);
 		}
 	}
 }

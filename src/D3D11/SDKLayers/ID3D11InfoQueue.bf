@@ -89,8 +89,10 @@ namespace DirectX.D3D11.SDKLayers
 		*/
 		public HResult GetMessage(uint64 messageIndex, out Message message, out uint32 messageByteLength) mut
  		{
+			 message = ?;
+			 messageByteLength = ?;
 			 // Todo: Message needs an constructor!
-			 return VT.GetMessage(&this, messageIndex, &(message = ?), &(messageByteLength = ?));
+			 return VT.GetMessage(&this, messageIndex, &message, &messageByteLength);
 		}
 
 		/**

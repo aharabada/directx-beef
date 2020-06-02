@@ -3,6 +3,7 @@ using DirectX.Common;
 
 namespace DirectX.DXGI
 {
+	// Todo: document
 	[CRepr]
 	public struct FrameStatistics // DXGI_FRAME_STATISTICS
 	{

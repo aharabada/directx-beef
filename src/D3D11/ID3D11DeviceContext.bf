@@ -5,12 +5,10 @@ using DirectX.Common;
 
 namespace DirectX.D3D11
 {
-	public struct ID3D11DeviceContext : IComObject
+	public struct ID3D11DeviceContext : ID3D11DeviceChild, IComObject
 	{	
-		public static Guid IID => .("c0bfa96c-e089-44fb-8eaf-26f8796190da");
+		public static new Guid IID => .("c0bfa96c-e089-44fb-8eaf-26f8796190da");
 		
-		
-
 		public struct VTable : ID3D11DeviceChild.VTable
 		{
 			public function void(ID3D11DeviceContext* self, uint32 startSlot, uint32 numBuffers, ID3D11Buffer** ppConstantBuffers) VSSetConstantBuffers;
@@ -162,42 +160,13 @@ namespace DirectX.D3D11
 			public function HResult(ID3D11DeviceContext* self, BOOL restoreDeferredContextState, ID3D11CommandList **ppCommandList) FinishCommandList;              
 		}
  
-		protected VTable* mVT;
-		public VTable* VT
+		public new VTable* VT
 		{
+			[Inline]
 			get
 			{
 				return (.)mVT;
 			}
-		}
-		
-		// Todo: use inheritance instead of casting
-		[Inline]
-		public IUnknown* ToIUnknown() mut
-		{
-			return (.)&this;
-		}
-
-		[Inline]
-		public ID3D11DeviceChild* ToDeviceChild() mut
-		{
-			return (.)&this;
-		}
-
-		public void Dispose() mut
-		{
-			mVT.Release((.)&this);
-		}
-		
-		[Inline]
-		public ID3D11Device* GetDevice() mut
-		{
-			return ToDeviceChild().GetDevice();
-		}
-
-		public void ClearRenderTargetView(ID3D11RenderTargetView* rtv, ColorRGBA color) mut
-		{
-			mVT.ClearRenderTargetView(&this, rtv, color);
 		}
 	}
 }

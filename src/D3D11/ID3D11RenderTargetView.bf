@@ -22,7 +22,8 @@ namespace DirectX.D3D11
 
 		public void GetDescription(out RenderTargetViewDescription desc) mut
 		{
-			VT.GetDesc(&this, &(desc = ?));
+			desc = ?;
+			VT.GetDesc(&this, &desc);
 		}
 	}
 }

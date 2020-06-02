@@ -69,13 +69,10 @@ namespace DirectX.D3D11
 			public function DeviceCreationFlags() GetCreationFlags;
 			public function HResult() GetDeviceRemovedReason;
 
-			//public function void(ID3D11DeviceContext **ppImmediateContext) GetImmediateContext;
 			public function void(ID3D11Device* self, ID3D11DeviceContext** ppImmediateContext) GetImmediateContext;
 
 			public function HResult(ID3D11Device* self, RaiseFlags raiseFlags) SetExceptionMode;
 			public function RaiseFlags() GetExceptionMode;
-
-			//public function HResult(HModule modlue, out IDXGIAdapter** ppAdapter) CreateSoftwareAdapter;
 		}
 
 		public new VTable* VT
@@ -152,23 +149,6 @@ namespace DirectX.D3D11
 				if(VT.SetExceptionMode(&this, value).Error)
 					Runtime.FatalError("Could not check the format support.");
 			}
-		}
-
-		[Checked]
-		public static void CreateDevice(DeviceCreationFlags creationFlags, FeatureLevel[] featureLevels, out FeatureLevel featureLevel, out ID3D11Device* device, out ID3D11DeviceContext* context)
-		{
-			if(D3D11CreateDevice(null, .Hardware, 0, creationFlags, featureLevels.CArray(),
-				(uint32)featureLevels.Count, DirectX.D3D11.SDK_VERSION, out device, out featureLevel, out context).Error)
-			{
-				Runtime.FatalError("Could not create D3D11.GraphicsDevice");
-			}
-		}
-
-		[Unchecked]
-		public static DirectX.Common.HResult CreateDevice(DeviceCreationFlags creationFlags, FeatureLevel[] featureLevels, out FeatureLevel featureLevel, out ID3D11Device* device, out ID3D11DeviceContext* context)
-		{
-			return D3D11CreateDevice(null, .Hardware, 0, creationFlags, featureLevels.CArray(),
-				(uint32)featureLevels.Count, DirectX.D3D11.SDK_VERSION, out device, out featureLevel, out context);
 		}
 	}
 }
