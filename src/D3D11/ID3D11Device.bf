@@ -21,8 +21,8 @@ namespace DirectX.D3D11
 			public function HResult(ID3D11Device* self, Texture1DDescription* desc, SubresourceData* initialData, ID3D11Texture1D** texture1D) CreateTexture1D;
 
 			public function HResult(ID3D11Device* self, Texture2DDescription *pDesc, SubresourceData* pInitialData, ID3D11Texture2D** ppTexture2D) CreateTexture2D;
-
-			private function HResult(ID3D11Device* self) CreateTexture3D;
+			
+			public function HResult(ID3D11Device* self, Texture3DDescription *pDesc, SubresourceData* pInitialData, ID3D11Texture3D** ppTexture3D) CreateTexture3D;
 
 			public function HResult(ID3D11Device* self, ID3D11Resource* pResource, ShaderResourceViewDescription* pDesc, ID3D11ShaderResourceView** ppSRView) CreateShaderResourceView;
 
@@ -123,6 +123,19 @@ namespace DirectX.D3D11
 			return VT.CreateTexture2D(&this, &desc, initialData, texture2D);
 		}
 		
+		/**
+		 * Create a single 3D texture.
+		 *
+		 * @param desc			A reference to a Texture3DDescription structure that describes a 3D texture resource.
+		 * @param initialData	A pointer to an array of D3D11_SUBRESOURCE_DATA structures that describe subresources for the 3D texture resource.
+		 * @param texture2D		A pointer to a buffer that receives a pointer to a ID3D11Texture3D interface for the created texture.
+		 * 						Set this parameter to NULL to validate the other input parameters (the method will return S_FALSE if the other input parameters pass validation).
+		*/
+		public HResult CreateTexture3D(ref Texture3DDescription desc, SubresourceData* initialData, ID3D11Texture3D** texture2D) mut
+		{
+			return VT.CreateTexture3D(&this, &desc, initialData, texture2D);
+		}
+
 		/**
 		 * Creates a render-target view for accessing resource data.
 		 *

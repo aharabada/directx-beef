@@ -1,9 +1,11 @@
 using System;
 
 namespace DirectX.D3D11
-{	
+{
+	// Todo: doc
+	// Todo: original has union
 	[CRepr]
-	public struct D3D11_BUFFER_SRV
+	public struct BufferShaderResourceView
 	{
 		uint32 ElementOffset;
 		uint32 ElementWidth;

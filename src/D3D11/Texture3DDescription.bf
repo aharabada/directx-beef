@@ -5,34 +5,31 @@ using DirectX.DXGI.Common;
 namespace DirectX.D3D11
 {
 	/**
-	 * Describes a 2D texture.
+	 * Describes a 3D texture.
 	*/
 	[CRepr]
-	public struct Texture2DDescription
+	public struct Texture3DDescription
 	{
 		/**
 		 * Texture width (in texels).
-		 * The range is from 1 to D3D11_REQ_TEXTURE2D_U_OR_V_DIMENSION (16384).
-		 * For a texture cube-map, the range is from 1 to D3D11_REQ_TEXTURECUBE_DIMENSION (16384).
+		 * The range is from 1 to D3D11_REQ_TEXTURE3D_U_V_OR_W_DIMENSION (2048).
 		*/
 		public UINT Width;
 		/**
 		 * Texture height (in texels). 
-		 * The range is from 1 to D3D11_REQ_TEXTURE2D_U_OR_V_DIMENSION (16384). 
-		 * For a texture cube-map, the range is from 1 to D3D11_REQ_TEXTURECUBE_DIMENSION (16384).
+		 * The range is from 1 to D3D11_REQ_TEXTURE3D_U_V_OR_W_DIMENSION (2048).
 		*/
 		public UINT Height;
+		/**
+		 * Texture depth (in texels).
+		 * The range is from 1 to D3D11_REQ_TEXTURE3D_U_V_OR_W_DIMENSION (2048).
+		*/
+		public UINT Depth;
 		/**
 		 * The maximum number of mipmap levels in the texture.
 		 * Use 1 for a multisampled texture; or 0 to generate a full set of subtextures.
 		*/
 		public UINT MipLevels;
-		/**
-		 * Number of textures in the texture array.
-		 * The range is from 1 to D3D11_REQ_TEXTURE2D_ARRAY_AXIS_DIMENSION (2048).
-		 * For a texture cube-map, this value is a multiple of 6 (that is, 6 times the value in the NumCubes member of D3D11_TEXCUBE_ARRAY_SRV), and the range is from 6 to 2046.
-		*/
-		public UINT ArraySize;
 		/**
 		 * Texture format.
 		*/
@@ -71,14 +68,14 @@ namespace DirectX.D3D11
 			this = default;
 		}
 
-		public this(uint32 width, uint32 height, uint32 mipLevels, uint32 arraySize, Format format,
+		public this(UINT width, UINT height, UINT depth, UINT mipLevels, UINT arraySize, Format format,
 			SampleDescription sampleDesc, D3D11.Usage usage, BindFlags bindFlags,
 			CpuAccessFlags cpuFlags, ResourceMiscFlags miscFlags)
 		{
 			Width = width;
 			Height = height;
+			Depth = depth;
 			MipLevels = mipLevels;
-			ArraySize = arraySize;
 			Format = format;
 			SampleDesc = sampleDesc;
 			Usage = usage;
