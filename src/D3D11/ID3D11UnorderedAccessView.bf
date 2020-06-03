@@ -4,50 +4,35 @@ using DirectX.Common;
 namespace DirectX.D3D11
 {
 	/**
-	A view interface specifies the parts of a resource the pipeline can access during rendering.
+	 * A view interface specifies the parts of a resource the pipeline can access during rendering.
 	*/
-	public struct ID3D11UnorderedAccessView : IComObject
+	public struct ID3D11UnorderedAccessView : ID3D11View, IComObject
 	{
-		public static Guid IID => Guid("28acf509-7f5c-48f6-8611-f316010a6380");
+		public static new Guid IID => Guid("28acf509-7f5c-48f6-8611-f316010a6380");
 		
-		
-
 		public struct VTable : ID3D11View.VTable
 		{
-			public function void(ID3D11RenderTargetView* self, RenderTargetViewDescription *pDesc) GetDesc;
+			public function void(ID3D11UnorderedAccessView* self, UnorderedAccessViewDescription *pDesc) GetDesc;
 		}
 
-		protected VTable* mVT;
-		public VTable* VT
+		public new VTable* VT
 		{
+			[Inline]
 			get
 			{
-				return mVT;
+				return (.)mVT;
 			}
 		}
 
-		// Todo: use inheritance instead of casting
-		[Inline]
-		public IUnknown* ToIUnknown() mut
+		/**
+		 * Get a description of the resource.
+		 *
+		 * @param desc	The structure describing the resource.
+		*/
+		public void GetDescription(out UnorderedAccessViewDescription desc) mut
 		{
-			return (.)&this;
-		}
-
-		[Inline]
-		public ID3D11DeviceChild* ToDeviceChild() mut
-		{
-			return (.)&this;
-		}
-
-		[Inline]
-		public ID3D11View* ToView() mut
-		{
-			return (.)&this;
-		}
-
-		public void Dispose() mut
-		{
-			mVT.Release((.)&this);
+			desc = ?;
+			VT.GetDesc(&this, &desc);
 		}
 	}
 }
