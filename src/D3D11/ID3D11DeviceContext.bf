@@ -1,4 +1,5 @@
 using System;
+using DirectX.D3D11.DeviceContextStages;
 using DirectX.DXGI;
 using DirectX.Math;
 using DirectX.Common;
@@ -6,7 +7,7 @@ using DirectX.Common;
 namespace DirectX.D3D11
 {
 	public struct ID3D11DeviceContext : ID3D11DeviceChild, IComObject
-	{	
+	{
 		public static new Guid IID => .("c0bfa96c-e089-44fb-8eaf-26f8796190da");
 		
 		public struct VTable : ID3D11DeviceChild.VTable
@@ -163,10 +164,67 @@ namespace DirectX.D3D11
 		public new VTable* VT
 		{
 			[Inline]
-			get
-			{
-				return (.)mVT;
-			}
+			get => (.)mVT;
+		}
+
+		public ComputeShaderStage* ComputeShader
+		{
+			[Inline]
+			get mut => (.)&this;
+		}
+		
+		public DomainShaderStage* DomainShader
+		{
+			[Inline]
+			get mut => (.)&this;
+		}
+
+		public GeometryShaderStage* GeometryShader
+		{
+			[Inline]
+			get mut => (.)&this;
+		}
+
+		public HullShaderStage* HullShader
+		{
+			[Inline]
+			get mut => (.)&this;
+		}
+
+		public PixelShaderStage* PixelShader
+		{
+			[Inline]
+			get mut => (.)&this;
+		}
+
+		public VertexShaderStage* VertexShader
+		{
+			[Inline]
+			get mut => (.)&this;
+		}
+
+		public InputAssemblerStage* InputAssembler
+		{
+			[Inline]
+			get mut => (.)&this;
+		}
+
+		public OutputMergerStage* OutputMerger
+		{
+			[Inline]
+			get mut => (.)&this;
+		}
+
+		public RasterizerStage* Rasterizer
+		{
+			[Inline]
+			get mut => (.)&this;
+		}
+
+		public StreamOutputStage* StreamOutput
+		{
+			[Inline]
+			get mut => (.)&this;
 		}
 
 		/**
