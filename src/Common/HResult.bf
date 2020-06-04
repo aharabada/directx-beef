@@ -127,19 +127,11 @@ namespace DirectX.Common
 		*/
 		public const HResult DXGI_ERROR_WAS_STILL_DRAWING = (.)0x887A000A;
 
-		public bool Success
+		public bool Succeeded
 		{
 			get
 			{
 				return this > -1;
-			}
-		}
-
-		public bool Error
-		{
-			get
-			{
-				return this < 0;
 			}
 		}
 
