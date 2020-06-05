@@ -12,18 +12,19 @@ namespace DirectX.D3D11
 		
 		public struct VTable : ID3D11DeviceChild.VTable
 		{
-			/**
-			Get the size of the data (in bytes) that is output when calling ID3D11DeviceContext::GetData.
-			*/
 			public function UINT(ID3D11Asynchronous *self) GetDataSize;
 		}
 
-		public new VTable* VT
+		public new VTable* VT => (.)mVT;
+
+		/**
+		 * Get the size of the data (in bytes) that is output when calling ID3D11DeviceContext::GetData.
+		 *
+		 * @return Size of the data (in bytes) that is output when calling GetData.
+		*/
+		public UINT GetDataSize() mut
 		{
-			get
-			{
-				return (.)mVT;
-			}
+			return VT.GetDataSize(&this);
 		}
 	}
 }

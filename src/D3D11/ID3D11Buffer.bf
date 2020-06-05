@@ -4,7 +4,7 @@ using DirectX.Common;
 namespace DirectX.D3D11
 {
 	/**
-	A buffer interface accesses a buffer resource, which is unstructured memory. Buffers typically store vertex or index data.
+	 * A buffer interface accesses a buffer resource, which is unstructured memory. Buffers typically store vertex or index data.
 	*/
 	public struct ID3D11Buffer : ID3D11Resource, IComObject
 	{
@@ -18,19 +18,18 @@ namespace DirectX.D3D11
 		public new VTable* VT
 		{
 			[Inline]
-			get
-			{
-				return (.)mVT;
-			}
+			get => (.)mVT;
 		}
 
 		/**
-		Get the properties of a buffer resource.
+		 * Get the properties of a buffer resource.
+		 *
+		 * @param description	Reference to a resource description filled in by the method.
 		*/
-		public void GetDescription(out BufferDescription desc) mut
+		public void GetDescription(out BufferDescription description) mut
 		{
-			desc = ?;
-			VT.GetDesc(&this, &desc);
+			description = ?;
+			VT.GetDesc(&this, &description);
 		}
 	}
 }
