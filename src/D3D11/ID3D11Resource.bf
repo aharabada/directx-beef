@@ -5,7 +5,7 @@ using DirectX.Common;
 namespace DirectX.D3D11
 {
 	/**
-	A resource interface provides common actions on all resources.
+	 * A resource interface provides common actions on all resources.
 	*/
 	public struct ID3D11Resource : ID3D11DeviceChild, IComObject
 	{
@@ -14,23 +14,14 @@ namespace DirectX.D3D11
 		public struct VTable : ID3D11DeviceChild.VTable
 		{
 			public function void(ID3D11Resource* self, ResourceDimension* pResourceDimension) GetType;
-			/**
-			Set the eviction priority of a resource.
-			*/
 			public function void(ID3D11Resource* self, ResourcePriority evictionPriority) SetEvictionPriority; 
-			/**
-			Get the eviction priority of a resource.
-			*/
 			public function ResourcePriority(ID3D11Resource* self) GetEvictionPriority;
 		}
 
 		public new VTable* VT
 		{
 			[Inline]
-			get
-			{
-				return (.)mVT;
-			}
+			get => (.)mVT;
 		}
 
 		/**

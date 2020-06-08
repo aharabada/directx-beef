@@ -7,7 +7,7 @@ using DirectX.Common;
 namespace DirectX.D3D11
 {
 	/**
-	The device interface represents a virtual adapter; it is used to create resources.
+	 * The device interface represents a virtual adapter; it is used to create resources.
 	*/
 	public struct ID3D11Device : IUnknown, IComObject
 	{	 
@@ -78,10 +78,7 @@ namespace DirectX.D3D11
 		public new VTable* VT
 		{
 			[Inline]
-			get
-			{
-				return (.)mVT;
-			}
+			get =>(.)mVT;
 		}
 
 		/**

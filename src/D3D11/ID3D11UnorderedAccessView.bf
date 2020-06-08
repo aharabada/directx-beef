@@ -18,16 +18,13 @@ namespace DirectX.D3D11
 		public new VTable* VT
 		{
 			[Inline]
-			get
-			{
-				return (.)mVT;
-			}
+			get => (.)mVT;
 		}
 
 		/**
 		 * Get a description of the resource.
 		 *
-		 * @param desc	The structure describing the resource.
+		 * @param desc	A reference to the structure describing the resource.
 		*/
 		public void GetDescription(out UnorderedAccessViewDescription desc) mut
 		{

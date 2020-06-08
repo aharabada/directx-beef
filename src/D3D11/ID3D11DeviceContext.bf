@@ -6,6 +6,9 @@ using DirectX.Common;
 
 namespace DirectX.D3D11
 {
+	/**
+	 * The ID3D11DeviceContext interface represents a device context which generates rendering commands.
+	*/
 	public struct ID3D11DeviceContext : ID3D11DeviceChild, IComObject
 	{
 		public static new Guid IID => .("c0bfa96c-e089-44fb-8eaf-26f8796190da");

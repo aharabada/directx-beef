@@ -18,16 +18,13 @@ namespace DirectX.D3D11
 		public new VTable* VT
 		{
 			[Inline]
-			get
-			{
-				return (.)mVT;
-			}
+			get => (.)mVT;
 		}
 
 		/**
 		 * Get the properties of the texture resource.
 		 *
-		 * @param desc	The structure that receives the description.
+		 * @param desc	A reference to the structure that receives the description.
 		*/
 		public void GetDescription(out Texture1DDescription desc) mut
 		{

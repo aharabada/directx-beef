@@ -3,6 +3,9 @@ using DirectX.Common;
 
 namespace DirectX.D3D11
 {
+	/**
+	 * A depth-stencil-view interface accesses a texture resource during depth-stencil testing.
+	*/
 	public struct ID3D11DepthStencilView : ID3D11View, IComObject
 	{
 		public static new Guid IID => Guid("9fdac92a-1876-48c3-afad-25b94f84a9b6");
@@ -15,12 +18,14 @@ namespace DirectX.D3D11
 		public new VTable* VT
 		{
 			[Inline]
-			get
-			{
-				return (.)mVT;
-			}
+			get => (.)mVT;
 		}
 
+		/**
+		 * Get the depth-stencil view.
+		 *
+		 * @param desc	Reference to a depth-stencil-view description.
+		*/
 		public void GetDescription(out DepthStencilViewDescription desc) mut
 		{
 			desc = ?;

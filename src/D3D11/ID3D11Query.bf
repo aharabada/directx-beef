@@ -4,7 +4,7 @@ using DirectX.Common;
 namespace DirectX.D3D11
 {
 	/**
-	* This interface encapsulates methods for retrieving data from the GPU asynchronously.
+	* A query interface queries information from the GPU.
 	*/
 	public struct ID3D11Query : ID3D11Asynchronous, IComObject
 	{
@@ -18,10 +18,18 @@ namespace DirectX.D3D11
 		public new VTable* VT
 		{
 			[Inline]
-			get
-			{
-				return (.)mVT;
-			}
+			get => (.)mVT;
+		}
+
+		/**
+		 * Get a query description.
+		 *
+		 * @param desc Referece to a query description;
+		*/
+		public void GetDescription(out QueryDescription desc) mut
+		{
+			desc = ?;
+			VT.GetDesc(&this, &desc);
 		}
 	}
 }
