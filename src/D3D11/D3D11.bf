@@ -1,5 +1,6 @@
 using System;
 using DirectX;
+using DirectX.DXGI;
 using DirectX.Common;
 
 namespace DirectX.D3D11
@@ -18,6 +19,21 @@ namespace DirectX.D3D11
 
 		public static readonly uint32 SDK_VERSION = 7;
 
+		/**
+		 * Calculates a subresource index for a texture.
+		 *
+		 * @param MipSlice		A zero-based index for the mipmap level to address; 0 indicates the first, most detailed mipmap level.
+		 * @param ArraySlice	The zero-based index for the array level to address; always use 0 for volume (3D) textures.
+		 * @param MipLevels		Number of mipmap levels in the resource.
+		 *
+		 * @return The index which equals MipSlice + (ArraySlice * MipLevels).
+		*/
+		[Inline]
+		public static UINT D3D11CalcSubresource(UINT MipSlice, UINT ArraySlice, UINT MipLevels)
+		{
+			return MipSlice + ArraySlice * MipLevels;
+		}
+
 		[Import("D3D11.lib"), CLink, CallingConvention(.Stdcall)]
 		public static extern HResult D3D11CreateDevice(
 			IUnknown* pAdapter,
@@ -30,7 +46,15 @@ namespace DirectX.D3D11
 			out ID3D11Device* ppDevice,
 			out FeatureLevel pFeatureLevel,	 
 			out ID3D11DeviceContext* ppImmediateContext);
-		
+
+		/**
+		 * Creates a device that represents the display adapter and a swap chain used for rendering.
+		*/
+		[Import("D3D11.lib"), CLink, CallingConvention(.Stdcall)]
+		public static extern HResult D3D11CreateDeviceAndSwapChain(IDXGIAdapter *pAdapter, DriverType driverType, Windows.HModule software,
+			DeviceCreationFlags flags, FeatureLevel *pFeatureLevels, UINT featureLevels, UINT SDKVersion, SwapChainDescription *pSwapChainDesc,
+			IDXGISwapChain **ppSwapChain, ID3D11Device **ppDevice, FeatureLevel *pFeatureLevel, ID3D11DeviceContext **ppImmediateContext);
+
 		/**
 		 * Creates a device that represents the display adapter.
 		 * 
