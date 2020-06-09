@@ -1,4 +1,5 @@
 using System;
+using DirectX.DXGI.Common;
 
 namespace DirectX.DXGI
 {
