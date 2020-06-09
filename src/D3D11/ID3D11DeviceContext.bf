@@ -24,7 +24,7 @@ namespace DirectX.D3D11
 			public function void(ID3D11DeviceContext* self, UINT indexCount, UINT startIndexLocation, INT baseVertexLocation) DrawIndexed;
 			public function void(ID3D11DeviceContext* self, UINT vertexCount, UINT startVertexLocation) Draw;
 
-			public function HResult(ID3D11DeviceContext* self, ID3D11Resource* pResource, UINT subresource, MapType mapType, MapFlags, MappedSubresource* pMappedResource) Map;
+			public function HResult(ID3D11DeviceContext* self, ID3D11Resource* pResource, UINT subresource, MapType mapType, D3D11.MapFlags, MappedSubresource* pMappedResource) Map;
 			public function void(ID3D11DeviceContext* self, ID3D11Resource* pResource, uint32 subresource) Unmap;
 			public function void(ID3D11DeviceContext* self, uint32 startSlot, uint32 numBuffers, ID3D11Buffer** ppConstantBuffers) PSSetConstantBuffers;
 
@@ -593,7 +593,7 @@ namespace DirectX.D3D11
 					- This method also returns DXGI_ERROR_WAS_STILL_DRAWING if MapFlags specifies D3D11_MAP_FLAG_DO_NOT_WAIT and the GPU is not yet finished with the resource.
 					- This method also returns DXGI_ERROR_DEVICE_REMOVED if MapType allows any CPU read access and the video card has been removed.
 		*/
-		public HResult Map(ID3D11Resource *pResource, UINT subresource, MapType mapType, MapFlags mapFlags, MappedSubresource *pMappedResource) mut
+		public HResult Map(ID3D11Resource *pResource, UINT subresource, MapType mapType, D3D11.MapFlags mapFlags, MappedSubresource *pMappedResource) mut
 		{
 			return VT.Map(&this, pResource, subresource, mapType, mapFlags, pMappedResource);
 		}
