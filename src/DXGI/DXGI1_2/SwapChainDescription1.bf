@@ -1,6 +1,5 @@
 using System; 
 using DirectX.DXGI;
-using DirectX.DXGI.Common;
 
 namespace DirectX.DXGI.DXGI1_2
 {

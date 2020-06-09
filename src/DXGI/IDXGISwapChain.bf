@@ -4,7 +4,7 @@ using DirectX.Common;
 namespace DirectX.DXGI
 {
 	/**
-	 * An IDXGISwapChain interface implements one or more surfaces for storing rendered data before presenting it to an output.
+	An IDXGISwapChain interface implements one or more surfaces for storing rendered data before presenting it to an output.
 	*/
 	public struct IDXGISwapChain : IDXGIDeviceSubObject, IComObject
 	{
@@ -33,7 +33,10 @@ namespace DirectX.DXGI
 		public new VTable* VT
 		{
 			[Inline]
-			get => (.)mVT;
+			get
+			{
+				return (.)mVT; 
+			}
 		}
 
 		//
