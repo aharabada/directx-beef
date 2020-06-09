@@ -127,6 +127,17 @@ namespace DirectX.Common
 		*/
 		public const HResult DXGI_ERROR_WAS_STILL_DRAWING = (.)0x887A000A;
 
+		/**
+		 * The shared surface and keyed mutex are no longer in a consistent state.
+		 * If AcquireSync returns this value, you should release and recreate both the keyed mutex and the shared surface.
+		*/
+		public const HResult WAIT_ABANDONED = 0x00000080L;
+
+		/**
+		 * The time-out interval elapsed before the specified key was released.
+		*/
+		public const HResult WAIT_TIMEOUT  = 258L;
+
 		public bool Succeeded
 		{
 			get
