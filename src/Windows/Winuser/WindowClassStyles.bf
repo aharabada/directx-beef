@@ -1,4 +1,4 @@
-namespace DirectX.Windows
+namespace DirectX.Windows.Winuser
 {
 	public enum WindowClassStyles : uint32
 	{
