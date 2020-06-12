@@ -4,7 +4,7 @@ namespace DirectX.DXGI
 	 * Options for enumerating display modes.
 	 * DXGI_ENUM_MODES
 	*/
-	public enum EnumerationModes : uint32
+	public enum EnumerationMode : uint32
 	{
 		/**
 		 * Include interlaced modes.

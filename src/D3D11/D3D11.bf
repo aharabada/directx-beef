@@ -43,9 +43,9 @@ namespace DirectX.D3D11
 			FeatureLevel* pFeatureLevels,
 			uint32 FeatureLevels,
 			uint32 SDKVersion,
-			out ID3D11Device* ppDevice,
-			out FeatureLevel pFeatureLevel,	 
-			out ID3D11DeviceContext* ppImmediateContext);
+			ID3D11Device** ppDevice,
+			FeatureLevel* pFeatureLevel,	 
+			ID3D11DeviceContext** ppImmediateContext);
 
 		/**
 		 * Creates a device that represents the display adapter and a swap chain used for rendering.
@@ -68,9 +68,9 @@ namespace DirectX.D3D11
 		 * @param immediateContext	Returns the address of a pointer to an ID3D11DeviceContext object that represents the device context.
 		*/
 		public static HResult D3D11CreateDevice(IUnknown* adapter, DriverType driverType, Windows.HModule software, DeviceCreationFlags creationFlags, FeatureLevel[] featureLevels,
-			out ID3D11Device* device, out FeatureLevel featureLevel, out ID3D11DeviceContext* immediateContext)
+			ID3D11Device** device, FeatureLevel *featureLevel, ID3D11DeviceContext** immediateContext)
 		{
-			return D3D11CreateDevice(adapter, .Hardware, software, creationFlags, featureLevels.CArray(), (uint32)featureLevels.Count, DirectX.D3D11.SDK_VERSION, out device, out featureLevel, out immediateContext);
+			return D3D11CreateDevice(adapter, .Hardware, software, creationFlags, featureLevels.CArray(), (uint32)featureLevels.Count, DirectX.D3D11.SDK_VERSION, device, featureLevel, immediateContext);
 		}
 	}
 }

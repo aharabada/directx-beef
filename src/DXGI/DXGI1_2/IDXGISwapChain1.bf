@@ -4,8 +4,8 @@ using DirectX.Common;
 namespace DirectX.DXGI.DXGI1_2
 {
 	/**
-	Provides presentation capabilities that are enhanced from IDXGISwapChain.
-	These presentation capabilities consist of specifying dirty rectangles and scroll rectangle to optimize the presentation.
+	 * Provides presentation capabilities that are enhanced from IDXGISwapChain.
+	 * These presentation capabilities consist of specifying dirty rectangles and scroll rectangle to optimize the presentation.
 	*/
 	public struct IDXGISwapChain1 : IDXGISwapChain, IComObject
 	{
@@ -29,10 +29,7 @@ namespace DirectX.DXGI.DXGI1_2
 		public new VTable* VT
 		{
 			[Inline]
-			get
-			{
-				return (.)mVT; 
-			}
+			get => (.)mVT;
 		}
 
 		/**

@@ -28,6 +28,6 @@ namespace DirectX.DXGI
 		to a size other than 32 bits. This value is not used. 
 		DXGI_ADAPTER_FLAG_FORCE_DWORD
 		*/
-		ForceDword= 0xffffffff
+		ForceDword = 0xffffffff
 	}
 }

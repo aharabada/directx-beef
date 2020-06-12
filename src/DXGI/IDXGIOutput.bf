@@ -13,9 +13,8 @@ namespace DirectX.DXGI
 
 		public struct VTable : IDXGIObject.VTable
 		{
-			// Todo: finish functions
 			public function HResult(IDXGIOutput* self, out OutputDescription outputDesc) GetDesc;
-			public function HResult(IDXGIOutput* self, Format enumFormat, EnumerationModes flags, UINT *pNumModes, ModeDescription *pDesc) GetDisplayModeList;
+			public function HResult(IDXGIOutput* self, Format enumFormat, EnumerationMode flags, UINT *pNumModes, ModeDescription *pDesc) GetDisplayModeList;
 			public function HResult(IDXGIOutput* self, ModeDescription *pModeToMatch, ModeDescription *pClosestMatch, IUnknown *pConcernedDevice) FindClosestMatchingMode; 
 			public function HResult(IDXGIOutput* self) WaitForVBlank; 
 			public function HResult(IDXGIOutput* self, IUnknown* pDevice, bool exclusive) TakeOwnership;
@@ -69,7 +68,7 @@ namespace DirectX.DXGI
 		 * @param pDesc			A pointer to a list of display modes;
 		 *						set to NULL to get the number of display modes.
 		*/
-		public HResult GetDisplayModeList(Format enumFormat, EnumerationModes flags, out UINT pNumModes, ModeDescription *pDesc) mut
+		public HResult GetDisplayModeList(Format enumFormat, EnumerationMode flags, out UINT pNumModes, ModeDescription *pDesc) mut
 		{
 			pNumModes = ?;
 			return VT.GetDisplayModeList(&this, enumFormat, flags, &pNumModes, pDesc);
