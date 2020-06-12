@@ -17,7 +17,7 @@ namespace DirectX.Windows.Winuser
 
 	public struct POINT
 	{
-    	LONG x;
-    	LONG y;
+    	public LONG x;
+    	public LONG y;
 	}
 }

@@ -53,4 +53,16 @@ namespace DirectX.Windows
 	 *					The contents of this parameter depend on the value of the uMsg parameter.
 	*/
 	typealias WNDPROC = function LRESULT(HWND hwnd, WindowNotification uMsg, WPARAM wParam, LPARAM lParam);
+
+	static
+	{
+		/**
+		 * Takes a 64bit integer and splits it into the 32bit high-order and low-order words
+		*/
+		public static void SplitHighAndLowOrder(int64 input, out int32 lowOrder, out int32 highOrder)
+		{
+			lowOrder = (int32)(input & 0xFFFF);
+			highOrder = (int32)(input >> 16);
+		}
+	}
 }

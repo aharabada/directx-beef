@@ -1,14 +1,15 @@
 using System;
+using DirectX.Windows;
 
 namespace DirectX.Common
 {
 	[CRepr]
 	/**
-	Locally Unique Identifier
+	 * Locally Unique Identifier
 	*/
 	public struct Luid
 	{
-		uint64 LowPart; // DWORD = unsigned long
-		int32 HighPart; // LONG = long
+		DWORD LowPart;
+		LONG HighPart;
 	}
 }

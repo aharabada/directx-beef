@@ -1,12 +1,45 @@
 using System;
 using DirectX.Windows;
+using DirectX.Math;
 
 namespace DirectX.Windows.Winuser
 {
 	static
 	{
 		public static int32 CW_USEDEFAULT = (int32)0x80000000;
-		
+
+		/**
+		 * The BeginPaint function prepares the specified window for painting and fills a PAINTSTRUCT structure with information about the painting.
+		 *
+		 * @param windowHandle	Handle to the window to be repainted.
+		 * @param paintStruct	Pointer to the PAINTSTRUCT structure that will receive painting information.
+		*/
+		[Import("user32.lib"), CallingConvention(.Stdcall), CLink]
+		public static extern Windows.Handle BeginPaint(HWND windowHandle, void *paintStruct);
+
+		/**
+		 * The EndPaint function marks the end of painting in the specified window.
+		 * This function is required for each call to the BeginPaint function, but only after painting is complete.
+		 *
+		 * @param windowHandle	Handle to the window that has been repainted.
+		 * @param paintStruct	Pointer to a PAINTSTRUCT structure that contains the painting information retrieved by BeginPaint.
+		*/
+		[Import("user32.lib"), CallingConvention(.Stdcall), CLink]
+		public static extern BOOL EndPaint(HWND windowHandle, void *paintStruct);
+
+		/**
+		 * Retrieves the coordinates of a window's client area.
+		 *
+		 * @param windowHandle	A handle to the window whose client coordinates are to be retrieved.
+		 * @param rect			A reference to a RECT structure that receives the client coordinates.
+		 *						The left and top members are zero.
+		 *						The right and bottom members contain the width and height of the window.
+		 * @return	If the function succeeds, the return value is nonzero.
+		 *			If the function fails, the return value is zero.
+		*/
+		[Import("user32.lib"), CallingConvention(.Stdcall), CLink]
+		public static extern BOOL GetClientRect(HWND windowHandle, out Rectangle rect);
+
 		[Import("user32.dll"), CallingConvention(.Stdcall), CLink]
 		public static extern HICON LoadIconW(HINSTANCE hInstance, LPCWSTR lpIconName);
 
