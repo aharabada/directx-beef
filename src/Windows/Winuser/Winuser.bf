@@ -88,7 +88,7 @@ namespace DirectX.Windows.Winuser
 		 * @param windowClass	A reference to a WindowClassExW structure.
 		 * @return If the function succeeds, the return value is a class atom that uniquely identifies the class being registered.
 		*/
-		[Import("user32.lilb"), CallingConvention(.Stdcall), CLink]
+		[Import("user32.lib"), CallingConvention(.Stdcall), CLink]
 		public static extern ATOM RegisterClassExW(ref WindowClassExW windowClass);
 
 		[Import("user32.lib"), CallingConvention(.Stdcall), CLink]
