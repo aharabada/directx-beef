@@ -5,6 +5,16 @@ namespace DirectX.Windows.Kernel32
 	static
 	{
 		/**
+		 * Retrieves the calling thread's last-error code value.
+		 * The last-error code is maintained on a per-thread basis.
+		 * Multiple threads do not overwrite each other's last-error code.
+		 *
+		 * @return The return value is the calling thread's last-error code.
+		*/
+		[Import("Kernel32.lib"), CallingConvention(.Stdcall), CLink]
+		public static extern DWORD GetLastError();
+
+		/**
 		 * Retrieves a module handle for the specified module.
 		 * The module must have been loaded by the calling process.
 		 *
