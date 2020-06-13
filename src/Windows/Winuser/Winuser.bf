@@ -40,7 +40,7 @@ namespace DirectX.Windows.Winuser
 		[Import("user32.lib"), CallingConvention(.Stdcall), CLink]
 		public static extern BOOL GetClientRect(HWND windowHandle, out Rectangle rect);
 
-		[Import("user32.dll"), CallingConvention(.Stdcall), CLink]
+		[Import("user32.lib"), CallingConvention(.Stdcall), CLink]
 		public static extern HICON LoadIconW(HINSTANCE hInstance, LPCWSTR lpIconName);
 
 		/**
@@ -53,10 +53,10 @@ namespace DirectX.Windows.Winuser
 		 * @param cy			The height, in pixels, of the icon or cursor.
 		 * @param fuLoad		The image load flags.
 		*/
-		[Import("user32.dll"), CallingConvention(.Stdcall), CLink]
+		[Import("user32.lib"), CallingConvention(.Stdcall), CLink]
 		public static extern HICON LoadImageW(HINSTANCE hInstance, LPCWSTR lpIconName, ImageType type, int cx, int cy, ImageLoadFlags fuLoad);
 
-		[Import("user32.dll"), CallingConvention(.Stdcall), CLink]
+		[Import("user32.lib"), CallingConvention(.Stdcall), CLink]
 		public static extern HCURSOR LoadCursorW(HINSTANCE hInstance, LPCWSTR lpCursorName);
 
 		/**
@@ -79,7 +79,7 @@ namespace DirectX.Windows.Winuser
 		 * @param lpCaption	The dialog box title. If this parameter is NULL, the default title is Error.
 		 * @param uType		The contents and behavior of the dialog box. This parameter can be a combination of flags.
 		*/
-		[Import("user32.dll"), CallingConvention(.Stdcall), CLink]
+		[Import("user32.lib"), CallingConvention(.Stdcall), CLink]
 		public static extern int32 MessageBoxW(HWND hWnd, LPCWSTR lpText, LPCWSTR lpCaption, UINT uType);
 
 		/**
@@ -88,10 +88,10 @@ namespace DirectX.Windows.Winuser
 		 * @param windowClass	A reference to a WindowClassExW structure.
 		 * @return If the function succeeds, the return value is a class atom that uniquely identifies the class being registered.
 		*/
-		[Import("user32.dll"), CallingConvention(.Stdcall), CLink]
+		[Import("user32.lilb"), CallingConvention(.Stdcall), CLink]
 		public static extern ATOM RegisterClassExW(ref WindowClassExW windowClass);
 
-		[Import("user32.dll"), CallingConvention(.Stdcall), CLink]
+		[Import("user32.lib"), CallingConvention(.Stdcall), CLink]
 		public static extern ATOM RegisterClassW(WNDCLASSW *lpWndClass);
 
 		/**
@@ -114,11 +114,11 @@ namespace DirectX.Windows.Winuser
 		 * @param lpParam		Pointer to a value to be passed to the window through the CREATESTRUCT structure (lpCreateParams member) pointed to by the lParam param of the WM_CREATE message.
 		 *						This message is sent to the created window by this function before it returns.
 		*/
-		[Import("user32.dll"), CallingConvention(.Stdcall), CLink]
+		[Import("user32.lib"), CallingConvention(.Stdcall), CLink]
 		public static extern HWND CreateWindowExW(ExtendedWindowStyle exStyle, LPCWSTR className, LPCWSTR windowName, WindowStyles style,
 			int x, int y, int widht, int height, HWND parent, HMENU menu, HINSTANCE hInstance, LPVOID lpParam);
 		
-		[Import("user32.dll"), CallingConvention(.Stdcall), CLink]
+		[Import("user32.lib"), CallingConvention(.Stdcall), CLink]
 		public static extern BOOL ShowWindow(HWND hWnd, int32 nCmdShow);
 
 		/**
@@ -135,7 +135,7 @@ namespace DirectX.Windows.Winuser
 		 * @return 	If the function succeeds, the return value is the previous value of the specified offset.
 		 * 			If the function fails, the return value is zero.
 		*/
-		[Import("user32.dll"), CallingConvention(.Stdcall), CLink]
+		[Import("user32.lib"), CallingConvention(.Stdcall), CLink]
 		public static extern LONG_PTR SetWindowLongPtrW(HWND windowHandle, int32 index, LONG_PTR dwNewLong);
 
 		/**
@@ -146,25 +146,25 @@ namespace DirectX.Windows.Winuser
 		 * @param index			The zero-based offset to the value to be retrieved.
 		 *						Valid values are in the range zero through the number of bytes of extra window memory, minus the size of a LONG_PTR.
 		*/
-		[Import("user32.dll"), CallingConvention(.Stdcall), CLink]
+		[Import("user32.lib"), CallingConvention(.Stdcall), CLink]
 		public static extern LONG_PTR GetWindowLongPtrW(HWND windowHandle, int32 index);
 
-		[Import("user32.dll"), CallingConvention(.Stdcall), CLink]
+		[Import("user32.lib"), CallingConvention(.Stdcall), CLink]
 		public static extern BOOL UpdateWindow(HWND hWnd);
 		
-		[Import("user32.dll"), CallingConvention(.Stdcall), CLink]
+		[Import("user32.lib"), CallingConvention(.Stdcall), CLink]
 		public static extern BOOL GetMessageW(LPMSG lpMsg, HWND hWnd, UINT wMsgFilterMin, UINT wMsgFilterMax);
 
-		[Import("user32.dll"), CallingConvention(.Stdcall), CLink]
+		[Import("user32.lib"), CallingConvention(.Stdcall), CLink]
 		public static extern BOOL TranslateMessage(Message* lpMsg);
 
-		[Import("user32.dll"), CallingConvention(.Stdcall), CLink]
+		[Import("user32.lib"), CallingConvention(.Stdcall), CLink]
 		public static extern BOOL DispatchMessageW(Message* lpMsg);
 
-		[Import("user32.dll"), CallingConvention(.Stdcall), CLink]
+		[Import("user32.lib"), CallingConvention(.Stdcall), CLink]
 		public static extern BOOL DefWindowProcW(HWND hWnd, WindowNotification Msg, WPARAM wParam, LPARAM lParam);
 
-		[Import("user32.dll"), CallingConvention(.Stdcall), CLink]
+		[Import("user32.lib"), CallingConvention(.Stdcall), CLink]
 		public static extern void PostQuitMessage(int32 nExitCode);
 
 		/**
@@ -176,7 +176,7 @@ namespace DirectX.Windows.Winuser
 		 * @param wMsgFilterMax The value of the last message in the range of messages to be examined. Use WM_KEYLAST to specify the last keyboard message or WM_MOUSELAST to specify the last mouse message.
 		 * @param wRemoveMsg	Specifies how messages are to be handled.
 		*/
-		[Import("user32.dll"), CallingConvention(.Stdcall), CLink]
+		[Import("user32.lib"), CallingConvention(.Stdcall), CLink]
 		public static extern BOOL PeekMessageW(LPMSG lpMsg, HWND hWnd, UINT wMsgFilterMin, UINT wMsgFilterMax, HandleMessageFlags wRemoveMsg);
 
 		public static MessageBoxResult MessageBox(HWND hWnd, String message, String caption, MessageBoxButtons buttons = .Ok, MessageBoxIcon icon = .None,
