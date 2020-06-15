@@ -1,6 +1,6 @@
 using System;
 
-namespace DirectX.Windows.Winuser
+namespace DirectX.Windows
 {
 
 	[AllowDuplicates]

@@ -1,4 +1,4 @@
-namespace DirectX.Windows.Winuser
+namespace DirectX.Windows
 {
 	/**
 	Indicates the default button of the message box.

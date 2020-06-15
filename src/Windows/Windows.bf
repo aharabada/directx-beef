@@ -1,5 +1,6 @@
 using System;
-using DirectX.Windows.Winuser;
+using DirectX.Math;
+using DirectX.Windows;
 
 namespace DirectX.Windows
 {
@@ -52,7 +53,7 @@ namespace DirectX.Windows
 	 * @param lParam	Additional message information.
 	 *					The contents of this parameter depend on the value of the uMsg parameter.
 	*/
-	typealias WNDPROC = function LRESULT(HWND hwnd, WindowNotification uMsg, WPARAM wParam, LPARAM lParam);
+	typealias WNDPROC = function LRESULT(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
 	static
 	{

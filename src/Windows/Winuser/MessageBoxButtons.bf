@@ -1,6 +1,6 @@
 using System;
 
-namespace DirectX.Windows.Winuser
+namespace DirectX.Windows
 {
 	/// Indicates the buttons displayed in the message box.
 	public enum MessageBoxButtons : UINT

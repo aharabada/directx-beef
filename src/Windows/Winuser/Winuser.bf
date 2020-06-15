@@ -1,13 +1,12 @@
 using System;
-using DirectX.Windows;
 using DirectX.Math;
 
-namespace DirectX.Windows.Winuser
+namespace DirectX.Windows
 {
 	static
 	{
-		public static int32 CW_USEDEFAULT = (int32)0x80000000;
-
+		public const int32 CW_USEDEFAULT = (int32)0x80000000;
+		
 		/**
 		 * The BeginPaint function prepares the specified window for painting and fills a PAINTSTRUCT structure with information about the painting.
 		 *
@@ -41,6 +40,9 @@ namespace DirectX.Windows.Winuser
 		public static extern BOOL GetClientRect(HWND windowHandle, out Rectangle rect);
 
 		[Import("user32.lib"), CallingConvention(.Stdcall), CLink]
+		public static extern BOOL GetWindowRect(HWND windowHandle, out Rectangle rect);
+
+		[Import("user32.lib"), CallingConvention(.Stdcall), CLink]
 		public static extern HICON LoadIconW(HINSTANCE hInstance, LPCWSTR lpIconName);
 
 		/**
@@ -69,7 +71,7 @@ namespace DirectX.Windows.Winuser
 		{
 			return (LPWSTR)(void*)((ULONG_PTR)((WORD)(i)));
 		}
-		
+
 		/**
 		 * Displays a modal dialog box that contains a system icon, a set of buttons, and a brief application-specific message, such as status or error information.
 		 * The message box returns an integer value that indicates which button the user clicked.
@@ -117,7 +119,7 @@ namespace DirectX.Windows.Winuser
 		[Import("user32.lib"), CallingConvention(.Stdcall), CLink]
 		public static extern HWND CreateWindowExW(ExtendedWindowStyle exStyle, LPCWSTR className, LPCWSTR windowName, WindowStyles style,
 			int x, int y, int widht, int height, HWND parent, HMENU menu, HINSTANCE hInstance, LPVOID lpParam);
-		
+
 		[Import("user32.lib"), CallingConvention(.Stdcall), CLink]
 		public static extern BOOL ShowWindow(HWND hWnd, int32 nCmdShow);
 
@@ -150,8 +152,17 @@ namespace DirectX.Windows.Winuser
 		public static extern LONG_PTR GetWindowLongPtrW(HWND windowHandle, int32 index);
 
 		[Import("user32.lib"), CallingConvention(.Stdcall), CLink]
+		public static extern int32 GetWindowTextW(HWND windowHandle, char16 *string, int32 maxCount);
+
+		[Import("user32.lib"), CallingConvention(.Stdcall), CLink]
+		public static extern BOOL SetWindowTextW(HWND windowHandle, char16 *string);
+
+		[Import("user32.lib"), CallingConvention(.Stdcall), CLink]
+		public static extern int32 GetWindowTextLengthW(HWND windowHandle);
+
+		[Import("user32.lib"), CallingConvention(.Stdcall), CLink]
 		public static extern BOOL UpdateWindow(HWND hWnd);
-		
+
 		[Import("user32.lib"), CallingConvention(.Stdcall), CLink]
 		public static extern BOOL GetMessageW(LPMSG lpMsg, HWND hWnd, UINT wMsgFilterMin, UINT wMsgFilterMax);
 
@@ -162,7 +173,7 @@ namespace DirectX.Windows.Winuser
 		public static extern BOOL DispatchMessageW(Message* lpMsg);
 
 		[Import("user32.lib"), CallingConvention(.Stdcall), CLink]
-		public static extern BOOL DefWindowProcW(HWND hWnd, WindowNotification Msg, WPARAM wParam, LPARAM lParam);
+		public static extern LRESULT DefWindowProcW(HWND hWnd, uint32 Msg, WPARAM wParam, LPARAM lParam);
 
 		[Import("user32.lib"), CallingConvention(.Stdcall), CLink]
 		public static extern void PostQuitMessage(int32 nExitCode);
@@ -184,5 +195,146 @@ namespace DirectX.Windows.Winuser
 		{
 			return (.)MessageBoxW(hWnd, message.ToScopedNativeWChar!(), caption.ToScopedNativeWChar!(), (.)buttons | (.)icon | (.)defaultButton | (.)modality);
 		}
+
+		////
+		//// Default cursors
+		////
+
+		/**
+		 * Standard arrow and small hourglass.
+		*/
+		public static readonly char16* IDC_APPSTARTING = MAKEINTRESOURCEW(32650);
+		/**
+		 * Standard arrow.
+		*/
+		public static readonly char16* IDC_ARROW = MAKEINTRESOURCEW(32512);
+		/**
+		 * Crosshair.
+		*/
+		public static readonly char16* IDC_CROSS = MAKEINTRESOURCEW(32515);
+		/**
+		 * Hand.
+		*/
+		public static readonly char16* IDC_HAND = MAKEINTRESOURCEW(32649);
+		/**
+		 * Arrow and question mark.
+		*/
+		public static readonly char16* IDC_HELP = MAKEINTRESOURCEW(32651);
+		/**
+		 * I-beam.
+		*/
+		public static readonly char16* IDC_IBEAM = MAKEINTRESOURCEW(32513);
+		/**
+		 * Obsolete for applications marked version 4.0 or later.
+		*/
+		public static readonly char16* IDC_ICON = MAKEINTRESOURCEW(32641);
+		/**
+		 * Slashed circle.
+		*/
+		public static readonly char16* IDC_NO = MAKEINTRESOURCEW(32648);
+		/**
+		 * Obsolete for applications marked version 4.0 or later. Use IDC_SIZEALL.
+		*/
+		public static readonly char16* IDC_SIZE = MAKEINTRESOURCEW(32640);
+		/**
+		 * Four-pointed arrow pointing north, south, east, and west.
+		*/
+		public static readonly char16* IDC_SIZEALL = MAKEINTRESOURCEW(32646);
+		/**
+		 * Double-pointed arrow pointing northeast and southwest.
+		*/
+		public static readonly char16* IDC_SIZENESW = MAKEINTRESOURCEW(32643);
+		/**
+		 * Double-pointed arrow pointing north and south.
+		*/
+		public static readonly char16* IDC_SIZENS = MAKEINTRESOURCEW(32645);
+		/**
+		 * Double-pointed arrow pointing northwest and southeast.
+		*/
+		public static readonly char16* IDC_SIZENWSE = MAKEINTRESOURCEW(32642);
+		/**
+		 * Double-pointed arrow pointing west and east.
+		*/
+		public static readonly char16* IDC_SIZEWE = MAKEINTRESOURCEW(32644);
+		/**
+		 * Vertical arrow.
+		*/
+		public static readonly char16* IDC_UPARROW = MAKEINTRESOURCEW(32516);
+		/**
+		 * Hourglass.
+		*/
+		public static readonly char16* IDC_WAIT = MAKEINTRESOURCEW(32514);
+
+		////
+		//// Default icons
+		////
+
+		/**
+		 * Default application icon.
+		*/
+		public static readonly char16* IDI_APPLICATION = MAKEINTRESOURCEW(32512);
+		/**
+		 * Asterisk icon. Same as IDI_INFORMATION.
+		*/
+		public static readonly char16* IDI_ASTERISK = MAKEINTRESOURCEW(32516);
+		/**
+		 * Hand-shaped icon.
+		*/
+		public static readonly char16* IDI_ERROR = MAKEINTRESOURCEW(32513);
+		/**
+		 * Exclamation point icon. Same as IDI_WARNING.
+		*/
+		public static readonly char16* IDI_EXCLAMATION = MAKEINTRESOURCEW(32515);
+		/**
+		 * Hand-shaped icon. Same as IDI_ERROR.
+		*/
+		public static readonly char16* IDI_HAND = MAKEINTRESOURCEW(32513);
+		/**
+		 * Asterisk icon.
+		*/
+		public static readonly char16* IDI_INFORMATION = MAKEINTRESOURCEW(32516);
+		/**
+		 * Question mark icon.
+		*/
+		public static readonly char16* IDI_QUESTION = MAKEINTRESOURCEW(32514);
+		/**
+		 * Security Shield icon.
+		*/
+		public static readonly char16* IDI_SHIELD = MAKEINTRESOURCEW(32518);
+		/**
+		 * Exclamation point icon.
+		*/
+		public static readonly char16* IDI_WARNING = MAKEINTRESOURCEW(32515);
+		/**
+		 * Default application icon.
+		 * Windows 2000:  Windows logo icon.
+		*/
+		public static readonly char16* IDI_WINLOGO = MAKEINTRESOURCEW(32517);
+
+		/*
+		* Window field offsets for GetWindowLong()
+		*/
+		public const int32 GWL_WNDPROC = (-4);
+		public const int32 GWL_HINSTANCE = (-6);
+		public const int32 GWL_HWNDPARENT = (-8);
+		public const int32 GWL_STYLE = (-16);
+		public const int32 GWL_EXSTYLE = (-20);
+		public const int32 GWL_USERDATA = (-21);
+		public const int32 GWL_ID = (-12);
+
+		/*
+		* Class field offsets for GetClassLong()
+		*/
+		public const int32 GCL_MENUNAME =(-8);
+		public const int32 GCL_HBRBACKGROUND = (-10);
+		public const int32 GCL_HCURSOR = (-12);
+		public const int32 GCL_HICON = (-14);
+		public const int32 GCL_HMODULE = (-16);
+		public const int32 GCL_CBWNDEXTRA = (-18);
+		public const int32 GCL_CBCLSEXTRA = (-20);
+		public const int32 GCL_WNDPROC = (-24);
+		public const int32 GCL_STYLE = (-26);
+		public const int32 GCW_ATOM = (-32);
+		public const int32 GCL_HICONSM = (-34);
 	}
 }

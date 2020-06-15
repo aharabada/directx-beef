@@ -1,4 +1,4 @@
-namespace DirectX.Windows.Winuser
+namespace DirectX.Windows
 {
 	/**
 	 * Specifies how messages are to be handled.

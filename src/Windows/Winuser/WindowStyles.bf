@@ -1,6 +1,6 @@
 using System;
 
-namespace DirectX.Windows.Winuser
+namespace DirectX.Windows
 {
 	/**
 	The following are the window styles. After the window has been created, these styles cannot be modified, except as noted.

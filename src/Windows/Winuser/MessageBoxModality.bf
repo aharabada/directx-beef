@@ -1,4 +1,4 @@
-namespace DirectX.Windows.Winuser
+namespace DirectX.Windows
 {
 	public enum MessageBoxModality : UINT
 	{

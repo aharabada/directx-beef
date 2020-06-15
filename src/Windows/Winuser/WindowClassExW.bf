@@ -1,6 +1,6 @@
 using System;
 
-namespace DirectX.Windows.Winuser
+namespace DirectX.Windows
 {
 	/**
 	 * Contains window class information.

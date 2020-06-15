@@ -1,6 +1,6 @@
 using System;
 
-namespace DirectX.Windows.Winuser
+namespace DirectX.Windows
 {
 	/// Indicates the icon displayed in the message box.
 	[AllowDuplicates]

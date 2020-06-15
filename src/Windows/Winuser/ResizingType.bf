@@ -1,4 +1,4 @@
-namespace DirectX.Windows.Winuser
+namespace DirectX.Windows
 {
 	/**
 	 * The type of resizing requested.

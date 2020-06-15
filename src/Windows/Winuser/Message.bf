@@ -1,6 +1,6 @@
 using System;
 
-namespace DirectX.Windows.Winuser
+namespace DirectX.Windows
 {
 	typealias LPMSG = Message*;
 
@@ -8,7 +8,7 @@ namespace DirectX.Windows.Winuser
 	public struct Message
 	{
     	public HWND        hwnd;
-    	public WindowNotification message;
+    	public UINT 	message;
     	public WPARAM      wParam;
     	public LPARAM      lParam;
     	public DWORD       time;

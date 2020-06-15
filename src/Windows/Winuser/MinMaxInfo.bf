@@ -1,6 +1,6 @@
 using System;
 
-namespace DirectX.Windows.Winuser
+namespace DirectX.Windows
 {
 	/**
 	 * Contains information about a window's maximized size and position and its minimum and maximum tracking size.
