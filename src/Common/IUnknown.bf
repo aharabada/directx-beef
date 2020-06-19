@@ -2,11 +2,15 @@ using System;
 
 namespace DirectX.Common
 {
-	// Todo: little brittle IComObject deserves its own file
-	public interface IComObject
+	public interface IInterfaceID
 	{
-		// Return the interface identifier of the com interface.
-		static Guid IID { get; }
+		/// Return the interface identifier of the com interface.
+		static Guid IID { get; };
+	}
+
+	// Todo: little brittle IComObject deserves its own file
+	public interface IComObject : IInterfaceID
+	{
 	}
 
 	public struct IUnknown : IComObject

@@ -1,4 +1,4 @@
-namespace DirectX.D3D11
+namespace DirectX.Common
 {
 	/**
 	These flags identify the type of resource that will be viewed as a shader resource.

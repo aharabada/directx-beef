@@ -8,7 +8,7 @@ namespace DirectX.DXGI
 		/**
 		The format is not known.
 		*/
-	    Unknown	                    = 0,
+	    Unknown	 = 0,
 		/**
 		A four-component, 128-bit typeless format that supports 32 bits per channel including alpha.
 		*/
@@ -178,11 +178,11 @@ namespace DirectX.DXGI
 		/**
 		A single-component, 32-bit unsigned-integer format that supports 32 bits for the red channel.
 		*/
-		R32_UInt                    = 42,
+		R32_UInt = 42,
 		/**
 		A single-component, 32-bit signed-integer format that supports 32 bits for the red channel.
 		*/
-		R32_SInt                    = 43,
+		R32_SInt = 43,
 		/**
 		A two-component, 32-bit typeless format that supports 24 bits for the red channel and 8 bits for the green channel.
 		*/
@@ -240,7 +240,7 @@ namespace DirectX.DXGI
 		/**
 		A single-component, 16-bit unsigned-integer format that supports 16 bits for the red channel.
 		*/
-		R16_UInt                    = 57,
+		R16_UInt = 57,
 		/**
 		A single-component, 16-bit signed-normalized-integer format that supports 16 bits for the red channel.
 		*/
@@ -248,7 +248,7 @@ namespace DirectX.DXGI
 		/**
 		A single-component, 16-bit signed-integer format that supports 16 bits for the red channel.
 		*/
-		R16_SInt                    = 59,
+		R16_SInt = 59,
 		/**
 		A single-component, 8-bit typeless format that supports 8 bits for the red channel.
 		*/
@@ -256,29 +256,29 @@ namespace DirectX.DXGI
 		/**
 		A single-component, 8-bit unsigned-normalized-integer format that supports 8 bits for the red channel.
 		*/
-		R8_UNorm                    = 61,
+		R8_UNorm = 61,
 		/**
 		A single-component, 8-bit unsigned-integer format that supports 8 bits for the red channel.
 		*/
-		R8_UInt                     = 62,
+		R8_UInt  = 62,
 		/**
 		A single-component, 8-bit signed-normalized-integer format that supports 8 bits for the red channel.
 		*/
-		R8_SNorm                    = 63,
+		R8_SNorm = 63,
 		/**
 		A single-component, 8-bit signed-integer format that supports 8 bits for the red channel.
 		*/
-		R8_SInt                     = 64,
+		R8_SInt  = 64,
 		/**
 		A single-component, 8-bit unsigned-normalized-integer format for alpha only.
 		*/
-		A8_UNorm                    = 65,
+		A8_UNorm = 65,
 		/**
 		A single-component, 1-bit unsigned-normalized integer format that supports 1 bit for the red channel.
 		R1_UNorm is designed specifically for text filtering, and must be used with a format-specific, configurable 8x8 filter mode.
 		When calling an HLSL sampling function using this format, the address offset parameter must be set to (0,0).
 		*/
-		R1_UNorm                    = 66,
+		R1_UNorm = 66,
 		/**
 		Three partial-precision floating-point numbers encoded into a single 32-bit value all sharing the same 5-bit exponent
 		(variant of s10e5, which is sign bit, 10-bit mantissa, and 5-bit biased (15) exponent).
@@ -441,7 +441,7 @@ namespace DirectX.DXGI
 
 		Direct3D 11.1:  This value is not supported until Windows 8.
 		*/
-		AYUV                        = 100,
+		AYUV     = 100,
 		/**
 		10-bit per channel packed YUV 4:4:4 video resource format. Valid view formats for this video resource format are
 		DXGI_FORMAT_R10G10B10A2_UNORM and DXGI_FORMAT_R10G10B10A2_UINT. For UAVs, an additional valid view format is DXGI_FORMAT_R32_UINT. By using DXGI_FORMAT_R32_UINT for UAVs, you can both read and write as opposed to just write for DXGI_FORMAT_R10G10B10A2_UNORM and DXGI_FORMAT_R10G10B10A2_UINT. Supported view types are SRV and UAV. One view provides a straightforward mapping of the entire surface. The mapping to the view channel is U->R10,
@@ -451,7 +451,7 @@ namespace DirectX.DXGI
 
 		Direct3D 11.1:  This value is not supported until Windows 8.
 		*/
-		Y410                        = 101,
+		Y410     = 101,
 		/**
 		16-bit per channel packed YUV 4:4:4 video resource format. Valid view formats for this video resource format are
 		DXGI_FORMAT_R16G16B16A16_UNORM and DXGI_FORMAT_R16G16B16A16_UINT. Supported view types are SRV and UAV.
@@ -462,7 +462,7 @@ namespace DirectX.DXGI
 
 		Direct3D 11.1:  This value is not supported until Windows 8.
 		*/
-		Y416                        = 102,
+		Y416     = 102,
 		/**
 		Most common YUV 4:2:0 video resource format. Valid luminance data view formats for this video resource format are
 		DXGI_FORMAT_R8_UNORM and DXGI_FORMAT_R8_UINT. Valid chrominance data view formats
@@ -483,7 +483,7 @@ namespace DirectX.DXGI
 
 		Direct3D 11.1:  This value is not supported until Windows 8.
 		*/
-		NV12                        = 103,
+		NV12     = 103,
 		/**
 		10-bit per channel planar YUV 4:2:0 video resource format. Valid luminance data view formats for this video resource
 		format are DXGI_FORMAT_R16_UNORM and DXGI_FORMAT_R16_UINT. The runtime does not enforce whether the lowest 6 bits are 0
@@ -506,7 +506,7 @@ namespace DirectX.DXGI
 
 		Direct3D 11.1:  This value is not supported until Windows 8.
 		*/
-		P010                        = 104,
+		P010     = 104,
 		/**
 		16-bit per channel planar YUV 4:2:0 video resource format. Valid luminance data view formats for this video resource
 		format are DXGI_FORMAT_R16_UNORM and DXGI_FORMAT_R16_UINT. Valid chrominance data view formats
@@ -527,7 +527,7 @@ namespace DirectX.DXGI
 
 		Direct3D 11.1:  This value is not supported until Windows 8.
 		*/
-		P016                        = 105,
+		P016     = 105,
 		/**
 		8-bit per channel planar YUV 4:2:0 video resource format. This format is subsampled where each pixel has its own Y value,
 		but each 2x2 pixel block shares a single U and V value. The runtime requires that the width and height of all resources
@@ -568,7 +568,7 @@ namespace DirectX.DXGI
 
 		Direct3D 11.1:  This value is not supported until Windows 8.
 		*/
-		YUY2                        = 107,
+		YUY2     = 107,
 		/**
 		10-bit per channel packed YUV 4:2:2 video resource format. Valid view formats for this video resource format are
 		DXGI_FORMAT_R16G16B16A16_UNORM and DXGI_FORMAT_R16G16B16A16_UINT. The runtime does not enforce whether the lowest
@@ -581,7 +581,7 @@ namespace DirectX.DXGI
 
 		Direct3D 11.1:  This value is not supported until Windows 8.
 		*/
-		Y210                        = 108,
+		Y210     = 108,
 		/**
 		16-bit per channel packed YUV 4:2:2 video resource format. Valid view formats for this video resource format are
 		DXGI_FORMAT_R16G16B16A16_UNORM and DXGI_FORMAT_R16G16B16A16_UINT. Supported view types are SRV and UAV.
@@ -592,7 +592,7 @@ namespace DirectX.DXGI
 
 		Direct3D 11.1:  This value is not supported until Windows 8.
 		*/
-		Y216                        = 109,
+		Y216     = 109,
 		/**
 		Most common planar YUV 4:1:1 video resource format. Valid luminance data view formats for this video resource format are
 		DXGI_FORMAT_R8_UNORM and DXGI_FORMAT_R8_UINT. Valid chrominance data view formats
@@ -606,32 +606,32 @@ namespace DirectX.DXGI
 
 		Direct3D 11.1:  This value is not supported until Windows 8.
 		*/
-		NV11                        = 110,
+		NV11     = 110,
 		/**
 		4-bit palletized YUV format that is commonly used for DVD subpicture.
 
 		Direct3D 11.1:  This value is not supported until Windows 8.
 		*/
-		AI44                        = 111,
+		AI44     = 111,
 		/**
 		4-bit palletized YUV format that is commonly used for DVD subpicture.
 
 		Direct3D 11.1:  This value is not supported until Windows 8.
 		*/
-		IA44                        = 112,
+		IA44     = 112,
 		/**
 		8-bit palletized format that is used for palletized RGB data when the processor processes ISDB-T data and
 		for palletized YUV data when the processor processes BluRay data.
 
 		Direct3D 11.1:  This value is not supported until Windows 8.
 		*/
-		P8                          = 113,
+		P8       = 113,
 		/**
 		8-bit palletized format with 8 bits of alpha that is used for palletized YUV data when the processor processes BluRay data.
 
 		Direct3D 11.1:  This value is not supported until Windows 8.
 		*/
-		A8P8                        = 114,
+		A8P8     = 114,
 		/**
 		A four-component, 16-bit unsigned-normalized integer format that supports 4 bits for each channel including alpha.
 
@@ -641,15 +641,15 @@ namespace DirectX.DXGI
 		/**
 		A video format; an 8-bit version of a hybrid planar 4:2:2 format.
 		*/
-		P208                        = 130,
+		P208     = 130,
 		/**
 		An 8 bit YCbCrA 4:4 rendering format.
 		*/
-		V208                        = 131,
+		V208     = 131,
 		/**
 		An 8 bit YCbCrA 4:4:4:4 rendering format.
 		*/
-		V408                        = 132,
+		V408     = 132,
 		/**
 		Forces this enumeration to compile to 32 bits in size.
 		Without this value, some compilers would allow this enumeration to compile to a

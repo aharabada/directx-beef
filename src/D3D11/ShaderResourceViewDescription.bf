@@ -1,5 +1,6 @@
 using System;
 using DirectX.DXGI;
+using DirectX.Common;
 
 namespace DirectX.D3D11
 {

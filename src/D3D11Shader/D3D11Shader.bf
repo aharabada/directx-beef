@@ -1,0 +1,20 @@
+using DirectX.Common;
+
+namespace DirectX.D3D11Shader
+{
+	static
+	{
+		// Slot ID for library function return
+		public const int32 D3D_RETURN_PARAMETER_INDEX  = -1;
+
+		public const uint32 D3D_SHADER_REQUIRES_DOUBLES = 0x00000001;
+		public const uint32 D3D_SHADER_REQUIRES_EARLY_DEPTH_STENCIL = 0x00000002;
+		public const uint32 D3D_SHADER_REQUIRES_UAVS_AT_EVERY_STAGE = 0x00000004;
+		public const uint32 D3D_SHADER_REQUIRES_64_UAVS = 0x00000008;
+		public const uint32 D3D_SHADER_REQUIRES_MINIMUM_PRECISION = 0x00000010;
+		public const uint32 D3D_SHADER_REQUIRES_11_1_DOUBLE_EXTENSIONS = 0x00000020;
+		public const uint32 D3D_SHADER_REQUIRES_11_1_SHADER_EXTENSIONS = 0x00000040;
+		public const uint32 D3D_SHADER_REQUIRES_LEVEL_9_COMPARISON_FILTERING = 0x00000080;
+		public const uint32 D3D_SHADER_REQUIRES_TILED_RESOURCES = 0x00000100;
+	}
+}

@@ -1,0 +1,21 @@
+using System;
+
+namespace DirectX.Common
+{
+	/**
+	 * Values that identify the data types that can be stored in a register.
+	*/
+	// Todo:
+	[AllowDuplicates]
+	public enum D3DRegisterComponentType : uint32
+	{
+		D3D_REGISTER_COMPONENT_UNKNOWN	= 0,
+        D3D_REGISTER_COMPONENT_UINT32	= 1,
+        D3D_REGISTER_COMPONENT_SINT32	= 2,
+        D3D_REGISTER_COMPONENT_FLOAT32	= 3,
+        D3D10_REGISTER_COMPONENT_UNKNOWN	= D3D_REGISTER_COMPONENT_UNKNOWN,
+        D3D10_REGISTER_COMPONENT_UINT32	= D3D_REGISTER_COMPONENT_UINT32,
+        D3D10_REGISTER_COMPONENT_SINT32	= D3D_REGISTER_COMPONENT_SINT32,
+        D3D10_REGISTER_COMPONENT_FLOAT32	= D3D_REGISTER_COMPONENT_FLOAT32
+	}
+}
