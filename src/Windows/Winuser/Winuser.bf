@@ -1,7 +1,7 @@
 using System;
 using DirectX.Math;
 
-namespace DirectX.Windows
+namespace DirectX.Windows.Winuser
 {
 	static
 	{
@@ -179,6 +179,51 @@ namespace DirectX.Windows
 		public static extern void PostQuitMessage(int32 nExitCode);
 
 		/**
+		 * Retrieves the status of the specified virtual key.
+		 * The status specifies whether the key is up, down, or toggled (on, off—alternating each time the key is pressed).
+		*/
+		[Import("User32.lib"), CLink]
+		public static extern uint16 GetKeyState(int32 nVrtKey);
+
+		/**
+		 * Determines whether a key is up or down at the time the function is called, and whether the key was pressed after a previous call to GetAsyncKeyState.
+		*/
+		[Import("User32.lib"), CLink]
+		public static extern uint16 GetAsyncKeyState(int32 nVrtKey);
+
+		/**
+		 * Copies the status of the 256 virtual keys to the specified buffer.
+		 *
+		 * @param lpKeyState	The 256-byte array that receives the status data for each virtual key.
+		 * @return If the function succeeds, the return value is nonzero.
+		*/
+		[Import("User32.lib"), CLink]
+		public static extern BOOL GetKeyboardState(uint8 *lpKeyState);
+
+		/**
+		 * Retrieves a string that represents the name of a key.
+		 *
+		 * @param lParam	The second parameter of the keyboard message (such as WM_KEYDOWN) to be processed.
+		 * @param lpString	The buffer that will receive the key name.
+		 * @param cchSize	The maximum length, in characters, of the key name, including the terminating null character.
+		 *					(This parameter should be equal to the size of the buffer pointed to by the lpString parameter.)
+		 * @return	If the function succeeds, a null-terminated string is copied into the specified buffer, and the return value is the length of the string, in characters, not counting the terminating null character.
+		*/
+		[Import("User32.lib"), CLink]
+		public static extern int32 GetKeyNameTextW(int32 lParam, char16* lpString, int cchSize);
+
+		public const uint32 MAPVK_VK_TO_VSC = 0;
+		public const uint32 MAPVK_VSC_TO_VK = 1;
+		public const uint32 MAPVK_VK_TO_CHAR = 2;
+		public const uint32 MAPVK_VSC_TO_VK_EX = 3;
+
+		/**
+		 * Translates (maps) a virtual-key code into a scan code or character value, or translates a scan code into a virtual-key code.
+		*/
+		[Import("User32.lib"), CLink]
+		public static extern uint32 MapVirtualKeyW(uint32 uCode, uint32 uMapType);
+
+		/**
 		 * Dispatches incoming sent messages, checks the thread message queue for a posted message, and retrieves the message (if any exist).
 		 *
 		 * @param lpMsg			A pointer to an MSG structure that receives message information.
@@ -189,6 +234,29 @@ namespace DirectX.Windows
 		*/
 		[Import("user32.lib"), CallingConvention(.Stdcall), CLink]
 		public static extern BOOL PeekMessageW(LPMSG lpMsg, HWND hWnd, UINT wMsgFilterMin, UINT wMsgFilterMax, HandleMessageFlags wRemoveMsg);
+		
+		/**
+		 * Converts the client-area coordinates of a specified point to screen coordinates.
+		 *
+		 * @param hWnd	A handle to the window whose client area is used for the conversion.
+		 * @param point	A pointer to a POINT structure that contains the client coordinates to be converted.
+		 *				The new screen coordinates are copied into this structure if the function succeeds.
+		 * @return	If the function succeeds, the return value is nonzero.
+		 *			If the function fails, the return value is zero.
+		*/
+		[Import("user32.lib"), CallingConvention(.Stdcall), CLink]
+		public static extern BOOL ClientToScreen(Windows.HWnd hWnd, POINT* point);
+
+		/**
+		 * Converts the screen coordinates of a specified point on the screen to client-area coordinates.
+		 *
+		 * @param hWnd	A handle to the window whose client area will be used for the conversion.
+		 * @param point	A pointer to a POINT structure that specifies the screen coordinates to be converted.
+		 * @return	If the function succeeds, the return value is nonzero.
+		 *			If the function fails, the return value is zero.
+		*/
+		[Import("user32.lib"), CallingConvention(.Stdcall), CLink]
+		public static extern BOOL ScreenToClient(Windows.HWnd hWnd, POINT* point);
 
 		public static MessageBoxResult MessageBox(HWND hWnd, String message, String caption, MessageBoxButtons buttons = .Ok, MessageBoxIcon icon = .None,
 			MessageBoxDefaultButton defaultButton = .Button1, MessageBoxModality modality = .Application, MessageBoxOptions options = .None)
