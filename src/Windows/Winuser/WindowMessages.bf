@@ -1,4 +1,4 @@
-namespace DirectX.Windows
+namespace DirectX.Windows.WindowMessages
 {
 	// Clipboard messages/Notifications
 	static
@@ -96,6 +96,18 @@ namespace DirectX.Windows
 	// Window messages
 	static
 	{
+		// Keyboard messages
+		public const uint32 WM_KEYDOWN = 0x0100;
+		public const uint32 WM_KEYUP = 0x0101;
+		public const uint32 WM_CHAR = 0x0102;
+		public const uint32 WM_DEADCHAR = 0x0103;
+		public const uint32 WM_SYSKEYDOWN = 0x0104;
+		public const uint32 WM_SYSKEYUP = 0x0105;
+		public const uint32 WM_SYSCHAR = 0x0106;
+		public const uint32 WM_SYSDEADCHAR = 0x0107;
+
+		public const uint32 WM_MOUSEMOVE = 0x0200;
+
 		/**
 		 * Sets the text of a window.
 		*/
@@ -293,6 +305,7 @@ namespace DirectX.Windows
 		 * Sent to a window when its nonclient area needs to be changed to indicate an active or inactive state.
 		*/
 		public const uint32 WM_NCACTIVATE = 0x0086;
+
 		/**
 		 * Sent to a window that the user is resizing.
 		 * By processing this message, an application can monitor the size and position of the drag rectangle and, if needed, change its size or position.
@@ -337,5 +350,32 @@ namespace DirectX.Windows
 		 * Examples of theme change events are the activation of a theme, the deactivation of a theme, or a transition from one theme to another.
 		*/
 		public const uint32 WM_THEMECHANGED = 0x031A;
+	}
+
+	static
+	{
+		public const uint32 WM_SYSCOMMAND = 0x0112;
+
+		public const uint32 SC_SIZE       = 0xF000;
+		public const uint32 SC_MOVE       = 0xF010;
+		public const uint32 SC_MINIMIZE   = 0xF020;
+		public const uint32 SC_MAXIMIZE   = 0xF030;
+		public const uint32 SC_NEXTWINDOW = 0xF040;
+		public const uint32 SC_PREVWINDOW = 0xF050;
+		public const uint32 SC_CLOSE      = 0xF060;
+		public const uint32 SC_VSCROLL    = 0xF070;
+		public const uint32 SC_HSCROLL    = 0xF080;
+		public const uint32 SC_MOUSEMENU  = 0xF090;
+		public const uint32 SC_KEYMENU    = 0xF100;
+		public const uint32 SC_ARRANGE    = 0xF110;
+		public const uint32 SC_RESTORE    = 0xF120;
+		public const uint32 SC_TASKLIST   = 0xF130;
+		public const uint32 SC_SCREENSAVE = 0xF140;
+		public const uint32 SC_HOTKEY     = 0xF150;
+		public const uint32 SC_DEFAULT    = 0xF160;
+		public const uint32 SC_MONITORPOWER = 0xF170;
+		public const uint32 SC_CONTEXTHELP  = 0xF180;
+		public const uint32 SC_SEPARATOR    = 0xF00F;
+		public const uint32 SCF_ISSECURE    = 0x00000001;
 	}
 }
