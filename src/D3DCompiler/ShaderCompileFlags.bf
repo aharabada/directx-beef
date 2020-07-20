@@ -1,8 +1,11 @@
+using System;
+
 namespace DirectX.D3DCompiler
 {
 	/**
 	The D3DCOMPILE constants specify how the compiler compiles the HLSL code.
 	*/
+	[AllowDuplicates]
 	public enum ShaderCompileFlags : uint32
 	{
 		/**
@@ -141,6 +144,10 @@ namespace DirectX.D3DCompiler
 		D3DCOMPILE_DEBUG_NAME_FOR_SOURCE.
 		D3DCOMPILE_DEBUG_NAME_FOR_BINARY
 		*/
-		DebugNameForBinary
+		DebugNameForBinary,
+		/**
+		Directs the compiler to use the default compile flags (OptimizationLevel1).
+		*/
+		Default = 0
 	}
 }
