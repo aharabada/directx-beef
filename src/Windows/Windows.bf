@@ -4,6 +4,7 @@ using DirectX.Windows;
 
 namespace DirectX.Windows
 {
+	typealias HANDLE = Windows.Handle;
 	typealias HWND = Windows.HWnd;
 	typealias LPCSTR = char8*;
 	typealias LPCTSTR = char16*;
@@ -58,8 +59,27 @@ namespace DirectX.Windows
 	static
 	{
 		/**
+		 * Takes a 64bit integer and returns the high order word.
+		*/
+		[Inline]
+		public static int32 GetHighOrder(int64 input)
+		{
+			return (int32)(input >> 16);
+		}
+
+		/**
+		 * Takes a 64bit integer and returns the low order word.
+		*/
+		[Inline]
+		public static int32 GetLowOrder(int64 input)
+		{
+			return (int32)(input & 0xFFFF);
+		}
+
+		/**
 		 * Takes a 64bit integer and splits it into the 32bit high-order and low-order words
 		*/
+		[Inline]
 		public static void SplitHighAndLowOrder(int64 input, out int32 lowOrder, out int32 highOrder)
 		{
 			lowOrder = (int32)(input & 0xFFFF);
