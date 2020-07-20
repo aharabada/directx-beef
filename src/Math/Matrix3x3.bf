@@ -3,9 +3,8 @@ using System;
 namespace DirectX.Math
 {
 	/**
-	Represents a four by four matrix column-major matrix.
-	*/
-	[CRepr]
+	 * Represents a 3 by 3 column-major matrix.
+	 */
 	public struct Matrix3x3
 	{
 		public static readonly Matrix3x3 Zero = .();

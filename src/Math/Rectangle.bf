@@ -2,7 +2,6 @@ using System;
 
 namespace DirectX.Math
 {
-	[CRepr]
 	public struct Rectangle
 	{
 		public int32 Left;

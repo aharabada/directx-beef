@@ -3,9 +3,8 @@ using System;
 namespace DirectX.Math
 {
 	/**
-	Represents a four by four matrix column-major matrix.
-	*/
-	[CRepr]
+	 * Represents a 4 by 4 column-major matrix.
+	 */
 	public struct Matrix
 	{
 		public static readonly Matrix Zero = .();
@@ -40,7 +39,16 @@ namespace DirectX.Math
 
 		public ref float this[int row, int column]
 		{
-			[Inline]
+			[Checked]
+			get mut
+			{
+				if(column < 0 || column > 3 || row < 0 || row > 3)
+					Internal.ThrowIndexOutOfRange();
+
+				return ref _m[column][row];
+			}
+
+			[Unchecked, Inline]
 			get mut
 			{
 				return ref _m[column][row];
@@ -49,13 +57,21 @@ namespace DirectX.Math
 
 		public ref Vector4 this[int column]
 		{
-			[Inline]
+			[Checked]
+			get mut
+			{
+				if(column < 0 || column > 3)
+					Internal.ThrowIndexOutOfRange();
+
+				return ref ((Vector4*)&_m)[column];
+			}
+
+			[Unchecked, Inline]
 			get mut
 			{
 				return ref ((Vector4*)&_m)[column];
 			}
 		}
-
 		
 		[Unchecked]
 		public static Matrix operator *(Matrix l, Matrix r)
@@ -94,7 +110,26 @@ namespace DirectX.Math
 		}
 		
 		[Unchecked]
+		public void operator /=(float s) mut
+		{
+			float f = 1 / s;
+
+			this[0] *= f;
+			this[1] *= f;
+			this[2] *= f;
+			this[3] *= f;
+		}
+		
+		[Unchecked]
 		public static Matrix operator *(Matrix m, float s)
+		{
+			Matrix M = m;
+
+			return .(M[0] * s, M[1] * s, M[2] * s, M[3] * s);
+		}
+		
+		[Unchecked]
+		public static Matrix operator *(float s, Matrix m)
 		{
 			Matrix M = m;
 
@@ -112,17 +147,6 @@ namespace DirectX.Math
 					 L[2, 0] * R[0] + L[2, 1] * R[1] + L[2, 2] * R[2] + L[2, 3] * R[3],
 					 L[3, 0] * R[0] + L[3, 1] * R[1] + L[3, 2] * R[2] + L[3, 3] * R[3]);
 		}
-		
-		[Unchecked]
-		public void operator /=(float s) mut
-		{
-			float f = 1 / s;
-
-			this[0] *= f;
-			this[1] *= f;
-			this[2] *= f;
-			this[3] *= f;
-		}
 
 		[Unchecked]
 		public static Matrix operator /(Matrix m, float s)
@@ -133,7 +157,7 @@ namespace DirectX.Math
 			return .(M[0] * f, M[1] * f, M[2] * f, M[3] * f);
 		}
 
-		public void operator +=(ref Matrix r) mut
+		public void operator +=(Matrix r) mut
 		{	
 			Matrix R = r;
 			this[0] += R[0];
@@ -157,7 +181,7 @@ namespace DirectX.Math
 			return .(-L[0], -L[1], -L[2], -L[3]);
 		}
 
-		public void operator -=(ref Matrix r) mut
+		public void operator -=( Matrix r) mut
 		{	
 			Matrix R = r;
 			this[0] -= R[0];
@@ -179,6 +203,14 @@ namespace DirectX.Math
 			return .(scale, 0, 0, 0,
 					 0, scale, 0, 0,
 					 0, 0, scale, 0,
+					 0, 0, 0, 1);
+		}
+		
+		public static Matrix Scaling(float scaleX, float scaleY, float scaleZ)
+		{
+			return .(scaleX, 0, 0, 0,
+					 0, scaleY, 0, 0,
+					 0, 0, scaleZ, 0,
 					 0, 0, 0, 1);
 		}
 
@@ -267,12 +299,12 @@ namespace DirectX.Math
 			float z = this[3, 2];
 			float w = this[3, 3];
 
-			Vector3 s = Vector3.Cross(ref a, ref b);
-			Vector3 t = Vector3.Cross(ref c, ref d);
+			Vector3 s = Vector3.Cross( a,  b);
+			Vector3 t = Vector3.Cross( c,  d);
 			Vector3 u = y * a - x * b;
 			Vector3 v = w * c - z * d;
 
-			return Vector3.Dot(ref s, ref v) + Vector3.Dot(ref t, ref u);
+			return Vector3.Dot( s,  v) + Vector3.Dot( t,  u);
 		}
 
 		/**
@@ -292,26 +324,26 @@ namespace DirectX.Math
 			float z = this[3, 2];
 			float w = this[3, 3];
 
-			Vector3 s = Vector3.Cross(ref a, ref b);
-			Vector3 t = Vector3.Cross(ref c, ref d);
+			Vector3 s = Vector3.Cross( a,  b);
+			Vector3 t = Vector3.Cross( c,  d);
 			Vector3 u = y * a - x * b;
 			Vector3 v = w * c - z * d;
 
-			float invDet = 1.0f / (Vector3.Dot(ref s, ref v) + Vector3.Dot(ref t, ref u));
+			float invDet = 1.0f / (Vector3.Dot( s,  v) + Vector3.Dot( t,  u));
 
 			s *= invDet;
 			t *= invDet;
 			u *= invDet;
 			v *= invDet;
  
-			Vector3 r0 = Vector3.Cross(ref b, ref v) + t * y;
-			Vector3 r1 = Vector3.Cross(ref v, ref a) - t * x;
-			Vector3 r2 = Vector3.Cross(ref d, ref u) + s * w;
-			Vector3 r3 = Vector3.Cross(ref u, ref c) - s * z;
-			return .(r0.X, r0.Y, r0.Z, -Vector3.Dot(ref b, ref t),
-					r1.X, r1.Y, r1.Z, Vector3.Dot(ref a, ref t),
-					r2.X, r2.Y, r2.Z, -Vector3.Dot(ref d, ref s),
-					r3.X, r3.Y, r3.Z, Vector3.Dot(ref c, ref s));
+			Vector3 r0 = Vector3.Cross( b,  v) + t * y;
+			Vector3 r1 = Vector3.Cross( v,  a) - t * x;
+			Vector3 r2 = Vector3.Cross( d,  u) + s * w;
+			Vector3 r3 = Vector3.Cross( u,  c) - s * z;
+			return .(r0.X, r0.Y, r0.Z, -Vector3.Dot( b,  t),
+					r1.X, r1.Y, r1.Z, Vector3.Dot( a,  t),
+					r2.X, r2.Y, r2.Z, -Vector3.Dot( d,  s),
+					r3.X, r3.Y, r3.Z, Vector3.Dot( c,  s));
 		}
 
 		public static Matrix PerspectiveProjection(float fovY, float aspectRatio, float nearPlane, float farPlane)
@@ -364,6 +396,29 @@ namespace DirectX.Math
 					0, g, 0, 0,
 					0, 0, ε, 1,
 					0, 0, nearPlane * (1 - ε), 0);
+		}
+
+		public static Matrix OrthographicProjection(float width, float height, float depth)
+		{
+			// Lengyel, Eric. Foundations of Game Engine Development, Volume 2: Rendering (Seite91).  . Kindle-Version. 
+			return .(2.0f / width, 0, 0, 0,
+					0, 2.0f/height, 0, 0,
+					0, 0, 1.0f / depth, 0,
+					0, 0, 0, 1);
+		}
+
+		public static Matrix OrthographicProjectionOffCenter(float left, float right, float top, float bottom, float near, float far)
+		{
+			// Lengyel, Eric. Foundations of Game Engine Development, Volume 2: Rendering (Seite91).  . Kindle-Version.
+
+			float r_l = right - left;
+			float b_t = bottom - top;
+			float f_n = far - near;
+
+			return .(2.0f / r_l, 0, 0, 0,
+					0, 2.0f / b_t, 0, 0,
+					0, 0, 1.0f / f_n, 0,
+					-(right + left) / r_l, (bottom + top) / b_t, -near / f_n, 1);
 		}
 	}
 }

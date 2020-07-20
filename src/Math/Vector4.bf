@@ -2,7 +2,6 @@ using System;
 
 namespace DirectX.Math
 {
-	[CRepr]
 	public struct Vector4
 	{
 		public static readonly Vector4 Zero 	= .(0f, 0f, 0f, 0f);
@@ -61,11 +60,11 @@ namespace DirectX.Math
 
 		public ref float this[int index]
 		{
-			[Checked, Inline]
+			[Checked]
 			get mut
 			{
 				if(index < 0 || index > 3)
-					Internal.ThrowIndexOutOfRange(1);
+					Internal.ThrowIndexOutOfRange();
 
 				return ref (&X)[index];
 			}
@@ -98,7 +97,23 @@ namespace DirectX.Math
 			W *= f;
 		}
 
-		public void operator +=(ref Vector4 v) mut
+		public void operator *=(Vector4 v) mut
+		{
+			X *= v.X;
+			Y *= v.Y;
+			Z *= v.Z;
+			W *= v.W;
+		}
+
+		public void operator /=(Vector4 v) mut
+		{
+			X /= v.X;
+			Y /= v.Y;
+			Z /= v.Z;
+			W /= v.W;
+		}
+
+		public void operator +=(Vector4 v) mut
 		{
 			X += v.X;
 			Y += v.Y;
@@ -106,7 +121,7 @@ namespace DirectX.Math
 			W += v.W;
 		}
 
-		public void operator -=(ref Vector4 v) mut
+		public void operator -=(Vector4 v) mut
 		{
 			X -= v.X;
 			Y -= v.Y;
@@ -118,87 +133,99 @@ namespace DirectX.Math
 		// operators
 		//
 
-		[Inline]
 		public static Vector4 operator *(Vector4 v, float s)
 		{
 			return .(v.X * s, v.Y * s, v.Z * s, v.W * s);
 		}
 
-		[Inline]
 		public static Vector4 operator *(float s, Vector4 v)
 		{
 			return v * s;
 		}
 
-		[Inline]
 		public static Vector4 operator /(Vector4 v, float s)
 		{	
 			float f = 1.0f / s;
 			return .(v.X * f, v.Y * f, v.Z * f, v.W * f);
 		}
 
-		[Inline]
 		public static Vector4 operator /(float s, Vector4 v)
 		{
 			return .(s / v.X, s / v.Y, s / v.Z, s / v.W);
 		}
 
-		[Inline]
 		public static Vector4 operator +(Vector4 l, Vector4 r)
 		{
 			return .(l.X + r.X, l.Y + r.Y, l.Z + r.Z, l.W + r.W);
 		}
 
-		[Inline]
 		public static Vector4 operator -(Vector4 v)
 		{
 			return .(-v.X, -v.Y, -v.Z, -v.W);
 		}
 
-		[Inline]
 		public static Vector4 operator -(Vector4 l, Vector4 r)
 		{
 			return .(l.X - r.X, l.Y - r.Y, l.Z - r.Z, l.W - r.W);
 		}
 
-		[Inline]
 		public float Magnitude()
 		{
-			return Math.Sqrt(X * X + Y + Y + Z * Z + W * W);
+			return Math.Sqrt(X * X + Y * Y + Z * Z + W * W);
 		}
 
-		[Inline]
+		public float MagnitudeSquared()
+		{
+			return X * X + Y * Y + Z * Z + W * W;
+		}
+
+		public void Normalize() mut
+		{
+			if(this == .Zero)
+				return;
+
+			this /= Magnitude();
+		}
+
+		[Unchecked]
 		public void Normalize() mut
 		{
 			this /= Magnitude();
 		}
+		
+		public static Vector4 Normalize(Vector4 v)
+		{
+			if(v == .Zero)
+				return .Zero;
 
-		[Inline]
-		public static Vector4 Normalize(ref Vector4 v)
+			return v / v.Magnitude();
+		}
+		
+		[Unchecked]
+		public static Vector4 Normalize(Vector4 v)
 		{
 			return v / v.Magnitude();
 		}
 
-		[Inline]
-		public float Dot(ref Vector4 l, ref Vector4 r)
+		public float Dot(Vector4 l, Vector4 r)
 		{
 			return l.X * r.X + l.Y * r.Y + l.Z * r.Z + l.W * r.W;
 		}
 
 		/**
-		* Calculates the projection of a onto b
-		*/
-		public Vector4 Project(ref Vector4 a, ref Vector4 b)
+		 * Calculates the projection of a onto b
+		 */
+		public Vector4 Project(Vector4 a, Vector4 b)
 		{
-			return (b * (Dot(ref a, ref b) / Dot(ref b, ref b)));
+			return (b * (Dot(a, b) / Dot(b, b)));
 		}
 
 		/**
-		* Calculates the rejection of a from b
-		*/
-		public Vector4 Reject(ref Vector4 a, ref Vector4 b)
+		 * Calculates the rejection of a from b
+		 */
+		public Vector4 Reject(Vector4 a, Vector4 b)
 		{
-			return (a - b * (Dot(ref a, ref b) / Dot(ref b, ref b)));
+			return (a - b * (Dot(a, b) / Dot(b, b)));
 		}
 	}
 }

@@ -2,7 +2,6 @@ using System;
 
 namespace DirectX.Math
 {
-	[CRepr]
 	public struct Vector2
 	{
 		public static readonly Vector2 Zero 	= .(0f, 0f);
@@ -31,11 +30,11 @@ namespace DirectX.Math
 
 		public ref float this[int index]
 		{
-			[Checked, Inline]
+			[Checked]
 			get mut
 			{
 				if(index < 0 || index > 1)
-					Internal.ThrowIndexOutOfRange(1);
+					Internal.ThrowIndexOutOfRange();
 
 				return ref (&X)[index];
 			}
@@ -64,13 +63,25 @@ namespace DirectX.Math
 			Y *= f;
 		}
 
-		public void operator +=(ref Vector2 v) mut
+		public void operator *=(Vector2 v) mut
+		{
+			X *= v.X;
+			Y *= v.Y;
+		}
+
+		public void operator /=(Vector2 v) mut
+		{
+			X /= v.X;
+			Y /= v.Y;
+		}
+
+		public void operator +=(Vector2 v) mut
 		{
 			X += v.X;
 			Y += v.Y;
 		}
 
-		public void operator -=(ref Vector2 v) mut
+		public void operator -=(Vector2 v) mut
 		{
 			X -= v.X;
 			Y -= v.Y;
@@ -80,70 +91,63 @@ namespace DirectX.Math
 		// operators
 		//
 
-		[Inline]
 		public static Vector2 operator *(Vector2 v, float s)
 		{
 			return .(v.X * s, v.Y * s);
 		}
 
-		[Inline]
 		public static Vector2 operator *(float s, Vector2 v)
 		{
 			return v * s;
 		}
 
-		[Inline]
 		public static Vector2 operator /(Vector2 v, float s)
 		{	
 			float f = 1.0f / s;
 			return .(v.X * f, v.Y * f);
 		}
 
-		[Inline]
 		public static Vector2 operator /(float s, Vector2 v)
 		{
 			return .(s / v.X, s / v.Y);
 		}
 
-		[Inline]
 		public static Vector2 operator +(Vector2 l, Vector2 r)
 		{
 			return .(l.X + r.X, l.Y + r.Y);
 		}
 
-		[Inline]
 		public static Vector2 operator -(Vector2 v)
 		{
 			return .(-v.X, -v.Y);
 		}
 
-		[Inline]
 		public static Vector2 operator -(Vector2 l, Vector2 r)
 		{
 			return .(l.X - r.X, l.Y - r.Y);
 		}
 
-		[Inline]
 		public float Magnitude()
 		{
-			return Math.Sqrt(X * X + Y + Y);
+			return Math.Sqrt(X * X + Y * Y);
 		}
 
+		public float MagnitudeSquared()
+		{
+			return X * X + Y * Y;
+		}
 
-		[Inline]
 		public void Normalize() mut
 		{
 			this /= Magnitude();
 		}
 		
-		[Inline]
-		public static Vector2 Normalize(ref Vector2 v)
+		public static Vector2 Normalize(Vector2 v)
 		{
 			return v / v.Magnitude();
 		}
 
-		[Inline]
-		public float Dot(ref Vector2 l, ref Vector2 r)
+		public float Dot(Vector2 l, Vector2 r)
 		{
 			return l.X * r.X + l.Y * r.Y;
 		}
@@ -151,17 +155,17 @@ namespace DirectX.Math
 		/**
 		* Calculates the projection of a onto b
 		*/
-		public Vector2 Project(ref Vector2 a, ref Vector2 b)
+		public Vector2 Project(Vector2 a, Vector2 b)
 		{
-			return (b * (Dot(ref a, ref b) / Dot(ref b, ref b)));
+			return (b * (Dot(a, b) / Dot(b, b)));
 		}
 
 		/**
 		* Calculates the rejection of a from b
 		*/
-		public Vector2 Reject(ref Vector2 a, ref Vector2 b)
+		public Vector2 Reject(Vector2 a, Vector2 b)
 		{
-			return (a - b * (Dot(ref a, ref b) / Dot(ref b, ref b)));
+			return (a - b * (Dot(a, b) / Dot(b, b)));
 		}
 	}
 }
