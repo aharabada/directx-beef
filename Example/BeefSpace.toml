@@ -1,0 +1,5 @@
+FileVersion = 1
+Projects = {Example = {Path = "."}, DirectX = "*"}
+
+[Workspace]
+StartupProject = "Example"

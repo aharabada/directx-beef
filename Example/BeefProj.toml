@@ -1,0 +1,7 @@
+FileVersion = 1
+Dependencies = {corlib = "*", DirectX = "*"}
+
+[Project]
+Name = "Example"
+TargetType = "BeefGUIApplication"
+StartupObject = "Example.Program"
