@@ -15,7 +15,7 @@ namespace DirectX.DXGI
 		public struct VTable : IDXGIFactory1.VTable
 		{
 			public function BOOL(IDXGIFactory2* self) IsWindowStereoEnabled;
-			public function HResult(IDXGIFactory2* self, IUnknown* pDevice, Windows.Handle hwnd, SwapChainDescription1* pDesc,
+			public function HResult(IDXGIFactory2* self, IUnknown* pDevice, Windows.HWnd hwnd, SwapChainDescription1* pDesc,
 				SwapChainFullscreenDescription* pFullscreenDesc, IDXGIOutput* pRestrictToOutput, IDXGISwapChain1** ppSwapChain) CreateSwapChainForHwnd;
 			public function HResult(IDXGIFactory2* self, IUnknown *pDevice, IUnknown *pWindow, SwapChainDescription1 *pDesc, IDXGIOutput *pRestrictToOutput, IDXGISwapChain1 **ppSwapChain) CreateSwapChainForCoreWindow;
 			public function HResult(IDXGIFactory2* self, Windows.Handle hResource, Luid *pLuid) GetSharedResourceAdapterLuid;
@@ -89,7 +89,7 @@ namespace DirectX.DXGI
 		 *							Set this parameter to NULL if you don't want to restrict content to an output target.
 		 * @param swapChain			A pointer to a variable that receives a pointer to the IDXGISwapChain1 interface for the swap chain that CreateSwapChainForHwnd creates.
 		*/
-		public HResult CreateSwapChainForHwnd(IUnknown* device, Windows.Handle windowHandle, ref SwapChainDescription1 desc, SwapChainFullscreenDescription *fullscreenDesc, IDXGIOutput *restrictToOutput, IDXGISwapChain1 **swapChain) mut
+		public HResult CreateSwapChainForHwnd(IUnknown* device, Windows.HWnd windowHandle, ref SwapChainDescription1 desc, SwapChainFullscreenDescription *fullscreenDesc, IDXGIOutput *restrictToOutput, IDXGISwapChain1 **swapChain) mut
 		{
 			return VT.CreateSwapChainForHwnd(&this, device, windowHandle, &desc, fullscreenDesc, restrictToOutput, swapChain);
 		}
