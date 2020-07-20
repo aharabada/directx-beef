@@ -4,7 +4,3 @@ FileVersion = 1
 Name = "DirectX"
 TargetType = "BeefLib"
 StartupObject = "Program"
-
-[Configs.Debug.Win64]
-BeefLibType = "DynamicDebug"
-PreprocessorMacros = ["DEBUG", "X64"]
