@@ -43,7 +43,23 @@ namespace DirectX.D3D11
 		This value must be 0 for an element that contains per-vertex data (the slot class is set to PerVertexData).
 		*/
 		public uint32 InstanceDataStepRate;
-		
+
+		public this()
+		{
+			this = default;
+		}
+
+		public this(char8* semanticName, uint32 semanticIndex, Format format, uint32 inputSlot, uint32 offset = (.)-1, InputClassification slotClass = .PerVertexData, uint32 instanceStepRate = 0)
+		{
+			SemanticName = semanticName;
+			SemanticIndex = semanticIndex;
+			Format = format;
+			InputSlot = inputSlot;
+			AlignedByteOffset = offset;
+			InputSlotClass = slotClass;
+			InstanceDataStepRate = instanceStepRate;
+		}
+
 		/**
 		Use AppendAligned for convenience to define the current element directly after the previous one, including any packing if necessary.
 		*/
