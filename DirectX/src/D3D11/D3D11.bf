@@ -18,6 +18,16 @@ namespace DirectX.D3D11
 		public static readonly uint32 ViewportAndScissorrectObjectCountPerPipeline = 16;
 
 		public static readonly uint32 SDK_VERSION = 7;
+		
+		public const uint32 D3D11_REQ_TEXTURE2D_ARRAY_AXIS_DIMENSION = 2048;
+
+		public const uint32 D3D11_REQ_TEXTURE2D_U_OR_V_DIMENSION = 16384;
+
+		public const uint32 D3D11_REQ_MAXANISOTROPY = 16;
+
+		public const uint32 D3D11_REQ_MIP_LEVELS = 15;
+		
+		public const uint32 D3D11_APPEND_ALIGNED_ELEMENT = 0xffffffff;
 
 		/**
 		 * Calculates a subresource index for a texture.

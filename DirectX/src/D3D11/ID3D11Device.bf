@@ -534,9 +534,10 @@ namespace DirectX.D3D11
 		 *
 		 * @param ppImmediateContext	Upon completion of the method, the passed pointer to an ID3D11DeviceContext interface pointer is initialized.
 		*/
-		public void GetImmediateContext(ID3D11DeviceContext **ppImmediateContext) mut
+		public void GetImmediateContext(out ID3D11DeviceContext *ppImmediateContext) mut
 		{
-			VT.GetImmediateContext(&this, ppImmediateContext);
+			ppImmediateContext = ?;
+			VT.GetImmediateContext(&this, &ppImmediateContext);
 		}
 
 		/**
