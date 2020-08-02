@@ -35,5 +35,12 @@ namespace DirectX
 			Green = green;
 			Blue = blue;
 		}
+
+		public this(ColorRGBA color)
+		{
+			Red = color.R;
+			Green = color.G;
+			Blue = color.B;
+		}
 	}
 }
