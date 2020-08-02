@@ -197,6 +197,17 @@ namespace DirectX
 			B = b;
 			A = a;
 		}
+		
+		/**
+		Creates a new instance of ColorRGBA with the specified values.
+		*/
+		public this(ColorRGB color, float a)
+		{
+			R = color.Red;
+			G = color.Green;
+			B = color.Blue;
+			A = a;
+		}
 
 		public ref float this[int index]
 		{
@@ -309,6 +320,11 @@ namespace DirectX
 		public static ColorRGBA operator /(float left, ColorRGBA right)
 		{
 			return .(left / right.R, left / right.G, left / right.B, left / right.A);
+		}
+
+		public static implicit operator ColorRGB(ColorRGBA color)
+		{
+			return .(color.R, color.G, color.B);
 		}
 	}
 }
