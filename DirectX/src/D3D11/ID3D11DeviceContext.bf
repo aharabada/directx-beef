@@ -262,16 +262,6 @@ namespace DirectX.D3D11
 		}
 
 		/**
-		* Set all the elements in a render target to one value.
-		@param pRenderTargetView Pointer to the render target.
-		@param color The color to fill the render target with.
-		*/
-		public void ClearRenderTargetView(ID3D11RenderTargetView *pRenderTargetView, Color color) mut
-		{
-			VT.ClearRenderTargetView(&this, pRenderTargetView, (.)color);
-		}
-
-		/**
 		* Restore all default settings.
 		* This method resets any device context to the default settings.
 		* This sets all input/output resource slots, shaders, input layouts, predications,
