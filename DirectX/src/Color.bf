@@ -244,7 +244,7 @@ namespace DirectX
 			return .(col.R, col.G, col.B, col.A);
 		}
 
-		public static explicit operator ColorRGBA(Color col)
+		public static implicit operator ColorRGBA(Color col)
 		{
 			return .(col.R / 255.0f, col.G / 255.0f, col.B / 255.0f, col.A / 255.0f);
 		}
