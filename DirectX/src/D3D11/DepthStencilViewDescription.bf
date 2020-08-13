@@ -32,7 +32,7 @@ namespace DirectX.D3D11
 		Pass None(0) to specify that it is not read only;
 		otherwise, pass one of the members of the DepthStencilViewOptions enumerated type.
 		*/
-		public DepthStencilViewOptions Options;
+		public DepthStencilViewOptions Flags;
 
 		[Union]
 		public struct DSVDesc
@@ -40,11 +40,11 @@ namespace DirectX.D3D11
 			/**
 			Specifies a 1D texture subresource.
 			*/
-		    public D3D11_TEX1D_DSV Texture1D;
+		    public Texture1DDepthStencilView Texture1D;
 			/**
 			Specifies an array of 1D texture subresources.
 			*/
-		    public D3D11_TEX1D_ARRAY_DSV Texture1DArray;
+		    public Texture1DArrayDepthStencilView Texture1DArray;
 			/**
 			Specifies a 2D texture subresource.
 			*/
@@ -56,16 +56,188 @@ namespace DirectX.D3D11
 			/**
 			Specifies a multisampled 2D texture.
 			*/
-		    public D3D11_TEX2DMS_DSV Texture2DMultisampled;
+		    public Texture2DMultisampledDepthStencilView Texture2DMultisampled;
 			/**
 			Specifies an array of multisampled 2D textures.
 			*/
-		    public D3D11_TEX2DMS_ARRAY_DSV Texture2DMultisampledArray;
+		    public Texture2DMultisampledArrayDepthStencilView Texture2DMultisampledArray;
+
+			public this(DepthStencilViewDimension viewDimension,
+		        UINT mipSlice = 0,
+		        UINT firstArraySlice = 0,
+		        UINT arraySize = (.)-1,
+		        DepthStencilViewOptions flags = .None)
+			{
+				this = default;
+		        switch (viewDimension)
+		        {
+		        case .Texture1D:
+		            Texture1D.MipSlice = mipSlice;
+		            break;
+		        case .Texture1DArray:
+		            Texture1DArray.MipSlice = mipSlice;
+		            Texture1DArray.FirstArraySlice = firstArraySlice;
+		            Texture1DArray.ArraySize = arraySize;
+		            break;
+		        case .Texture2D:
+		            Texture2D.MipSlice = mipSlice;
+		            break;
+		        case .Texture2DArray:
+		            Texture2DArray.MipSlice = mipSlice;
+		            Texture2DArray.FirstArraySlice = firstArraySlice;
+		            Texture2DArray.ArraySize = arraySize;
+		            break;
+		        case .Texture2DMultisampled:
+		            break;
+		        case .Texture2DMultisampledArray:
+		            Texture2DMultisampledArray.FirstArraySlice = firstArraySlice;
+		            Texture2DMultisampledArray.ArraySize = arraySize;
+		            break;
+		        default: break;
+		        }
+			}
 		}
 
 		/**
 		Specifies the subresource.
 		*/
 		public DSVDesc Description;
+
+		public this()
+		{
+			this = default;
+		}
+
+		/**
+		 * Instantiates a new instance of a DepthStencilViewDescription structure.
+		 * @param viewDimension A DepthStencilViewDimension-typed value that specifies the depth-stencil type of the view.
+		 * @param format A Format-typed value that specifies the viewing format.
+		 * @param mipSlice The index of the mipmap level to use mip slice.
+		 * @param firstArraySlice The index of the first element to use in an array of elements.
+		 * @param arraySize Number of elements in the array.
+		 * @param flags A value that describes whether the texture is read only.
+		 *				Pass DepthStencilViewOptions.None (0) to specify that it is not read only;
+		 *				otherwise, pass one of the members of the DepthStencilViewOptions enumerated type.
+		*/
+		public this(DepthStencilViewDimension viewDimension,
+	        Format format = .Unknown,
+	        UINT mipSlice = 0,
+	        UINT firstArraySlice = 0,
+	        UINT arraySize = (.)-1,
+	        DepthStencilViewOptions flags = .None)
+	    {
+	        Format = format;
+	        ViewDimension = viewDimension;
+	        Flags = flags;
+			Description = .(viewDimension, mipSlice, firstArraySlice, arraySize, flags);
+	    }
+
+		/**
+		 * Instantiates a new instance of a DepthStencilViewDescription structure that is initialized with Texture1DDepthStencilView or Texture1DArrayDepthStencilView values.
+		 * @param tex1D A pointer to a ID3D11Texture1D interface for a 1D texture.
+		 * @param viewDimension A DepthStencilViewDimension-typed value that specifies the depth-stencil type of the view.
+		 * @param format A Format-typed value that specifies the viewing format.
+		 * @param mipSlice The index of the mipmap level to use mip slice.
+		 * @param firstArraySlice The index of the first element to use in an array of elements.
+		 * @param arraySize Number of elements in the array.
+		 * @param flags A value that describes whether the texture is read only.
+		 *				Pass DepthStencilViewOptions.None (0) to specify that it is not read only;
+		 *				otherwise, pass one of the members of the DepthStencilViewOptions enumerated type.
+		*/
+		public this(ID3D11Texture1D* tex1D,
+	        DepthStencilViewDimension viewDimension,
+	        Format format = .Unknown,
+	        UINT mipSlice = 0,
+	        UINT firstArraySlice = 0,
+	        UINT arraySize = (.)-1,
+	        DepthStencilViewOptions flags = .None)
+	    {
+			this = default;
+
+			var format;
+			var arraySize;
+
+	        ViewDimension = viewDimension;
+	        Flags = flags;
+	        if (format == .Unknown ||
+	            (arraySize == (.)-1 && viewDimension == .Texture1DArray))
+	        {
+	            tex1D.GetDescription(let texDesc);
+	            if (format == .Unknown) format = texDesc.Format;
+	            if (arraySize == (.)-1) arraySize = texDesc.ArraySize - firstArraySlice;
+	        }
+
+	        Format = format;
+	        switch (viewDimension)
+	        {
+	        case .Texture1D:
+	            Description.Texture1D.MipSlice = mipSlice;
+	            break;
+	        case .Texture1DArray:
+	            Description.Texture1DArray.MipSlice = mipSlice;
+	            Description.Texture1DArray.FirstArraySlice = firstArraySlice;
+	            Description.Texture1DArray.ArraySize = arraySize;
+	            break;
+	        default: break;
+	        }
+	    }
+		
+		/**
+		 * Instantiates a new instance of a DepthStencilViewDescription structure that is initialized with 2D texture values.
+		 * @param tex2D A pointer to a ID3D11Texture2D.
+		 * @param viewDimension A DepthStencilViewDimension-typed value that specifies the depth-stencil type of the view.
+		 * @param format A Format-typed value that specifies the viewing format.
+		 * @param mipSlice The index of the mipmap level to use mip slice.
+		 * @param firstArraySlice The index of the first element to use in an array of elements.
+		 * @param arraySize Number of elements in the array.
+		 * @param flags A value that describes whether the texture is read only.
+		 *				Pass DepthStencilViewOptions.None (0) to specify that it is not read only;
+		 *				otherwise, pass one of the members of the DepthStencilViewOptions enumerated type.
+		*/
+		public this(ID3D11Texture2D* tex2D,
+	        DepthStencilViewDimension viewDimension,
+	        Format format = .Unknown,
+	        UINT mipSlice = 0,
+	        UINT firstArraySlice = 0,
+	        UINT arraySize = (.)-1,
+	        DepthStencilViewOptions flags = .None)
+	    {
+			this = default;
+
+			var format;
+			var arraySize;
+
+	        ViewDimension = viewDimension;
+	        Flags = flags;
+	        if (format == .Unknown || 
+	            (arraySize == (.)-1 &&
+	                (viewDimension == .Texture2DArray ||
+	                viewDimension == .Texture2DMultisampledArray)))
+	        {
+	            tex2D.GetDescription(let texDesc);
+	            if (format == .Unknown) format = texDesc.Format;
+	            if (arraySize == (.)-1) arraySize = texDesc.ArraySize - firstArraySlice;
+	        }
+
+	        Format = format;
+	        switch (viewDimension)
+	        {
+	        case .Texture2D:
+	            Description.Texture2D.MipSlice = mipSlice;
+	            break;
+	        case .Texture2DArray:
+	            Description.Texture2DArray.MipSlice = mipSlice;
+	            Description.Texture2DArray.FirstArraySlice = firstArraySlice;
+	            Description.Texture2DArray.ArraySize = arraySize;
+	            break;
+	        case .Texture2DMultisampled:
+	            break;
+	        case .Texture2DMultisampledArray:
+	            Description.Texture2DMultisampledArray.FirstArraySlice = firstArraySlice;
+	            Description.Texture2DMultisampledArray.ArraySize = arraySize;
+	            break;
+	        default: break;
+	        }
+	    }
 	}
 }
