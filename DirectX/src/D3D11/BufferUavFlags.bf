@@ -5,6 +5,8 @@ namespace DirectX.D3D11
 	*/
 	public enum BufferUavFlags : uint32
 	{
+		/// No BufferUavFlags specified.
+		None = 0,
 		/**
 		 * Resource contains raw, unstructured data.
 		 * Requires the UAV format to be Format.R32_Typeless.
