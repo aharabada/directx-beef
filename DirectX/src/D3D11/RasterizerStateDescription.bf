@@ -58,20 +58,11 @@ namespace DirectX.D3D11
     	public BigBool AntialiasedLineEnable;
 
 		/**
-		Initializes the RasterizerStateDescription with the default values
+		Creates a new uninitialized instance of RasterizerStateDescription
 		*/
 		public this()
 		{
-			FillMode = .Solid;
-			CullMode = .Back;
-			FrontCounterClockwise = false;
-			DepthBias = 0; 
-			DepthBiasClamp = 0.0f;
-			SlopeScaledDepthBias = 0.0f;
-			DepthClipEnable = true;
-			ScissorEnable = false;
-			MultisampleEnable = false;
-			AntialiasedLineEnable = false;
+			this = default;
 		}
 
 		/**
@@ -91,5 +82,8 @@ namespace DirectX.D3D11
 			MultisampleEnable = multisampleEnable;
 			AntialiasedLineEnable = antialiasedLineEnable;
 		}
+
+		public static readonly RasterizerStateDescription Default = .(.Solid, .Back, false, D3D11_DEFAULT_DEPTH_BIAS, D3D11_DEFAULT_DEPTH_BIAS_CLAMP,
+			D3D11_DEFAULT_SLOPE_SCALED_DEPTH_BIAS, true, false, false, false);
 	}
 }

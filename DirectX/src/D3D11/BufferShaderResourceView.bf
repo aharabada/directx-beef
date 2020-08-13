@@ -7,8 +7,8 @@ namespace DirectX.D3D11
 	[CRepr]
 	public struct BufferShaderResourceView
 	{
-		uint32 ElementOffset;
-		uint32 ElementWidth;
+		public UINT FirstElement;
+		public UINT NumElements;
 		/*union 
 		    {
 		    UINT FirstElement;

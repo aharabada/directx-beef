@@ -70,16 +70,16 @@ namespace DirectX.D3D11
 			this = default;
 		}
 
-		public this(uint32 width, uint32 height, uint32 mipLevels, uint32 arraySize, Format format,
-			SampleDescription sampleDesc, D3D11.Usage usage, BindFlags bindFlags,
-			CpuAccessFlags cpuFlags, ResourceMiscFlags miscFlags)
+		public this(Format format, uint32 width, uint32 height, uint32 arraySize = 1, uint32 mipLevels = 0,
+			BindFlags bindFlags = .ShaderResource, D3D11.Usage usage = .Default, CpuAccessFlags cpuFlags = .None,
+			uint32 sampleCount = 1, uint32 sampleQuality = 0, ResourceMiscFlags miscFlags = .None)
 		{
 			Width = width;
 			Height = height;
 			MipLevels = mipLevels;
 			ArraySize = arraySize;
 			Format = format;
-			SampleDesc = sampleDesc;
+			SampleDesc = .(sampleCount, sampleQuality);
 			Usage = usage;
 			BindFlags = bindFlags;
 			CpuAccessFlags = cpuFlags;

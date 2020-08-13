@@ -40,7 +40,7 @@ namespace DirectX.Common
 		The resource is a multisampling 2D texture.
 		D3D11_SRV_DIMENSION_TEXTURE2DMS       
 		*/
-		Texture2DMultiSampled = 6,
+		Texture2DMultisampled = 6,
 		/**
 		The resource is an array of multisampling 2D textures.
 		D3D11_SRV_DIMENSION_TEXTURE2DMSARRAY  

@@ -41,12 +41,12 @@ namespace DirectX.D3D11
 		The resource will be accessed as a 2D texture with multisampling.
 		D3D11_RTV_DIMENSION_TEXTURE2DMS
 		*/
-	    Texture2DMultiSample = 6,
+	    Texture2DMultisample = 6,
 		/**
 		The resource will be accessed as an array of 2D textures with multisampling.
 		D3D11_RTV_DIMENSION_TEXTURE2DMSARRAY
 		*/
-	    Texture2DArrayMultiSample = 7,
+	    Texture2DArrayMultisample = 7,
 		/**
 		The resource will be accessed as a 3D texture.
 		D3D11_RTV_DIMENSION_TEXTURE3D

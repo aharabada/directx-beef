@@ -56,8 +56,9 @@ namespace DirectX.D3D11
 			this = default;
 		}
 
-		public this(uint32 width, uint32 mipLevels, uint32 arraySize, Format format,
-			D3D11.Usage usage, BindFlags bindFlags, CpuAccessFlags cpuFlags, ResourceMiscFlags miscFlags)
+		public this(Format format, uint32 width, uint32 arraySize = 1, uint32 mipLevels = 0, 
+			BindFlags bindFlags = .ShaderResource, D3D11.Usage usage = .Default, CpuAccessFlags cpuFlags = .None,
+			ResourceMiscFlags miscFlags = .None)
 		{
 			Width = width;
 			MipLevels = mipLevels;

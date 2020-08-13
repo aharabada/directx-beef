@@ -8,6 +8,10 @@ namespace DirectX.D3D11
 	public enum ColorWriteEnable : uint8
 	{
 		/**
+		Allows no data to be stored.
+		*/
+		None = 0,
+		/**
 		Allow data to be stored in the red component.
 		*/
 		Red = 1,

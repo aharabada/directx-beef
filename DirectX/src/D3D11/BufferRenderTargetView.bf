@@ -4,12 +4,14 @@ namespace DirectX.D3D11
 {	
 	/**
 	Specifies the elements in a buffer resource to use in a render-target view.
+	D3D11_BUFFER_RTV
 	*/
-	[CRepr]
-	public struct D3D11_BUFFER_RTV
+	/*[CRepr]
+	public struct BufferRenderTargetView
 	{
-		uint32 ElementOffset;
-		uint32 ElementWidth;
+		public UINT FirstElement;
+		public UINT NumElements;
+
 		/*
 		union 
 		    {
@@ -22,5 +24,5 @@ namespace DirectX.D3D11
 		    UINT ElementWidth;
 		    } 	;
 		*/
-	}
+	}*/
 }

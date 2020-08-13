@@ -2,9 +2,12 @@ using System;
 
 namespace DirectX.D3D11
 {
+	/**
+	 * Describes a buffer resource.
+	 * D3D11_BUFFER_DESC
+	*/
 	[CRepr]
-	// https://docs.microsoft.com/en-us/windows/win32/api/d3d11/ns-d3d11-d3d11_buffer_desc
-	public struct BufferDescription	// D3D11_BUFFER_DESC
+	public struct BufferDescription
 	{
 		/**
 		Size of the buffer in bytes.
@@ -34,5 +37,27 @@ namespace DirectX.D3D11
 		For example, if you use a shader resource view (SRV) to read a buffer in a pixel shader, the SRV format size must match the size value in StructureByteStride.
 		*/
 		public uint32 StructureByteStride;
+
+		/**
+		 * Instantiates a new instance of an zero-initialized BufferDescription structure.
+		*/
+		public this()
+		{
+			this = default;
+		}
+
+		/**
+		 * Instantiates a new instance of a BufferDescription structure that is initialized with BufferDescription values.
+		*/
+		public this(uint32 byteWidth, BindFlags bindFlags, Usage usage = .Default, CpuAccessFlags cpuAccessFlags = .None,
+			ResourceMiscFlags miscFlags = .None, uint32 structureByteStride = 0)
+		{
+			ByteWidth = byteWidth;
+			BindFlags = bindFlags;
+			Usage = usage;
+			CpuAccessFlags = cpuAccessFlags;
+			MiscFlags = miscFlags;
+			StructureByteStride = structureByteStride;
+		}
 	}
 }

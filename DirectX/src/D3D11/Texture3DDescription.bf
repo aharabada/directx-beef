@@ -34,10 +34,6 @@ namespace DirectX.D3D11
 		*/
 		public Format Format;
 		/**
-		 * The multisampling parameters for the texture.
-		*/
-		public SampleDescription SampleDesc;
-		/**
 		 * Value that identifies how the texture is to be read from and written to.
 		 * The most common value is Usage.Default.
 		*/
@@ -67,16 +63,14 @@ namespace DirectX.D3D11
 			this = default;
 		}
 
-		public this(UINT width, UINT height, UINT depth, UINT mipLevels, UINT arraySize, Format format,
-			SampleDescription sampleDesc, D3D11.Usage usage, BindFlags bindFlags,
-			CpuAccessFlags cpuFlags, ResourceMiscFlags miscFlags)
+		public this(Format format, UINT width, UINT height, UINT depth, UINT mipLevels = 0, BindFlags bindFlags = .ShaderResource,
+			D3D11.Usage usage = .Default, CpuAccessFlags cpuFlags = .None, ResourceMiscFlags miscFlags = .None)
 		{
 			Width = width;
 			Height = height;
 			Depth = depth;
 			MipLevels = mipLevels;
 			Format = format;
-			SampleDesc = sampleDesc;
 			Usage = usage;
 			BindFlags = bindFlags;
 			CpuAccessFlags = cpuFlags;
