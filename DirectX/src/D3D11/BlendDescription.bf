@@ -35,7 +35,7 @@ namespace DirectX.D3D11
 			Default.AlphaToCoverageEnable = false;
 			Default.IndependentBlendEnable = false;
 
-			for(int i = 0; i < SimultaneousRenderTargetCount; i++)
+			for(int i = 0; i < D3D11_SIMULTANEOUS_RENDER_TARGET_COUNT; i++)
 			{
 				Default.RenderTarget[i] = .Default;
 			}

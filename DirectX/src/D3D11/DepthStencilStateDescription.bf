@@ -67,13 +67,10 @@ namespace DirectX.D3D11
 			BackFace = backFace;
 		}
 
-		public static readonly uint8 DefaultStencilReadMask = 0xff;
-		public static readonly uint8 DefaultStencilWriteMask = 0xff;
-
 		/**
 		A DepthStencilStateDescription with its fields set to the default values
 		*/
 		public static readonly DepthStencilStateDescription Default = .(true, .All, .Less, false,
-			DefaultStencilReadMask, DefaultStencilWriteMask, .Default, .Default);
+			D3D11_DEFAULT_STENCIL_READ_MASK, D3D11_DEFAULT_STENCIL_WRITE_MASK, .Default, .Default);
 	}
 }
