@@ -2,10 +2,12 @@ namespace System
 {
 	public extension Guid
 	{
-		public enum ParsinError
+		public enum ParsingError
 		{
 			NullInput,
-			InputTooShort
+			InputTooShort,
+			InvalidChar,
+			UnknownFormat
 		}
 
 		public this(String string)
@@ -93,7 +95,7 @@ namespace System
 		}
 		
 		// Todo: implementation gets the job done but is kinda dirty
-		public static Result<Guid, ParsinError> Parse(String s)
+		public static Result<Guid, ParsingError> Parse(String s)
 		{
 			if(s == null)
 				return .Err(.NullInput);
@@ -104,11 +106,7 @@ namespace System
 			// Skip the first brace
 			int position = (s[0] == '{' || s[0] == '(') ? 1 : 0;
 
-			uint32 a = 0;
-			uint16 b = 0, c = 0;
-			uint8[8] bytes = .(0,);
-
-			String subString;
+			Guid result = ?;
 
 			// First Block (uint32)
 			do
@@ -120,8 +118,7 @@ namespace System
 				if(s.Length < position + 8)
 					return .Err(.InputTooShort);
 
-				subString = scope String(s, position, 8);
-				a = (uint32)int64.Parse(subString, .HexNumber);
+				result.mA = (uint32)int64.Parse(StringView(s, position, 8), .HexNumber);
 
 				position += 8;
 			}
@@ -139,8 +136,7 @@ namespace System
 				if(s.Length < position + 4)
 					return .Err(.InputTooShort);
 
-				subString = scope String(s, position, 4);
-				b = (uint16)int32.Parse(subString, .HexNumber);
+				result.mB = (uint16)int32.Parse(StringView(s, position, 4), .HexNumber);
 
 				position += 4;
 			}
@@ -158,8 +154,7 @@ namespace System
 				if(s.Length < position + 4)
 					return .Err(.InputTooShort);
 
-				subString = scope String(s, position, 4);
-				c = (uint16)int32.Parse(subString, .HexNumber);
+				result.mC = (uint16)int32.Parse(StringView(s, position, 4), .HexNumber);
 
 				position += 4;
 			}
@@ -167,6 +162,8 @@ namespace System
 			// eight uint8-blocks
 			do
 			{
+				uint8* bytes = &result.mD;
+
 				for(int i = 0; i < 8; i++)
 				{	
 					if(s[position] == '-')
@@ -176,14 +173,13 @@ namespace System
 					if(s.Length < position + 2)
 						break;
 
-					subString = scope String(s, position, 2);
-					bytes[i] = (uint8)int32.Parse(subString, .HexNumber);
+					bytes[i] = (uint8)int32.Parse(StringView(s, position, 2), .HexNumber);
 	
 					position += 2;
 				}
 			}
 
-			return Guid(a, b, c, bytes[0], bytes[1], bytes[2], bytes[3], bytes[4], bytes[5], bytes[6], bytes[7]);
+			return result;
 		}
 	}
 }
