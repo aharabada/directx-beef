@@ -29,6 +29,8 @@ namespace DirectX.D3D11
 			this = default;
 		}
 
+		public this(void* data) : this(data, 0, 0) {}
+
 		public this(void* data, uint32 linePitch, uint32 slicePitch)
 		{
 			Data = data;
