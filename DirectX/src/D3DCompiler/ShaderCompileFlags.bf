@@ -80,7 +80,7 @@ namespace DirectX.D3DCompiler
 		Directs the compiler to enable older shaders to compile to 5_0 targets.
 		D3DCOMPILE_ENABLE_BACKWARDS_COMPATIBILITY
 		*/
-		EnableBackwardsCompatiblity = 1 << 12,
+		EnableBackwardsCompatibility = 1 << 12,
 		/**
 		Forces the IEEE strict compile.
 		D3DCOMPILE_IEEE_STRICTNESS
