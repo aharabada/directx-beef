@@ -1,3 +1,6 @@
+using System;
+using DirectX.Windows;
+
 namespace DirectX.Common
 {
 	public enum HResult : int32
@@ -152,6 +155,34 @@ namespace DirectX.Common
 			{
 				return this < 0;
 			}
+		}
+
+		public override void ToString(String strBuffer)
+		{
+			char16* wCharMsg = ?;
+
+			Kernel32.FormatMessage(
+				.AllocateBuffer | .FromSystem | .IgnoreInserts,
+				null,
+				(uint32)this,
+				Kernel32.MakeLangId!(Kernel32.LANG_NEUTRAL, Kernel32.SUBLANG_DEFAULT),
+				(char16*)&wCharMsg,
+				0,
+				null);
+
+			strBuffer.Append(wCharMsg);
+		}
+
+		// actually from winerror.h
+		private const uint32 FACILITY_WIN32 = 7;
+
+		/**
+		 * Maps a system error code to an HResult value.
+		*/
+		[Inline]
+		public static HResult FromWin32(uint32 x)
+		{
+			return (HResult)(x) <= 0 ? (HResult)(x) : (HResult) (((x) & 0x0000FFFF) | (FACILITY_WIN32 << 16) | 0x80000000);
 		}
 	}
 }
