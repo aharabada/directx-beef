@@ -46,7 +46,8 @@ namespace Example
 		public this() {  }
 
 		public ~this()
-		{_vertexBuffer.Release();
+		{
+			_vertexBuffer.Release();
 
 			_pixelShader.Release();
 			_inputLayout.Release();
@@ -60,10 +61,12 @@ namespace Example
 			_rasterizerState.Release();
 
 			_immediateContext.Release();
+			_graphicsDevice.Release();
+
 #if DEBUG
+			_debugDevice.ReportLiveDeviceObjects(.Detail);
 			_debugDevice.Release();
 #endif
-			_graphicsDevice.Release();
 
 			delete _gameTime;
 		}
@@ -93,11 +96,16 @@ namespace Example
 			deviceFlags |= .Debug;
 #endif
 
-			FeatureLevel[] levels = scope .{
+			FeatureLevel[] levels = scope .(
 				.Level_11_0
-			};
+			);
 
-			HResult result = D3D11.D3D11CreateDevice(null, .Hardware, 0, deviceFlags, levels, &_graphicsDevice, null, &_immediateContext);
+			HResult result = D3D11CreateDevice(null, .Hardware, 0, deviceFlags, levels, &_graphicsDevice, null, &_immediateContext);
+			if(result.Failed)
+			{
+				Debug.Write("ERROR: Failed to create graphics device: {}", result);
+				Runtime.FatalError("Failed to create graphics device");
+			}
 
 #if DEBUG		
 			if(_graphicsDevice.QueryInterface<ID3D11Debug>(out _debugDevice).Succeeded)
@@ -114,18 +122,15 @@ namespace Example
 #endif
 			
 			// Create rasterizer state
-
 			RasterizerStateDescription rsDesc = .();
 			rsDesc.CullMode = .Back;
 			rsDesc.FillMode = .Solid;
 			rsDesc.FrontCounterClockwise = true;
 
 			result = _graphicsDevice.CreateRasterizerState(ref rsDesc, &_rasterizerState);
-
 			if(result.Failed)
 			{
-				Debug.Write("ERROR: Failed to create Rasterizer State: ");
-				ErrorPrinter.PrintHResult(result);
+				Debug.Write("ERROR: Failed to create Rasterizer State: {}", result);
 				Runtime.FatalError("Failed to create Rasterizer State");
 			}
 		}
@@ -200,8 +205,7 @@ namespace Example
 
 			if(result.Failed || errorBlob != null)
 			{
-				Debug.Write("ERROR: Failed to compile Vertex Shader: ");
-				ErrorPrinter.PrintHResult(result);
+				Debug.Write("ERROR: Failed to compile Vertex Shader: {}", result);
 				ErrorPrinter.PrintErrorBlob(errorBlob);
 				Runtime.FatalError("Failed to compile Vertex Shader");
 			}
@@ -210,41 +214,24 @@ namespace Example
 
 			if(result.Failed)
 			{
-				Debug.Write("ERROR: Failed to create Vertex Shader: ");
-				ErrorPrinter.PrintHResult(result);
+				Debug.Write("ERROR: Failed to create Vertex Shader: {}", result);
 				Runtime.FatalError("Failed to create Vertex Shader");
 			}
 
-			// Compile Input Layout
+			// Create Input Layout
 
-			InputElementDescription[] elementDescs = scope .[2];
+			InputElementDescription[2] elementDescs = .(
+				InputElementDescription("POSITION", 0, .R32G32B32_Float, 0),
+				InputElementDescription("COLOR",    0, .R8G8B8A8_UNorm,  0)
+			);
 
-			var element = &elementDescs[0];
-
-			element.SemanticName = "POSITION";
-			element.SemanticIndex = 0;
-			element.Format = .R32G32B32_Float;
-			element.InputSlot = 0;
-			element.InputSlotClass = .PerVertexData;
-			element.AlignedByteOffset = InputElementDescription.AppendAligned;
-
-			element = &elementDescs[1];
-
-			element.SemanticName = "COLOR";
-			element.SemanticIndex = 0;
-			element.Format = .R8G8B8A8_UNorm;
-			element.InputSlot = 0;
-			element.InputSlotClass = .PerVertexData;
-			element.AlignedByteOffset = InputElementDescription.AppendAligned;
-
-			result = _graphicsDevice.CreateInputLayout(elementDescs.CArray(), (.)elementDescs.Count, vsCode.GetBufferPointer(), vsCode.GetBufferSize(), &_inputLayout);
+			result = _graphicsDevice.CreateInputLayout(&elementDescs, (.)elementDescs.Count, vsCode.GetBufferPointer(), vsCode.GetBufferSize(), &_inputLayout);
 			
 			vsCode.Release();
 
 			if(result.Failed)
 			{
-				Debug.Write("ERROR: Failed to create input layout: ");
-				ErrorPrinter.PrintHResult(result);
+				Debug.Write("ERROR: Failed to create input layout: {}", result);
 				Runtime.FatalError("Failed to create input layout");
 			}
 
@@ -258,8 +245,7 @@ namespace Example
 
 			if(result.Failed || errorBlob != null)
 			{
-				Debug.Write("ERROR: Failed to compile Pixel Shader: ");
-				ErrorPrinter.PrintHResult(result);
+				Debug.Write("ERROR: Failed to compile Pixel Shader: {}", result);
 				ErrorPrinter.PrintErrorBlob(errorBlob);
 				Runtime.FatalError("Failed to compile Pixel Shader");
 			}
@@ -268,10 +254,9 @@ namespace Example
 
 			psCode.Release();
 
-			if(result.Failed || errorBlob != null)
+			if(result.Failed)
 			{
-				Debug.Write("ERROR: Failed to create Pixel Shader: ");
-				ErrorPrinter.PrintHResult(result);
+				Debug.Write("ERROR: Failed to create Pixel Shader: {}", result);
 				Runtime.FatalError("Failed to create Pixel Shader");
 			}
 
@@ -279,31 +264,25 @@ namespace Example
 			// Create Triangle
 			//
 
-			VertexColor[3] vertices =  .(
+			VertexColor[] vertices = new:ScopedAlloc! VertexColor[](
 				VertexColor(Vector3(-0.5f, -0.5f, 0), Color(255, 0, 0)),
 				VertexColor(Vector3( 0.5f, -0.5f, 0), Color(0, 255, 0)),
 				VertexColor(Vector3( 0.0f,  0.5f, 0), Color(0, 0, 255))
 			);
 
-			BufferDescription bufferDesc = .();
-			bufferDesc.Usage = .Default;
-			bufferDesc.CpuAccessFlags = .None;
-			bufferDesc.BindFlags = .VertexBuffer;
-			bufferDesc.ByteWidth = (.)(sizeof(VertexColor) * vertices.Count);
+			BufferDescription bufferDesc = .((uint32)(sizeof(VertexColor) * vertices.Count), BindFlags.VertexBuffer);
 
-			SubresourceData data = .();
-			data.Data = &vertices;
+			SubresourceData data = .(&vertices[0]);
 
 			result = _graphicsDevice.CreateBuffer(ref bufferDesc, &data, &_vertexBuffer);
 
 			if(result.Failed)
 			{
-				Debug.Write("ERROR: Failed to create Vertex Buffer: ");
-				ErrorPrinter.PrintHResult(result);
+				Debug.Write("ERROR: Failed to create Vertex Buffer: {}", result);
 				Runtime.FatalError();
 			}
 		}
-		
+
 		/**
 		 * Will be executed when the window is being activated.
 		 */
