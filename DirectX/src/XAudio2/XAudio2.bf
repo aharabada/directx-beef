@@ -141,7 +141,7 @@ namespace DirectX.XAudio2
 		 * @returns S_OK if successful, an error code otherwise. See XAudio2 Error Codes for descriptions of XAudio2 specific error codes.
 		 */
 		[Import("XAudio2.lib"), LinkName("XAudio2Create"), CallingConvention(.Stdcall)]
-		public static extern HResult Create(out IXAudio2 *xAudio2, uint32 flags, Processor xAudio2Processor);
+		public static extern HResult Create(out IXAudio2* xAudio2, uint32 flags = 0, Processor xAudio2Processor = .DefaultProcessor);
 
 		/**
 		 * Converts from filter cutoff frequencies expressed in hertz to the radian frequency values used in the Frequency member of the FilterParameters structure.
