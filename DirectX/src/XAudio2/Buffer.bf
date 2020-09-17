@@ -2,7 +2,6 @@ using System;
 
 namespace DirectX.XAudio2
 {
-	// Todo: https://docs.microsoft.com/en-us/windows/win32/api/xaudio2/ns-xaudio2-xaudio2_buffer
 	/**
 	 * Represents an audio data buffer, used with IXAudio2SourceVoice.SubmitSourceBuffer.
 	 */
@@ -26,13 +25,37 @@ namespace DirectX.XAudio2
 		 * Flags that provide additional information about the audio buffer.
 		 */
 		public Flags Flags;
+		/**
+		 * Size of the audio data, in bytes.
+		 */
 		public uint32 AudioBytes;
+		/**
+		 * Pointer to the audio data.
+		 */
 		public uint8 *pAudioData;
+		/**
+		 * First sample in the buffer that should be played.
+		 */
 		public uint32 PlayBegin;
+		/**
+		 * Length of the region to be played, in samples.
+		 */
 		public uint32 PlayLength;
+		/**
+		 * First sample of the region to be looped.
+		 */
 		public uint32 LoopBegin;
+		/**
+		 * Length of the loop region, in samples.
+		 */
 		public uint32 LoopLength;
+		/**
+		 * umber of times to loop through the loop region.
+		 */
 		public uint32 LoopCount;
+		/**
+		 * Context value to be passed back in callbacks to the client. This may be NULL.
+		 */
 		public void *pContext;
 	}
 }

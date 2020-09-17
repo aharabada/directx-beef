@@ -13,7 +13,7 @@ namespace DirectX.XAudio2
 			// Todo:
 			public function HResult(IXAudio2SourceVoice *self, uint32 Flags, uint32 OperationSet) Start;
 			public function HResult(IXAudio2SourceVoice *self) Stop;
-			public function HResult(IXAudio2SourceVoice *self, XAudio2Buffer *pBuffer, /*XAUDIO2_BUFFER_WMA*/void *pBufferWNA) SubmitSourceBuffer;
+			public function HResult(IXAudio2SourceVoice *self, XAudio2Buffer *pBuffer, BufferWMA *pBufferWNA) SubmitSourceBuffer;
 		}
 
 		public new VTable* VT
@@ -38,9 +38,14 @@ namespace DirectX.XAudio2
 			return VT.Start(&this, flags, operationSet);
 		}
 
-		public HResult SubmitSourceBuffer(XAudio2Buffer* buffer, void* bufferWMA = null) mut // XAUDIO2_BUFFER_WMA
+		/**
+		 * Adds a new audio buffer to the voice queue.
+		 * @param buffer  
+		 * @param bufferVMA
+		 */
+		public HResult SubmitSourceBuffer(ref XAudio2Buffer buffer, BufferWMA* bufferWMA = null) mut
 		{
-			return VT.SubmitSourceBuffer(&this, buffer, bufferWMA);
+			return VT.SubmitSourceBuffer(&this, &buffer, bufferWMA);
 		}
 	}
 }
