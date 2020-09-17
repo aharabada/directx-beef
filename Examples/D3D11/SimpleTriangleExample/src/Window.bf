@@ -4,7 +4,7 @@ using DirectX.Windows.Winuser;
 using DirectX.Windows.Kernel32;
 using DirectX.Math;
 
-namespace Example
+namespace SimpleTriangleExample
 {
 	public struct WindowRectangle
 	{

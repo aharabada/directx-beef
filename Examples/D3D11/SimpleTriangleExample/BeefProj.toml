@@ -2,9 +2,10 @@ FileVersion = 1
 Dependencies = {corlib = "*", DirectX = "*"}
 
 [Project]
-Name = "Example"
+Name = "SimpleTriangleExample"
 TargetType = "BeefGUIApplication"
-StartupObject = "Example.Program"
+StartupObject = "SimpleTriangleExample.Program"
+DefaultNamespace = "SimpleTriangleExample"
 
 [Configs.Debug.Win64]
 PreBuildCmds = ["ROBOCOPY \"$(ProjectDir)/content\" \"$(BuildDir)/content\" /S /XO"]

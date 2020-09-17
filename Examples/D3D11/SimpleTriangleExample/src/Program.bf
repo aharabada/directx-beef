@@ -5,7 +5,7 @@ using DirectX.Windows.Winuser;
 using DirectX.Windows.Kernel32;
 using DirectX.Windows.WindowMessages;
 
-namespace Example
+namespace SimpleTriangleExample
 {
 	class Program
 	{

@@ -1,7 +1,7 @@
 using System;
 using System.Diagnostics;
 
-namespace Example
+namespace SimpleTriangleExample
 {
 	/**
 	 * A timer providing functionality to meassure frame times and game runtime.

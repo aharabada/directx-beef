@@ -8,7 +8,7 @@ using DirectX.D3D11.SDKLayers;
 using DirectX.Math;
 using System.Diagnostics;
 
-namespace Example
+namespace SimpleTriangleExample
 {
 	class Game
 	{

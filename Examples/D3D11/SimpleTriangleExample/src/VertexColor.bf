@@ -2,7 +2,7 @@ using System;
 using DirectX;
 using DirectX.Math;
 
-namespace Example
+namespace SimpleTriangleExample
 {
 	/**
 	 * Represents a Vertex with a 3D-Position an a Color.

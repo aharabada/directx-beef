@@ -2,7 +2,7 @@ using System;
 using DirectX.Common;
 using System.Diagnostics;
 
-namespace Example
+namespace SimpleTriangleExample
 {
 	public struct ComError
 	{
