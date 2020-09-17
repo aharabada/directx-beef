@@ -36,5 +36,11 @@ namespace DirectX.XAudio2
 		public BOOL   LogTiming;
 
 		public this() => this = default;
+
+		public this(TraceMask traceMask = .None, BreakMask breakMask = .None) : this()
+		{
+			TraceMask = traceMask;
+			BreakMask = breakMask;
+		}
 	}
 }
