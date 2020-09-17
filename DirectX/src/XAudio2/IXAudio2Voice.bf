@@ -250,7 +250,7 @@ namespace DirectX.XAudio2
 		/**
 		 * Destroys the voice. If necessary, stops the voice and removes it from the XAudio2 graph.
 		 */
-		public void DestroyVoid() mut
+		public void DestroyVoice() mut
 		{
 			VT.DestroyVoice(&this);
 		}
