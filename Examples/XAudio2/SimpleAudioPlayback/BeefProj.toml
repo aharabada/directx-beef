@@ -1,0 +1,9 @@
+FileVersion = 1
+Dependencies = {corlib = "*", DirectX = "*"}
+
+[Project]
+Name = "SimpleAudioPlayback"
+StartupObject = "SimpleAudioPlayback.Program"
+
+[Configs.Debug.Win64]
+PreBuildCmds = ["ROBOCOPY \"$(ProjectDir)/content\" \"$(BuildDir)/content\" /S /XO"]
