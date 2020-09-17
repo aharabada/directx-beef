@@ -11,13 +11,39 @@ namespace DirectX.XAudio2
 	{
 		public struct VTable
 		{
-			public function void(void* self, uint32 BytesRequired) OnVoiceProcessingPassStart;
-			public function void(void* self) OnVoiceProcessingPassEnd;
-			public function void(void* self) OnStreamEnd;
-			public function void(void* self, void *pBufferContext) OnBufferStart;
-			public function void(void* self, void *pBufferContext) OnBufferEnd;
-			public function void(void* self, void *pBufferContext) OnLoopEnd;
-			public function void(void* self, void *pBufferContext, HResult Error) OnVoiceError;
+			/**
+			 * Called during each processing pass for each voice, just before XAudio2 reads data from the voice's buffer queue.
+			 */
+			public function void(IXAudio2VoiceCallback* self, uint32 BytesRequired) OnVoiceProcessingPassStart;
+			/**
+			* Called just after the processing pass for the voice ends.
+			*/
+			public function void(IXAudio2VoiceCallback* self) OnVoiceProcessingPassEnd;
+			/**
+			* Called when the voice has just finished playing a contiguous audio stream.
+			*/
+			public function void(IXAudio2VoiceCallback* self) OnStreamEnd;
+			/**
+			* Called when the voice is about to start processing a new audio buffer.
+			* @param bufferContext Context pointer that was assigned to the pContext member of the XAUDIO2_BUFFER structure when the buffer was submitted.
+			*/
+			public function void(IXAudio2VoiceCallback* self, void *pBufferContext) OnBufferStart;
+			/**
+			* Called when the voice finishes processing a buffer.
+			* @param bufferContext Context pointer assigned to the pContext member of the XAUDIO2_BUFFER structure when the buffer was submitted.
+			*/
+			public function void(IXAudio2VoiceCallback* self, void *pBufferContext) OnBufferEnd;
+			/**
+			* Called when the voice reaches the end position of a loop.
+			* @param bufferContext Context pointer that was assigned to the pContext member of the XAUDIO2_BUFFER structure when the buffer was submitted.
+			*/
+			public function void(IXAudio2VoiceCallback* self, void *pBufferContext) OnLoopEnd;
+			/**
+			* Called when a critical error occurs during voice processing.
+			* @param bufferContext Context pointer that was assigned to the pContext member of the XAUDIO2_BUFFER structure when the buffer was submitted.
+			* @param error The HRESULT code of the error encountered.
+			*/
+			public function void(IXAudio2VoiceCallback* self, void *pBufferContext, HResult Error) OnVoiceError;
 		}
 
 		protected VTable* mVT;
@@ -27,67 +53,54 @@ namespace DirectX.XAudio2
 			[Inline]
 			get => mVT;
 		}
-		/*
-		/**
-		 * Called during each processing pass for each voice, just before XAudio2 reads data from the voice's buffer queue.
-		 */
-		public void OnVoiceProcessingPassStart(uint32 bytesRequired) mut
+
+		public void Init()
 		{
-			mVT.OnVoiceProcessingPassStart(&this, bytesRequired);
+
 		}
 
-		/**
-		 * Called just after the processing pass for the voice ends.
-		 */
-		public void OnVoiceProcessingPassEnd() mut
+		public static mixin CreateCallbackWithVTable(bool scoped = false)
 		{
-			mVT.OnVoiceProcessingPassEnd(&this);
+			IXAudio2VoiceCallback* callback = ?;
+			if(scoped)
+			{
+				callback = scope:mixin .();
+				callback.mVT = scope:mixin .();
+			}
+			else
+			{
+				callback = new .();
+				callback.mVT = new .();
+			}
+
+			callback.Init();
+
+			callback
 		}
 
-		/**
-		 * Called when the voice has just finished playing a contiguous audio stream.
-		 */
-		public void OnStreamEnd() mut
+		public static mixin CreateCallbackWithVTable<T>(bool scoped = false) where T : IXAudio2VoiceCallback
 		{
-			mVT.OnStreamEnd(&this);
+			T* callback = ?;
+			if(scoped)
+			{
+				callback = scope:mixin T();
+				((IXAudio2VoiceCallback*)callback).mVT = scope:mixin .();
+			}
+			else
+			{
+				callback = new T();
+				((IXAudio2VoiceCallback*)callback).mVT = new .();
+			}
+
+			callback.Init();
+
+			callback
 		}
 
-		/**
-		 * Called when the voice is about to start processing a new audio buffer.
-		 * @param bufferContext Context pointer that was assigned to the pContext member of the XAUDIO2_BUFFER structure when the buffer was submitted.
-		 */
-		public void OnBufferStart(void* bufferContext) mut
+		public static mixin DeleteCallbackAndVTable(IXAudio2VoiceCallback* callback)
 		{
-			mVT.OnBufferStart(&this, bufferContext);
+			delete callback.mVT;
+			delete callback;
 		}
-
-		/**
-		 * Called when the voice finishes processing a buffer.
-		 * @param bufferContext Context pointer assigned to the pContext member of the XAUDIO2_BUFFER structure when the buffer was submitted.
-		 */
-		public void OnBufferEnd(void* bufferContext) mut
-		{
-			mVT.OnBufferEnd(&this, bufferContext);
-		}
-
-		/**
-		 * Called when the voice reaches the end position of a loop.
-		 * @param bufferContext Context pointer that was assigned to the pContext member of the XAUDIO2_BUFFER structure when the buffer was submitted.
-		 */
-		public void OnLoopEnd(void* bufferContext) mut
-		{
-			mVT.OnLoopEnd(&this, bufferContext);
-		}
-
-		/**
-		 * Called when a critical error occurs during voice processing.
-		 * @param bufferContext Context pointer that was assigned to the pContext member of the XAUDIO2_BUFFER structure when the buffer was submitted.
-		 * @param error The HRESULT code of the error encountered.
-		 */
-		public void OnVoiceError(void* bufferContext, HResult error) mut
-		{
-			mVT.OnVoiceError(&this, bufferContext, error);
-		}
-		*/
 	}
 }

@@ -11,42 +11,76 @@ namespace DirectX.XAudio2
 	{
 		public struct VTable
 		{
+			/**
+			 * Called by XAudio2 just before an audio processing pass begins.
+			 */
 			public function void(IXAudio2EngineCallback* self) OnProcessingPassStart;
+			/**
+			 * Called by XAudio2 just after an audio processing pass ends.
+			 */
 			public function void(IXAudio2EngineCallback* self) OnProcessingPassEnd;
+			/**
+			 * Called if a critical system error occurs that requires XAudio2 to be closed down and restarted.
+			 * @param error Error code returned by XAudio2.
+			 */
 			public function void(IXAudio2EngineCallback* self, HResult Error) OnCriticalError;
 		}
 
-		protected VTable mVT;
+		protected VTable* mVT;
 
-		public VTable VT
+		public VTable* VT
 		{
 			[Inline]
 			get => mVT;
 		}
-
-		/**
-		 * Called by XAudio2 just before an audio processing pass begins.
-		 */
-		public void OnProcessingPassStart() mut
+		
+		public void Init()
 		{
-			mVT.OnProcessingPassStart(&this);
-		}
 
-		/**
-		 * Called by XAudio2 just after an audio processing pass ends.
-		 */
-		public void OnProcessingPassEnd() mut
-		{
-			mVT.OnProcessingPassEnd(&this);
 		}
 		
-		/**
-		 * Called if a critical system error occurs that requires XAudio2 to be closed down and restarted.
-		 * @param error Error code returned by XAudio2.
-		 */
-		public void OnCriticalError(HResult error) mut
+		public static mixin CreateCallbackWithVTable(bool scoped = false)
 		{
-			mVT.OnCriticalError(&this, error);
+			IXAudio2EngineCallback* callback = ?;
+			if(scoped)
+			{
+				callback = scope:mixin .();
+				callback.mVT = scope:mixin .();
+			}
+			else
+			{
+				callback = new .();
+				callback.mVT = new .();
+			}
+
+			callback.Init();
+
+			callback
+		}
+
+		public static mixin CreateCallbackWithVTable<T>(bool scoped = false) where T : IXAudio2EngineCallback
+		{
+			T* callback = ?;
+			if(scoped)
+			{
+				callback = scope:mixin T();
+				((IXAudio2EngineCallback*)callback).mVT = scope:mixin .();
+			}
+			else
+			{
+				callback = new T();
+				((IXAudio2EngineCallback*)callback).mVT = new .();
+			}
+
+			callback.Init();
+
+			callback
+		}
+
+		public static mixin DeleteCallbackAndVTable(IXAudio2EngineCallback* callback)
+		{
+			delete callback.mVT;
+			delete callback;
 		}
 	}
 }
