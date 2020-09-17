@@ -1,0 +1,5 @@
+FileVersion = 1
+Projects = {CallbackExample = {Path = "."}, DirectX = {Path = "../../../DirectX"}}
+
+[Workspace]
+StartupProject = "CallbackExample"
