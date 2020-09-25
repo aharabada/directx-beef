@@ -201,7 +201,7 @@ namespace SimpleTriangleExample
 			// Compile vertex shader
 			ID3DBlob* vsCode = null;
 			ID3DBlob* errorBlob = null;
-			var result = D3DCompiler.D3DCompileFromFile("content\\basicShader.hlsl".ToScopedNativeWChar!(), null, D3DCompiler.D3D_COMPILE_STANDARD_FILE_INCLUDE, "VS", "vs_5_0", .Debug, .None, &vsCode, &errorBlob);
+			var result = D3DCompiler.D3DCompileFromFile("content\\basicShader.hlsl".ToScopedNativeWChar!(), null, .StandardInclude, "VS", "vs_5_0", .Debug, .None, &vsCode, &errorBlob);
 
 			if(result.Failed || errorBlob != null)
 			{
@@ -241,7 +241,7 @@ namespace SimpleTriangleExample
 
 			ID3DBlob* psCode = null;
 
-			result = D3DCompiler.D3DCompileFromFile("content\\basicShader.hlsl".ToScopedNativeWChar!(), null, D3DCompiler.D3D_COMPILE_STANDARD_FILE_INCLUDE, "PS", "ps_5_0", .Debug, .None, &psCode, &errorBlob);
+			result = D3DCompiler.D3DCompileFromFile("content\\basicShader.hlsl".ToScopedNativeWChar!(), null, .StandardInclude, "PS", "ps_5_0", .Debug, .None, &psCode, &errorBlob);
 
 			if(result.Failed || errorBlob != null)
 			{
@@ -318,7 +318,7 @@ namespace SimpleTriangleExample
 			_immediateContext.InputAssembler.SetVertexBuffers(0, 1, &_vertexBuffer, &stride, &offset);
 
 			_immediateContext.InputAssembler.SetInputLayout(_inputLayout);
-			_immediateContext.InputAssembler.SetPrimitiveTopology(.D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+			_immediateContext.InputAssembler.SetPrimitiveTopology(.TriangleList);
 
 			_immediateContext.VertexShader.SetShader(_vertexShader, null, 0);
 
