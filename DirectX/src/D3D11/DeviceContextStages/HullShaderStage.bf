@@ -98,7 +98,7 @@ namespace DirectX.D3D11.DeviceContextStages
 				Each interface used by a shader must have a corresponding class instance or the shader will get disabled. Set ppClassInstances to NULL if the shader does not use any interfaces.
 		@param numClassInstances The number of class-instance interfaces in the array.
 		*/
-		public void SetShader(ID3D11HullShader *pHullShader, ID3D11ClassInstance **ppClassInstances, UINT numClassInstances) mut
+		public void SetShader(ID3D11HullShader *pHullShader, ID3D11ClassInstance **ppClassInstances = null, UINT numClassInstances = 0) mut
 		{
 			VT.HSSetShader(&this, pHullShader, ppClassInstances, numClassInstances);
 		}
