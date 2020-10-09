@@ -34,10 +34,10 @@ namespace DirectX.Math
 		public this(float value)
 		{
 			this = ?;
-			V._11 = V._21 = V._31 = V._41 =
-			V._12 = V._22 = V._32 = V._42 =
-			V._13 = V._23 = V._33 = V._43 =
-			V._14 = V._24 = V._34 = V._44 = value;
+			V._11 = V._12 = V._13 = V._14 =
+			V._21 = V._22 = V._23 = V._24 =
+			V._31 = V._32 = V._33 = V._34 =
+			V._41 = V._42 = V._43 = V._44 = value;
 		}
 
 		/// Creates a new matrix and initializes it with the given entries.
@@ -467,10 +467,10 @@ namespace DirectX.Math
 		[DisableChecks]
 		public Matrix Transpose()
 		{
-			return .(this[0, 0], this[1, 0], this[2, 0], this[3, 0],
-					 this[0, 1], this[1, 1], this[2, 1], this[3, 1],
-					 this[0, 2], this[1, 2], this[2, 2], this[3, 2],
-					 this[0, 3], this[1, 3], this[2, 3], this[3, 3]);
+			return .(V._11, V._21, V._31, V._41,
+					V._12, V._22, V._32, V._42,
+					V._13, V._23, V._33, V._43,
+					V._14, V._24, V._34, V._44);
 		}
 
 		/**
