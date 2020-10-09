@@ -13,10 +13,7 @@ namespace DirectX.Math
 
 		public float X, Y, Z, W;
 
-		public this()
-		{
-			this = default;
-		}
+		public this() => this = default;
 
 		public this(float value)
 		{
@@ -61,7 +58,7 @@ namespace DirectX.Math
 		public ref float this[int index]
 		{
 			[Checked]
-			get mut
+			get
 			{
 				if(index < 0 || index > 3)
 					Internal.ThrowIndexOutOfRange();
@@ -69,116 +66,28 @@ namespace DirectX.Math
 				return ref (&X)[index];
 			}
 
-			[Unchecked, Inline]
-			get mut
-			{
-				return ref (&X)[index];
-			}
+			[Inline]
+			get => ref (&X)[index];
 		}
 
-		//
-		// Assignment operators
-		//
-
-		public void operator *=(float s) mut
-		{
-			X *= s;
-			Y *= s;
-			Z *= s;
-			W *= s;
-		}
-
-		public void operator /=(float s) mut
-		{
-			float f = 1.0f / s;
-			X *= f;
-			Y *= f;
-			Z *= f;
-			W *= f;
-		}
-
-		public void operator *=(Vector4 v) mut
-		{
-			X *= v.X;
-			Y *= v.Y;
-			Z *= v.Z;
-			W *= v.W;
-		}
-
-		public void operator /=(Vector4 v) mut
-		{
-			X /= v.X;
-			Y /= v.Y;
-			Z /= v.Z;
-			W /= v.W;
-		}
-
-		public void operator +=(Vector4 v) mut
-		{
-			X += v.X;
-			Y += v.Y;
-			Z += v.Z;
-			W += v.W;
-		}
-
-		public void operator -=(Vector4 v) mut
-		{
-			X -= v.X;
-			Y -= v.Y;
-			Z -= v.Z;
-			W -= v.W;
-		}
-
-		//
-		// operators
-		//
-
-		public static Vector4 operator *(Vector4 v, float s)
-		{
-			return .(v.X * s, v.Y * s, v.Z * s, v.W * s);
-		}
-
-		public static Vector4 operator *(float s, Vector4 v)
-		{
-			return v * s;
-		}
-
-		public static Vector4 operator /(Vector4 v, float s)
-		{	
-			float f = 1.0f / s;
-			return .(v.X * f, v.Y * f, v.Z * f, v.W * f);
-		}
-
-		public static Vector4 operator /(float s, Vector4 v)
-		{
-			return .(s / v.X, s / v.Y, s / v.Z, s / v.W);
-		}
-
-		public static Vector4 operator +(Vector4 l, Vector4 r)
-		{
-			return .(l.X + r.X, l.Y + r.Y, l.Z + r.Z, l.W + r.W);
-		}
-
-		public static Vector4 operator -(Vector4 v)
-		{
-			return .(-v.X, -v.Y, -v.Z, -v.W);
-		}
-
-		public static Vector4 operator -(Vector4 l, Vector4 r)
-		{
-			return .(l.X - r.X, l.Y - r.Y, l.Z - r.Z, l.W - r.W);
-		}
-
+		/**
+		 * Calculates the magnitude (length) of this vector.
+		 * @remarks MagnitudeSquared might be used if only the relative length is relevant.
+		 */
 		public float Magnitude()
 		{
 			return Math.Sqrt(X * X + Y * Y + Z * Z + W * W);
 		}
 
+		/**
+		 * Calculates the squared magnitude (length) of this vector.
+		 */
 		public float MagnitudeSquared()
 		{
 			return X * X + Y * Y + Z * Z + W * W;
 		}
-
+		
+		[Checked]
 		public void Normalize() mut
 		{
 			if(this == .Zero)
@@ -187,7 +96,6 @@ namespace DirectX.Math
 			this /= Magnitude();
 		}
 
-		[Unchecked]
 		public void Normalize() mut
 		{
 			this /= Magnitude();
@@ -207,7 +115,7 @@ namespace DirectX.Math
 			return v / v.Magnitude();
 		}
 
-		public float Dot(Vector4 l, Vector4 r)
+		public static float Dot(Vector4 l, Vector4 r)
 		{
 			return l.X * r.X + l.Y * r.Y + l.Z * r.Z + l.W * r.W;
 		}
@@ -227,5 +135,142 @@ namespace DirectX.Math
 		{
 			return (a - b * (Dot(a, b) / Dot(b, b)));
 		}
+
+		//
+		// Assignment operators
+		//
+
+		// Addition
+		
+		public void operator +=(Vector4 value) mut
+		{
+			X += value.X;
+			Y += value.Y;
+			Z += value.Z;
+			W += value.W;
+		}
+		
+		public void operator +=(float scalar) mut
+		{
+			X += scalar;
+			Y += scalar;
+			Z += scalar;
+			W += scalar;
+		}
+
+		// Subtraction
+
+		public void operator -=(Vector4 value) mut
+		{
+			X -= value.X;
+			Y -= value.Y;
+			Z -= value.Z;
+			W -= value.W;
+		}
+
+		public void operator -=(float scalar) mut
+		{
+			X -= scalar;
+			Y -= scalar;
+			Z -= scalar;
+			W -= scalar;
+		}
+
+		// Multiplication
+		
+		public void operator *=(Vector4 value) mut
+		{
+			X *= value.X;
+			Y *= value.Y;
+			Z *= value.Z;
+			W *= value.W;
+		}
+
+		public void operator *=(float scalar) mut
+		{
+			X *= scalar;
+			Y *= scalar;
+			Z *= scalar;
+			W *= scalar;
+		}
+
+		// Division
+
+		public void operator /=(float scalar) mut
+		{
+			float f = 1.0f / scalar;
+			X *= f;
+			Y *= f;
+			Z *= f;
+			W *= f;
+		}
+
+		public void operator /=(Vector4 value) mut
+		{
+			X /= value.X;
+			Y /= value.Y;
+			Z /= value.Z;
+			W /= value.W;
+		}
+
+		//
+		// operators
+		//
+
+		// Addition
+
+		public static Vector4 operator +(Vector4 left, Vector4 right) => Vector4(left.X + right.X, left.Y + right.Y, left.Z + right.Z, left.W + right.W);
+
+		public static Vector4 operator +(Vector4 value, float scalar) => Vector4(value.X + scalar, value.Y + scalar, value.Z + scalar, value.W + scalar);
+		
+		public static Vector4 operator +(float scalar, Vector4 value) => Vector4(scalar + value.X, scalar + value.Y, scalar + value.Z, scalar + value.W);
+
+		public static Vector4 operator +(Vector4 value) => value;
+
+		// Subtraction
+		
+		public static Vector4 operator -(Vector4 left, Vector4 right) => Vector4(left.X - right.X, left.Y - right.Y, left.Z - right.Z, left.W - right.W);
+
+		public static Vector4 operator -(Vector4 value, float scalar) => Vector4(value.X - scalar, value.Y - scalar, value.Z - scalar, value.W - scalar);
+
+		public static Vector4 operator -(float scalar, Vector4 value) => Vector4(scalar - value.X, scalar - value.Y, scalar - value.Z, scalar - value.W);
+
+		public static Vector4 operator -(Vector4 value) => Vector4(-value.X, -value.Y, -value.Z, -value.W);
+
+		// Multiplication
+
+		public static Vector4 operator *(Vector4 left, Vector4 right) => Vector4(left.X * right.X, left.Y * right.Y, left.Z * right.Z, left.W * right.W);
+
+		public static Vector4 operator *(Vector4 value, float scalar) => Vector4(value.X * scalar, value.Y * scalar, value.Z * scalar, value.W * scalar);
+
+		public static Vector4 operator *(float scalar, Vector4 value) => Vector4(scalar * value.X, scalar * value.Y, scalar * value.Z, scalar * value.W);
+
+		// Division
+		
+		public static Vector4 operator /(Vector4 left, Vector4 right) => Vector4(left.X / right.X, left.Y / right.Y, left.Z / right.Z, left.W / right.W);
+
+		public static Vector4 operator /(Vector4 value, float scalar)
+		{	
+			float inv = 1.0f / scalar;
+			return Vector4(value.X * inv, value.Y * inv, value.Z * inv, value.W * inv);
+		}
+
+		public static Vector4 operator /(float scalar, Vector4 value) => Vector4(scalar / value.X, scalar / value.Y, scalar / value.Z, scalar / value.W);
+
+		// Equality
+
+		public static bool operator ==(Vector4 left, Vector4 right) => left.X == right.X && left.Y == right.Y && left.Z == right.Z && left.W == right.W;
+
+		public static bool operator !=(Vector4 left, Vector4 right) => left.X != right.X || left.Y != right.Y || left.Z != right.Z || left.W != right.W;
+
+		//
+		// Conversion
+		//
+
+		public static explicit operator Vector3(Vector4 value) => Vector3(value.X, value.Y, value.Z);
+
+		public static explicit operator Vector2(Vector4 value) => Vector2(value.X, value.Y);
+
+		public override void ToString(String strBuffer) => strBuffer.AppendF("X:{0} Y:{1} Z:{2} W:{3}", X, Y, Z, W);
 	}
 }

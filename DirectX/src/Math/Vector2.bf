@@ -11,10 +11,7 @@ namespace DirectX.Math
 
 		public float X, Y;
 
-		public this()
-		{
-			this = default;
-		}
+		public this() => this = default;
 
 		public this(float value)
 		{
@@ -31,110 +28,42 @@ namespace DirectX.Math
 		public ref float this[int index]
 		{
 			[Checked]
-			get mut
+			get
 			{
-				if(index < 0 || index > 1)
+				if(index < 0 || index > 2)
 					Internal.ThrowIndexOutOfRange();
 
 				return ref (&X)[index];
 			}
 
-			[Unchecked, Inline]
-			get mut
-			{
-				return ref (&X)[index];
-			}
+			[Inline]
+			get => ref (&X)[index];
 		}
-
-		//
-		// Assignment operators
-		//
-
-		public void operator *=(float s) mut
-		{
-			X *= s;
-			Y *= s;
-		}
-
-		public void operator /=(float s) mut
-		{
-			float f = 1.0f / s;
-			X *= f;
-			Y *= f;
-		}
-
-		public void operator *=(Vector2 v) mut
-		{
-			X *= v.X;
-			Y *= v.Y;
-		}
-
-		public void operator /=(Vector2 v) mut
-		{
-			X /= v.X;
-			Y /= v.Y;
-		}
-
-		public void operator +=(Vector2 v) mut
-		{
-			X += v.X;
-			Y += v.Y;
-		}
-
-		public void operator -=(Vector2 v) mut
-		{
-			X -= v.X;
-			Y -= v.Y;
-		}
-
-		//
-		// operators
-		//
-
-		public static Vector2 operator *(Vector2 v, float s)
-		{
-			return .(v.X * s, v.Y * s);
-		}
-
-		public static Vector2 operator *(float s, Vector2 v)
-		{
-			return v * s;
-		}
-
-		public static Vector2 operator /(Vector2 v, float s)
-		{	
-			float f = 1.0f / s;
-			return .(v.X * f, v.Y * f);
-		}
-
-		public static Vector2 operator /(float s, Vector2 v)
-		{
-			return .(s / v.X, s / v.Y);
-		}
-
-		public static Vector2 operator +(Vector2 l, Vector2 r)
-		{
-			return .(l.X + r.X, l.Y + r.Y);
-		}
-
-		public static Vector2 operator -(Vector2 v)
-		{
-			return .(-v.X, -v.Y);
-		}
-
-		public static Vector2 operator -(Vector2 l, Vector2 r)
-		{
-			return .(l.X - r.X, l.Y - r.Y);
-		}
-
+		
+		/**
+		 * Calculates the magnitude (length) of this vector.
+		 * @remarks MagnitudeSquared might be used if only the relative length is relevant.
+		 */
 		public float Magnitude()
 		{
 			return Math.Sqrt(X * X + Y * Y);
 		}
-
+		
+		/**
+		 * Calculates the squared magnitude (length) of this vector.
+		 */
 		public float MagnitudeSquared()
 		{
 			return X * X + Y * Y;
+		}
+		
+		[Checked]
+		public void Normalize() mut
+		{
+			if(this == .Zero)
+				return;
+
+			this /= Magnitude();
 		}
 
 		public void Normalize() mut
@@ -167,5 +96,126 @@ namespace DirectX.Math
 		{
 			return (a - b * (Dot(a, b) / Dot(b, b)));
 		}
+		
+		//
+		// Assignment operators
+		//
+
+		// Addition
+
+		public void operator +=(Vector2 value) mut
+		{
+			X += value.X;
+			Y += value.Y;
+		}
+
+		public void operator +=(float scalar) mut
+		{
+			X += scalar;
+			Y += scalar;
+		}
+
+		// Subtraction
+
+		public void operator -=(Vector2 value) mut
+		{
+			X -= value.X;
+			Y -= value.Y;
+		}
+
+		public void operator -=(float scalar) mut
+		{
+			X -= scalar;
+			Y -= scalar;
+		}
+
+		// Multiplication
+
+		public void operator *=(Vector2 value) mut
+		{
+			X *= value.X;
+			Y *= value.Y;
+		}
+
+		public void operator *=(float scalar) mut
+		{
+			X *= scalar;
+			Y *= scalar;
+		}
+
+		// Division
+
+		public void operator /=(float scalar) mut
+		{
+			float f = 1.0f / scalar;
+			X *= f;
+			Y *= f;
+		}
+
+		public void operator /=(Vector2 value) mut
+		{
+			X /= value.X;
+			Y /= value.Y;
+		}
+
+		//
+		// operators
+		//
+
+		// Addition
+
+		public static Vector2 operator +(Vector2 left, Vector2 right) => Vector2(left.X + right.X, left.Y + right.Y);
+
+		public static Vector2 operator +(Vector2 value, float scalar) => Vector2(value.X + scalar, value.Y + scalar);
+
+		public static Vector2 operator +(float scalar, Vector2 value) => Vector2(scalar + value.X, scalar + value.Y);
+
+		public static Vector2 operator +(Vector2 value) => value;
+
+		// Subtraction
+
+		public static Vector2 operator -(Vector2 left, Vector2 right) => Vector2(left.X - right.X, left.Y - right.Y);
+
+		public static Vector2 operator -(Vector2 value, float scalar) => Vector2(value.X - scalar, value.Y - scalar);
+
+		public static Vector2 operator -(float scalar, Vector2 value) => Vector2(scalar - value.X, scalar - value.Y);
+
+		public static Vector2 operator -(Vector2 value) => Vector2(-value.X, -value.Y);
+
+		// Multiplication
+
+		public static Vector2 operator *(Vector2 left, Vector2 right) => Vector2(left.X * right.X, left.Y * right.Y);
+
+		public static Vector2 operator *(Vector2 value, float scalar) => Vector2(value.X * scalar, value.Y * scalar);
+
+		public static Vector2 operator *(float scalar, Vector2 value) => Vector2(scalar * value.X, scalar * value.Y);
+
+		// Division
+
+		public static Vector2 operator /(Vector2 left, Vector2 right) => Vector2(left.X / right.X, left.Y / right.Y);
+
+		public static Vector2 operator /(Vector2 value, float scalar)
+		{	
+			float inv = 1.0f / scalar;
+			return Vector2(value.X * inv, value.Y * inv);
+		}
+
+		public static Vector2 operator /(float scalar, Vector2 value) => Vector2(scalar / value.X, scalar / value.Y);
+
+		// Equality
+
+		public static bool operator ==(Vector2 left, Vector2 right) => left.X == right.X && left.Y == right.Y;
+
+		public static bool operator !=(Vector2 left, Vector2 right) => left.X != right.X || left.Y != right.Y;
+
+		//
+		// Conversion
+		//
+
+		public static explicit operator Vector4(Vector2 value) => Vector4(value.X, value.Y, 0.0f, 0.0f);
+
+		public static explicit operator Vector3(Vector2 value) => Vector3(value.X, value.Y, 0.0f);
+
+		public override void ToString(String strBuffer) => strBuffer.AppendF("X:{0} Y:{1}", X, Y);
 	}
 }
