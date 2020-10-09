@@ -1,4 +1,5 @@
 using System;
+
 namespace DirectX.Math
 {
 	public static class MathUtil
