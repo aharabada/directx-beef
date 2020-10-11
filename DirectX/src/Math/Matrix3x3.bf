@@ -411,5 +411,24 @@ namespace DirectX.Math
 
 		// Todo: invert
 
+		public Matrix3x3 Inverse()
+		{
+#unwarn
+			var a = ref *&this.Columns[0];
+#unwarn
+			var b = ref *&this.Columns[1];
+#unwarn
+			var c = ref *&this.Columns[2];
+
+			Vector3 r0 = .Cross(b, c);
+			Vector3 r1 = .Cross(c, a);
+			Vector3 r2 = .Cross(a, b);
+
+			float invDet = 1.0F / Vector3.Dot(r2, c);
+
+			return .(r0.X, r0.Y, r0.Z,
+					r1.X, r1.Y, r1.Z,
+					r2.X, r2.Y, r2.Z) * invDet;
+		}
 	}
 }
