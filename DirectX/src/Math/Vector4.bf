@@ -123,7 +123,7 @@ namespace DirectX.Math
 		/**
 		 * Calculates the projection of a onto b
 		 */
-		public Vector4 Project(Vector4 a, Vector4 b)
+		public static Vector4 Project(Vector4 a, Vector4 b)
 		{
 			return (b * (Dot(a, b) / Dot(b, b)));
 		}
@@ -131,7 +131,7 @@ namespace DirectX.Math
 		/**
 		 * Calculates the rejection of a from b
 		 */
-		public Vector4 Reject(Vector4 a, Vector4 b)
+		public static Vector4 Reject(Vector4 a, Vector4 b)
 		{
 			return (a - b * (Dot(a, b) / Dot(b, b)));
 		}
