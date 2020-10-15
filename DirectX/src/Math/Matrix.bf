@@ -655,7 +655,7 @@ namespace DirectX.Math
 			float d_inv = 1.0f / (far - near);
 
 			return .(2.0f * w_inv,	0.0f, 	  0.0f, -(right + left) * w_inv,
-						0.0f,	2.0f * h_inv, 0.0f, (bottom + top) * h_inv,
+						0.0f,	2.0f * h_inv, 0.0f, -(bottom + top) * h_inv,
 						0.0f, 		0.0f,     d_inv, 	-near * d_inv,
 						0.0f, 		0.0f, 	  0.0f, 		1.0f);
 		}
