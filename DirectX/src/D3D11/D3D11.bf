@@ -1,11 +1,10 @@
 using System;
-using DirectX;
 using DirectX.DXGI;
 using DirectX.Common;
 
 namespace DirectX.D3D11
 {
-	static
+	public static class D3D11
 	{
 		public static readonly uint32 SDK_VERSION = 7;
 
@@ -19,13 +18,13 @@ namespace DirectX.D3D11
 		 * @return The index which equals MipSlice + (ArraySlice * MipLevels).
 		*/
 		[Inline]
-		public static UINT D3D11CalcSubresource(UINT MipSlice, UINT ArraySlice, UINT MipLevels)
+		public static UINT CalcSubresource(UINT MipSlice, UINT ArraySlice, UINT MipLevels)
 		{
 			return MipSlice + ArraySlice * MipLevels;
 		}
 
-		[Import("D3D11.lib"), CLink, CallingConvention(.Stdcall)]
-		public static extern HResult D3D11CreateDevice(
+		[Import("D3D11.lib"), LinkName("D3D11CreateDevice"), CallingConvention(.Stdcall)]
+		public static extern HResult CreateDevice(
 			IUnknown* pAdapter,
 			DriverType DriverType,
 			Windows.HModule Software,
@@ -40,11 +39,11 @@ namespace DirectX.D3D11
 		/**
 		 * Creates a device that represents the display adapter and a swap chain used for rendering.
 		*/
-		[Import("D3D11.lib"), CLink, CallingConvention(.Stdcall)]
-		public static extern HResult D3D11CreateDeviceAndSwapChain(IDXGIAdapter *pAdapter, DriverType driverType, Windows.HModule software,
+		[Import("D3D11.lib"), LinkName("D3D11CreateDeviceAndSwapChain"), CallingConvention(.Stdcall)]
+		public static extern HResult CreateDeviceAndSwapChain(IDXGIAdapter *pAdapter, DriverType driverType, Windows.HModule software,
 			DeviceCreationFlags flags, FeatureLevel *pFeatureLevels, UINT featureLevels, UINT SDKVersion, SwapChainDescription *pSwapChainDesc,
 			IDXGISwapChain **ppSwapChain, ID3D11Device **ppDevice, FeatureLevel *pFeatureLevel, ID3D11DeviceContext **ppImmediateContext);
-
+		
 		/**
 		 * Creates a device that represents the display adapter.
 		 * 
@@ -57,10 +56,22 @@ namespace DirectX.D3D11
 		 * @param featureLevel		If successful, returns the first D3D_FEATURE_LEVEL from the featureLevels array which succeeded.
 		 * @param immediateContext	Returns the address of a pointer to an ID3D11DeviceContext object that represents the device context.
 		*/
-		public static HResult D3D11CreateDevice(IUnknown* adapter, DriverType driverType, Windows.HModule software, DeviceCreationFlags creationFlags, FeatureLevel[] featureLevels,
+		[Inline]
+		public static HResult CreateDevice(IUnknown* adapter, DriverType driverType, Windows.HModule software, DeviceCreationFlags creationFlags, FeatureLevel[] featureLevels,
 			ID3D11Device** device, FeatureLevel *featureLevel, ID3D11DeviceContext** immediateContext)
 		{
-			return D3D11CreateDevice(adapter, .Hardware, software, creationFlags, featureLevels.CArray(), (uint32)featureLevels.Count, DirectX.D3D11.SDK_VERSION, device, featureLevel, immediateContext);
+			return CreateDevice(adapter, driverType, software, creationFlags, featureLevels.CArray(), (uint32)featureLevels.Count, SDK_VERSION, device, featureLevel, immediateContext);
+		}
+		
+		/**
+		 * Creates a device that represents the display adapter and a swap chain used for rendering.
+		*/
+		[Inline]
+		public static HResult CreateDeviceAndSwapChain(IDXGIAdapter* adapter, DriverType driverType, Windows.HModule software,
+			DeviceCreationFlags creationFlags, FeatureLevel[] featureLevels, SwapChainDescription *swapChainDesc,
+			IDXGISwapChain **swapChain, ID3D11Device **device, FeatureLevel *featureLevel, ID3D11DeviceContext **immediateContext)
+		{
+			return CreateDeviceAndSwapChain(adapter, driverType, software, creationFlags, featureLevels.CArray(), (uint32)featureLevels.Count, SDK_VERSION, swapChainDesc, swapChain, device, featureLevel, immediateContext);
 		}
 	}
 }
