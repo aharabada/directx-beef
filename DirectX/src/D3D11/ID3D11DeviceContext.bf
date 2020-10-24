@@ -532,9 +532,9 @@ namespace DirectX.D3D11
 					A return value of S_FALSE indicates that the data is not yet available.
 					If the data is not yet available, the application must call GetData until the data is available.
 		*/
-		public void GetData(ID3D11Asynchronous *pAsync,	void *pData, UINT dataSize, AsyncGetDataFlags getDataFlags) mut
+		public HResult GetData(ID3D11Asynchronous *pAsync,	void *pData, UINT dataSize, AsyncGetDataFlags getDataFlags) mut
 		{
-			VT.GetData(&this, pAsync, pData, dataSize, getDataFlags);
+			return VT.GetData(&this, pAsync, pData, dataSize, getDataFlags);
 		}
 
 		/**
