@@ -100,7 +100,7 @@ namespace SimpleTriangleExample
 				.Level_11_0
 			);
 
-			HResult result = D3D11CreateDevice(null, .Hardware, 0, deviceFlags, levels, &_graphicsDevice, null, &_immediateContext);
+			HResult result = D3D11.CreateDevice(null, .Hardware, 0, deviceFlags, levels, &_graphicsDevice, null, &_immediateContext);
 			if(result.Failed)
 			{
 				Debug.Write("ERROR: Failed to create graphics device: {}", result);
