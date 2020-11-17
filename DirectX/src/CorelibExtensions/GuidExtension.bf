@@ -95,7 +95,7 @@ namespace System
 		}
 		
 		// Todo: implementation gets the job done but is kinda dirty
-		public static Result<Guid, ParsingError> Parse(String s)
+		public static new Result<Guid, ParsingError> Parse(String s)
 		{
 			if(s == null)
 				return .Err(.NullInput);
