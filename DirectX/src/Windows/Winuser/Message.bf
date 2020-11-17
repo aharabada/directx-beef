@@ -19,5 +19,13 @@ namespace DirectX.Windows
 	{
     	public LONG x;
     	public LONG y;
+
+		public this() => this = default;
+
+		public this(LONG x, LONG y)
+		{
+			this.x = x;
+			this.y = y;
+		}
 	}
 }
