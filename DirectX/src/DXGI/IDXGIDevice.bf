@@ -6,7 +6,7 @@ namespace DirectX.DXGI
 	/**
 	 * An IDXGIDevice interface implements a derived class for DXGI objects that produce image data.
 	*/
-	public struct IDXGIDevice : IUnknown, IComObject
+	public struct IDXGIDevice : IDXGIObject, IComObject
 	{
 		public static new Guid IID => .("54ec77fa-1377-44e6-8c32-88fd5f44c84c");
 
