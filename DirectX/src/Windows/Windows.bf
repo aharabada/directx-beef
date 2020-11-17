@@ -68,6 +68,14 @@ namespace DirectX.Windows
 		}
 
 		/**
+		 * Takes a 64bit integer and returns the high order word.
+		*/
+		public static mixin HighOrder(int64 input)
+		{
+			(int32)(input >> 16)
+		}
+
+		/**
 		 * Takes a 64bit integer and returns the low order word.
 		*/
 		[Inline]
@@ -77,10 +85,27 @@ namespace DirectX.Windows
 		}
 
 		/**
+		 * Takes a 64bit integer and returns the low order word.
+		*/
+		public static mixin LowOrder(int64 input)
+		{
+			(int32)(input & 0xFFFF)
+		}
+
+		/**
 		 * Takes a 64bit integer and splits it into the 32bit high-order and low-order words
 		*/
 		[Inline]
 		public static void SplitHighAndLowOrder(int64 input, out int32 lowOrder, out int32 highOrder)
+		{
+			lowOrder = (int32)(input & 0xFFFF);
+			highOrder = (int32)(input >> 16);
+		}
+
+		/**
+		 * Takes a 64bit integer and splits it into the 32bit high-order and low-order words
+		*/
+		public static mixin SplitHighAndLowOrder(int64 input, out int32 lowOrder, out int32 highOrder)
 		{
 			lowOrder = (int32)(input & 0xFFFF);
 			highOrder = (int32)(input >> 16);
