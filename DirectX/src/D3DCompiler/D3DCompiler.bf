@@ -4,7 +4,7 @@ using DirectX.D3D11Shader;
 
 namespace DirectX.D3DCompiler
 {
-	static
+	public static class D3DCompiler
 	{
 		public const int D3D_COMPILER_VERSION = 47;
 

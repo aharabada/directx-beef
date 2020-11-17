@@ -1,3 +1,5 @@
+using DirectX.D3DCompiler;
+
 namespace DirectX.Common
 {
 	/**
