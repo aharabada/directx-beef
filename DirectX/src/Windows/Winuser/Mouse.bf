@@ -83,6 +83,7 @@ namespace DirectX.Windows.Winuser
 		public const uint32 WM_MBUTTONDBLCLK = 0x0209;
 
 		public const uint32 WM_MOUSEWHEEL = 0x020A;
+		public const uint32 WM_MOUSEHWHEEL = 0x020E;
 
 		public const uint32 WM_XBUTTONDOWN = 0x020B;
 		public const uint32 WM_XBUTTONUP = 0x020C;
