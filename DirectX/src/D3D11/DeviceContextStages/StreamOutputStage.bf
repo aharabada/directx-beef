@@ -1,3 +1,4 @@
+using System;
 using DirectX.DXGI;
 using DirectX.Math; 
 using DirectX.Common;
@@ -7,8 +8,13 @@ namespace DirectX.D3D11.DeviceContextStages
 	/**
 	 * Provides access to the device contexts methods for the stream output stage.
 	*/
-	public struct StreamOutputStage : ID3D11DeviceContext
+	public struct StreamOutputStage
 	{
+		ID3D11DeviceContext.VTable* mVT;
+		
+		[Inline]
+		public ID3D11DeviceContext.VTable* VT => mVT;
+
 		/**
 		* Get the target output buffers for the stream-output stage of the pipeline.
 		* A maximum of four output buffers can be retrieved.
@@ -18,7 +24,7 @@ namespace DirectX.D3D11.DeviceContextStages
 		*/
 		public void GetTargets(UINT numBuffers, ID3D11Buffer **ppSOTargets) mut
 		{
-			VT.SOGetTargets(&this, numBuffers, ppSOTargets);
+			VT.SOGetTargets((.)&this, numBuffers, ppSOTargets);
 		}
 
 		/**
@@ -33,7 +39,7 @@ namespace DirectX.D3D11.DeviceContextStages
 		*/
 		public void SetTargets(UINT numBuffers, ID3D11Buffer **ppSOTargets, UINT *pOffsets) mut
 		{
-			VT.SOSetTargets(&this, numBuffers, ppSOTargets, pOffsets);
+			VT.SOSetTargets((.)&this, numBuffers, ppSOTargets, pOffsets);
 		}
 	}
 }

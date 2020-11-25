@@ -1,10 +1,17 @@
+using System;
+
 namespace DirectX.D3D11.DeviceContextStages
 {
 	/**
 	 * Provides access to the device contexts methods for the pixel shader stage.
 	*/
-	public struct PixelShaderStage : ID3D11DeviceContext
+	public struct PixelShaderStage
 	{
+		ID3D11DeviceContext.VTable* mVT;
+		
+		[Inline]
+		public ID3D11DeviceContext.VTable* VT => mVT;
+
 		/**
 		* Get the constant buffers used by the pixel-shader stage.
 		* Any returned interfaces will have their reference count incremented by one.
@@ -16,7 +23,7 @@ namespace DirectX.D3D11.DeviceContextStages
 		*/
 		public void GetConstantBuffers(UINT startSlot, UINT numBuffers, ID3D11Buffer **ppConstantBuffers) mut
 		{
-			 VT.PSGetConstantBuffers(&this, startSlot, numBuffers, ppConstantBuffers);
+			 VT.PSGetConstantBuffers((.)&this, startSlot, numBuffers, ppConstantBuffers);
 		}
 
 		/**
@@ -30,7 +37,7 @@ namespace DirectX.D3D11.DeviceContextStages
 		*/
 		public void GetSamplers(UINT startSlot, UINT numSamplers, ID3D11SamplerState **ppSamplers) mut
 		{
-			VT.PSGetSamplers(&this, startSlot, numSamplers, ppSamplers);
+			VT.PSGetSamplers((.)&this, startSlot, numSamplers, ppSamplers);
 		}
 
 		/**
@@ -44,7 +51,7 @@ namespace DirectX.D3D11.DeviceContextStages
 		*/
 		public void GetShader(ID3D11PixelShader **ppPixelShader, ID3D11ClassInstance **ppClassInstances, UINT *pNumClassInstances) mut
 		{
-			VT.PSGetShader(&this, ppPixelShader, ppClassInstances, pNumClassInstances);
+			VT.PSGetShader((.)&this, ppPixelShader, ppClassInstances, pNumClassInstances);
 		}
 
 		/**
@@ -58,7 +65,7 @@ namespace DirectX.D3D11.DeviceContextStages
 		*/
 		public void GetShaderResources(UINT startSlot, UINT numViews, ID3D11ShaderResourceView **ppShaderResourceViews) mut
 		{
-			VT.PSGetShaderResources(&this, startSlot, numViews, ppShaderResourceViews);
+			VT.PSGetShaderResources((.)&this, startSlot, numViews, ppShaderResourceViews);
 		}
 
 		/**
@@ -71,7 +78,7 @@ namespace DirectX.D3D11.DeviceContextStages
 		*/
 		public void SetConstantBuffers(UINT startSlot, UINT numBuffers, ID3D11Buffer **ppConstantBuffers) mut
 		{
-			VT.PSSetConstantBuffers(&this, startSlot, numBuffers, ppConstantBuffers);
+			VT.PSSetConstantBuffers((.)&this, startSlot, numBuffers, ppConstantBuffers);
 		}
 
 		/**
@@ -85,7 +92,7 @@ namespace DirectX.D3D11.DeviceContextStages
 		*/
 		public void SetSamplers(UINT startSlot, UINT numBuffers, ID3D11SamplerState **ppSamplers) mut
 		{
-			VT.PSSetSamplers(&this, startSlot, numBuffers, ppSamplers);
+			VT.PSSetSamplers((.)&this, startSlot, numBuffers, ppSamplers);
 		}
 
 		/**
@@ -100,7 +107,7 @@ namespace DirectX.D3D11.DeviceContextStages
 		*/
 		public void SetShader(ID3D11PixelShader *pPixelShader, ID3D11ClassInstance **ppClassInstances = null, UINT numClassInstances = 0) mut
 		{
-			VT.PSSetShader(&this, pPixelShader, ppClassInstances, numClassInstances);
+			VT.PSSetShader((.)&this, pPixelShader, ppClassInstances, numClassInstances);
 		}
 
 		/**
@@ -114,7 +121,7 @@ namespace DirectX.D3D11.DeviceContextStages
 		*/
 		public void SetShaderResources(UINT startSlot, UINT numViews, ID3D11ShaderResourceView **ppShaderResourceViews) mut
 		{
-			VT.PSSetShaderResources(&this, startSlot, numViews, ppShaderResourceViews);
+			VT.PSSetShaderResources((.)&this, startSlot, numViews, ppShaderResourceViews);
 		}
 	}
 }

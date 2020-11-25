@@ -1,3 +1,4 @@
+using System;
 using DirectX.DXGI;
 using DirectX.Common;
 
@@ -6,8 +7,13 @@ namespace DirectX.D3D11.DeviceContextStages
 	/**
 	 * Provides access to the device contexts methods for the input assembler stage.
 	*/
-	public struct InputAssemblerStage : ID3D11DeviceContext
+	public struct InputAssemblerStage
 	{
+		ID3D11DeviceContext.VTable* mVT;
+		
+		[Inline]
+		public ID3D11DeviceContext.VTable* VT => mVT;
+
 		/**
 		* Get a pointer to the index buffer that is bound to the input-assembler stage.
 		* Any returned interfaces will have their reference count incremented by one.
@@ -21,7 +27,7 @@ namespace DirectX.D3D11.DeviceContextStages
 		*/
 		public void GetIndexBuffer(ID3D11Buffer **pIndexBuffer, Format *format, UINT *offset) mut
 		{
-			VT.IAGetIndexBuffer(&this, pIndexBuffer, format, offset);
+			VT.IAGetIndexBuffer((.)&this, pIndexBuffer, format, offset);
 		}
 		
 		/**
@@ -33,7 +39,7 @@ namespace DirectX.D3D11.DeviceContextStages
 		*/
 		public void GetInputLayout(ID3D11InputLayout **ppInputLayout) mut
 		{
-			VT.IAGetInputLayout(&this, ppInputLayout);
+			VT.IAGetInputLayout((.)&this, ppInputLayout);
 		}
 
 		/**
@@ -43,7 +49,7 @@ namespace DirectX.D3D11.DeviceContextStages
 		*/
 		public void GetPrimitiveTopology(PrimitiveTopology *pTopology) mut
 		{
-			VT.IAGetPrimitiveTopology(&this, pTopology);
+			VT.IAGetPrimitiveTopology((.)&this, pTopology);
 		}
 
 		/**
@@ -60,7 +66,7 @@ namespace DirectX.D3D11.DeviceContextStages
 		*/
 		public void GetVertexBuffers(UINT startSlot, UINT numBuffers, ID3D11Buffer **ppVertexBuffers, UINT *pStrides, UINT *pOffsets) mut
 		{
-			VT.IAGetVertexBuffers(&this, startSlot, numBuffers, ppVertexBuffers, pStrides, pOffsets);
+			VT.IAGetVertexBuffers((.)&this, startSlot, numBuffers, ppVertexBuffers, pStrides, pOffsets);
 		}
 
 		/**
@@ -72,7 +78,7 @@ namespace DirectX.D3D11.DeviceContextStages
 		*/
 		public void SetIndexBuffer(ID3D11Buffer *pIndexBuffer, Format format, UINT offset) mut
 		{
-			VT.IASetIndexBuffer(&this, pIndexBuffer, format, offset);
+			VT.IASetIndexBuffer((.)&this, pIndexBuffer, format, offset);
 		}
 
 		/**
@@ -81,7 +87,7 @@ namespace DirectX.D3D11.DeviceContextStages
 		*/
 		public void SetInputLayout(ID3D11InputLayout *pInputLayout) mut
 		{
-			VT.IASetInputLayout(&this, pInputLayout);
+			VT.IASetInputLayout((.)&this, pInputLayout);
 		}
 
 		/**
@@ -91,7 +97,7 @@ namespace DirectX.D3D11.DeviceContextStages
 		*/
 		public void SetPrimitiveTopology(PrimitiveTopology topology) mut
 		{
-			VT.IASetPrimitiveTopology(&this, topology);
+			VT.IASetPrimitiveTopology((.)&this, topology);
 		}
 
 		/**
@@ -109,7 +115,7 @@ namespace DirectX.D3D11.DeviceContextStages
 		*/
 		public void SetVertexBuffers(UINT startSlot, UINT numBuffers, ID3D11Buffer **ppVertexBuffers, UINT *pStrides, UINT *pOffsets) mut
 		{
-			VT.IASetVertexBuffers(&this, startSlot, numBuffers, ppVertexBuffers, pStrides, pOffsets);
+			VT.IASetVertexBuffers((.)&this, startSlot, numBuffers, ppVertexBuffers, pStrides, pOffsets);
 		}
 	}
 }

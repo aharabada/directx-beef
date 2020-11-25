@@ -1,10 +1,17 @@
+using System;
+
 namespace DirectX.D3D11.DeviceContextStages
 {
 	/**
 	 * Provides access to the device contexts methods for the geometry shader stage.
 	*/
-	public struct GeometryShaderStage : ID3D11DeviceContext
+	public struct GeometryShaderStage
 	{
+		ID3D11DeviceContext.VTable* mVT;
+		
+		[Inline]
+		public ID3D11DeviceContext.VTable* VT => mVT;
+
 		/**
 		* Get the constant buffers used by the geometry-shader stage.
 		* Any returned interfaces will have their reference count incremented by one.
@@ -16,7 +23,7 @@ namespace DirectX.D3D11.DeviceContextStages
 		*/
 		public void GetConstantBuffers(UINT startSlot, UINT numBuffers, ID3D11Buffer **ppConstantBuffers) mut
 		{
-			 VT.GSGetConstantBuffers(&this, startSlot, numBuffers, ppConstantBuffers);
+			 VT.GSGetConstantBuffers((.)&this, startSlot, numBuffers, ppConstantBuffers);
 		}
 
 		/**
@@ -30,7 +37,7 @@ namespace DirectX.D3D11.DeviceContextStages
 		*/
 		public void GetSamplers(UINT startSlot, UINT numSamplers, ID3D11SamplerState **ppSamplers) mut
 		{
-			VT.GSGetSamplers(&this, startSlot, numSamplers, ppSamplers);
+			VT.GSGetSamplers((.)&this, startSlot, numSamplers, ppSamplers);
 		}
 
 		/**
@@ -44,7 +51,7 @@ namespace DirectX.D3D11.DeviceContextStages
 		*/
 		public void GetShader(ID3D11GeometryShader **ppGeomeryShader, ID3D11ClassInstance **ppClassInstances, UINT *pNumClassInstances) mut
 		{
-			VT.GSGetShader(&this, ppGeomeryShader, ppClassInstances, pNumClassInstances);
+			VT.GSGetShader((.)&this, ppGeomeryShader, ppClassInstances, pNumClassInstances);
 		}
 
 		/**
@@ -58,7 +65,7 @@ namespace DirectX.D3D11.DeviceContextStages
 		*/
 		public void GetShaderResources(UINT startSlot, UINT numViews, ID3D11ShaderResourceView **ppShaderResourceViews) mut
 		{
-			VT.GSGetShaderResources(&this, startSlot, numViews, ppShaderResourceViews);
+			VT.GSGetShaderResources((.)&this, startSlot, numViews, ppShaderResourceViews);
 		}
 
 		/**
@@ -71,7 +78,7 @@ namespace DirectX.D3D11.DeviceContextStages
 		*/
 		public void SetConstantBuffers(UINT startSlot, UINT numBuffers, ID3D11Buffer **ppConstantBuffers) mut
 		{
-			VT.GSSetConstantBuffers(&this, startSlot, numBuffers, ppConstantBuffers);
+			VT.GSSetConstantBuffers((.)&this, startSlot, numBuffers, ppConstantBuffers);
 		}
 
 		/**
@@ -85,7 +92,7 @@ namespace DirectX.D3D11.DeviceContextStages
 		*/
 		public void SetSamplers(UINT startSlot, UINT numBuffers, ID3D11SamplerState **ppSamplers) mut
 		{
-			VT.GSSetSamplers(&this, startSlot, numBuffers, ppSamplers);
+			VT.GSSetSamplers((.)&this, startSlot, numBuffers, ppSamplers);
 		}
 
 		/**
@@ -100,7 +107,7 @@ namespace DirectX.D3D11.DeviceContextStages
 		*/
 		public void SetShader(ID3D11GeometryShader *pGeomertyShader, ID3D11ClassInstance **ppClassInstances = null, UINT numClassInstances = 0) mut
 		{
-			VT.GSSetShader(&this, pGeomertyShader, ppClassInstances, numClassInstances);
+			VT.GSSetShader((.)&this, pGeomertyShader, ppClassInstances, numClassInstances);
 		}
 
 		/**
@@ -114,7 +121,7 @@ namespace DirectX.D3D11.DeviceContextStages
 		*/
 		public void SetShaderResources(UINT startSlot, UINT numViews, ID3D11ShaderResourceView **ppShaderResourceViews) mut
 		{
-			VT.GSSetShaderResources(&this, startSlot, numViews, ppShaderResourceViews);
+			VT.GSSetShaderResources((.)&this, startSlot, numViews, ppShaderResourceViews);
 		}
 	}
 }

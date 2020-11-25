@@ -1,3 +1,4 @@
+using System;
 using DirectX.DXGI;
 using DirectX.Common;
 
@@ -6,8 +7,13 @@ namespace DirectX.D3D11.DeviceContextStages
 	/**
 	 * Provides access to the device contexts methods for the output merger stage.
 	*/
-	public struct OutputMergerStage : ID3D11DeviceContext
+	public struct OutputMergerStage
 	{
+		ID3D11DeviceContext.VTable* mVT;
+		
+		[Inline]
+		public ID3D11DeviceContext.VTable* VT => mVT;
+
 		/**
 		* Get the blend state of the output-merger stage.
 		* The reference count of the returned interface will be incremented by one when the blend state is retrieved.
@@ -19,7 +25,7 @@ namespace DirectX.D3D11.DeviceContextStages
 		*/
 		public void GetBlendState(ID3D11BlendState **ppBlendState, ColorRGBA *pBlendFactor, UINT *pSampleMask) mut
 		{
-			VT.OMGetBlendState(&this, ppBlendState, pBlendFactor, pSampleMask);
+			VT.OMGetBlendState((.)&this, ppBlendState, pBlendFactor, pSampleMask);
 		}
 		
 		/**
@@ -32,7 +38,7 @@ namespace DirectX.D3D11.DeviceContextStages
 		*/
 		public void GetDepthStencilState(ID3D11DepthStencilState **ppDepthStencilState, UINT *pStencilRef) mut
 		{
-			VT.OMGetDepthStencilState(&this, ppDepthStencilState, pStencilRef);
+			VT.OMGetDepthStencilState((.)&this, ppDepthStencilState, pStencilRef);
 		}
 
 		/**
@@ -48,7 +54,7 @@ namespace DirectX.D3D11.DeviceContextStages
 		*/
 		public void GetRenderTargets(UINT numViews, ID3D11RenderTargetView **ppRenderTargetViews, ID3D11DepthStencilView **ppDepthStencilView) mut
 		{
-			VT.OMGetRenderTargets(&this, numViews, ppRenderTargetViews, ppDepthStencilView);
+			VT.OMGetRenderTargets((.)&this, numViews, ppRenderTargetViews, ppDepthStencilView);
 		}
 
 		/**
@@ -70,7 +76,7 @@ namespace DirectX.D3D11.DeviceContextStages
 		public void GetRenderTargetsAndUnorderedAccessViews(UINT numRTVs, ID3D11RenderTargetView **ppRenderTargetViews, ID3D11DepthStencilView **ppDepthStencilView,
 			UINT uavStartSlot, UINT numUAVs, ID3D11UnorderedAccessView **ppUnorderedAccessViews) mut
 		{
-			VT.OMGetRenderTargetsAndUnorderedAccessViews(&this, numRTVs, ppRenderTargetViews, ppDepthStencilView, uavStartSlot, numUAVs, ppUnorderedAccessViews);
+			VT.OMGetRenderTargetsAndUnorderedAccessViews((.)&this, numRTVs, ppRenderTargetViews, ppDepthStencilView, uavStartSlot, numUAVs, ppUnorderedAccessViews);
 		}
 
 		/**
@@ -83,7 +89,7 @@ namespace DirectX.D3D11.DeviceContextStages
 		*/
 		public void SetBlendState(ID3D11BlendState *pBlendState, ColorRGBA blendFactor, UINT sampleMask = 0xffffffff) mut
 		{
-			VT.OMSetBlendState(&this, pBlendState, blendFactor, sampleMask);
+			VT.OMSetBlendState((.)&this, pBlendState, blendFactor, sampleMask);
 		}
 
 		/**
@@ -96,7 +102,7 @@ namespace DirectX.D3D11.DeviceContextStages
 		*/
 		public void SetDepthStencilState(ID3D11DepthStencilState *pDepthStencilState, UINT stencilRef) mut
 		{
-			VT.OMSetDepthStencilState(&this, pDepthStencilState, stencilRef);
+			VT.OMSetDepthStencilState((.)&this, pDepthStencilState, stencilRef);
 		}
 
 		/**
@@ -112,7 +118,7 @@ namespace DirectX.D3D11.DeviceContextStages
 		*/
 		public void SetRenderTargets(UINT numViews, ID3D11RenderTargetView **ppRenderTargetViews, ID3D11DepthStencilView *pDepthStencilView) mut
 		{
-			VT.OMSetRenderTargets(&this, numViews, ppRenderTargetViews, pDepthStencilView);
+			VT.OMSetRenderTargets((.)&this, numViews, ppRenderTargetViews, pDepthStencilView);
 		}
 
 		/**
@@ -141,7 +147,7 @@ namespace DirectX.D3D11.DeviceContextStages
 		public void	SetRenderTargetsAndUnorderedAccessViews(UINT numRTVs, ID3D11RenderTargetView **ppRenderTargetViews, ID3D11DepthStencilView *pDepthStencilView,
 			UINT uavStartSlot, UINT numUAVs, ID3D11UnorderedAccessView **ppUnorderedAccessViews, UINT *pUAVInitialCounts) mut
 		{
-			VT.OMSetRenderTargetsAndUnorderedAccessViews(&this, numRTVs, ppRenderTargetViews, pDepthStencilView, uavStartSlot, numUAVs, ppUnorderedAccessViews, pUAVInitialCounts);
+			VT.OMSetRenderTargetsAndUnorderedAccessViews((.)&this, numRTVs, ppRenderTargetViews, pDepthStencilView, uavStartSlot, numUAVs, ppUnorderedAccessViews, pUAVInitialCounts);
 		}
 	}
 }

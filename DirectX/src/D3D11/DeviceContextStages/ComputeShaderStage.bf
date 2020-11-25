@@ -1,10 +1,17 @@
+using System;
+
 namespace DirectX.D3D11.DeviceContextStages
 {
 	/**
 	 * Provides access to the device contexts methods for the compute shader stage.
 	*/
-	public struct ComputeShaderStage : ID3D11DeviceContext
+	public struct ComputeShaderStage
 	{
+		ID3D11DeviceContext.VTable* mVT;
+		
+		[Inline]
+		public ID3D11DeviceContext.VTable* VT => mVT;
+
 		/**
 		* Get the constant buffers used by the compute-shader stage.
 		* Any returned interfaces will have their reference count incremented by one.
@@ -16,7 +23,7 @@ namespace DirectX.D3D11.DeviceContextStages
 		*/
 		public void GetConstantBuffers(UINT startSlot, UINT numBuffers, ID3D11Buffer **ppConstantBuffers) mut
  		{
-			 VT.CSGetConstantBuffers(&this, startSlot, numBuffers, ppConstantBuffers);
+			 VT.CSGetConstantBuffers((.)&this, startSlot, numBuffers, ppConstantBuffers);
 		}
 
 		/**
@@ -30,7 +37,7 @@ namespace DirectX.D3D11.DeviceContextStages
 		*/
 		public void GetSamplers(UINT startSlot, UINT numSamplers, ID3D11SamplerState **ppSamplers) mut
 		{
-			VT.CSGetSamplers(&this, startSlot, numSamplers, ppSamplers);
+			VT.CSGetSamplers((.)&this, startSlot, numSamplers, ppSamplers);
 		}
 
 		/**
@@ -44,7 +51,7 @@ namespace DirectX.D3D11.DeviceContextStages
 		*/
 		public void GetShader(ID3D11ComputeShader **ppComputeShader, ID3D11ClassInstance **ppClassInstances, UINT *pNumClassInstances) mut
 		{
-			VT.CSGetShader(&this, ppComputeShader, ppClassInstances, pNumClassInstances);
+			VT.CSGetShader((.)&this, ppComputeShader, ppClassInstances, pNumClassInstances);
 		}
 
 		/**
@@ -58,7 +65,7 @@ namespace DirectX.D3D11.DeviceContextStages
 		*/
 		public void GetShaderResources(UINT startSlot, UINT numViews, ID3D11ShaderResourceView **ppShaderResourceViews) mut
 		{
-			VT.CSGetShaderResources(&this, startSlot, numViews, ppShaderResourceViews);
+			VT.CSGetShaderResources((.)&this, startSlot, numViews, ppShaderResourceViews);
 		}
 
 		/**
@@ -72,7 +79,7 @@ namespace DirectX.D3D11.DeviceContextStages
 		*/
 		public void GetUnorderedAccessViews(UINT startSlot, UINT numUAVs, ID3D11UnorderedAccessView **ppUnorderedAccessViews) mut
  		{
-			 VT.CSGetUnorderedAccessViews(&this, startSlot, numUAVs, ppUnorderedAccessViews);
+			 VT.CSGetUnorderedAccessViews((.)&this, startSlot, numUAVs, ppUnorderedAccessViews);
 		}
 
 		/**
@@ -85,7 +92,7 @@ namespace DirectX.D3D11.DeviceContextStages
 		*/
 		public void SetConstantBuffers(UINT startSlot, UINT numBuffers, ID3D11Buffer **ppConstantBuffers) mut
 		{
-			VT.CSSetConstantBuffers(&this, startSlot, numBuffers, ppConstantBuffers);
+			VT.CSSetConstantBuffers((.)&this, startSlot, numBuffers, ppConstantBuffers);
 		}
 
 		/**
@@ -99,7 +106,7 @@ namespace DirectX.D3D11.DeviceContextStages
 		*/
 		public void SetSamplers(UINT startSlot, UINT numBuffers, ID3D11SamplerState **ppSamplers) mut
 		{
-			VT.CSSetSamplers(&this, startSlot, numBuffers, ppSamplers);
+			VT.CSSetSamplers((.)&this, startSlot, numBuffers, ppSamplers);
 		}
 
 		/**
@@ -114,7 +121,7 @@ namespace DirectX.D3D11.DeviceContextStages
 		*/
 		public void SetShader(ID3D11ComputeShader *pComputeShader, ID3D11ClassInstance **ppClassInstances = null, UINT numClassInstances = 0) mut
 		{
-			VT.CSSetShader(&this, pComputeShader, ppClassInstances, numClassInstances);
+			VT.CSSetShader((.)&this, pComputeShader, ppClassInstances, numClassInstances);
 		}
 
 		/**
@@ -128,7 +135,7 @@ namespace DirectX.D3D11.DeviceContextStages
 		*/
 		public void SetShaderResources(UINT startSlot, UINT numViews, ID3D11ShaderResourceView **ppShaderResourceViews) mut
 		{
-			VT.CSSetShaderResources(&this, startSlot, numViews, ppShaderResourceViews);
+			VT.CSSetShaderResources((.)&this, startSlot, numViews, ppShaderResourceViews);
 		}
 
 		/**
@@ -144,7 +151,7 @@ namespace DirectX.D3D11.DeviceContextStages
 		*/
 		public void SetUnorderedAccessViews(UINT startSlot, UINT numUAVs, ID3D11UnorderedAccessView **ppUnorderedAccessViews, UINT *pUAVInitialCounts) mut
 		{
-			VT.CSSetUnorderedAccessViews(&this, startSlot, numUAVs, ppUnorderedAccessViews, pUAVInitialCounts);
+			VT.CSSetUnorderedAccessViews((.)&this, startSlot, numUAVs, ppUnorderedAccessViews, pUAVInitialCounts);
 		}
 	}
 }

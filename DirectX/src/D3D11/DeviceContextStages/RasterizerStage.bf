@@ -1,3 +1,4 @@
+using System;
 using DirectX.DXGI;
 using DirectX.Math; 
 using DirectX.Common;
@@ -7,8 +8,13 @@ namespace DirectX.D3D11.DeviceContextStages
 	/**
 	 * Provides access to the device contexts methods for the rasterizer shader stage.
 	*/
-	public struct RasterizerStage : ID3D11DeviceContext
+	public struct RasterizerStage
 	{
+		ID3D11DeviceContext.VTable* mVT;
+		
+		[Inline]
+		public ID3D11DeviceContext.VTable* VT => mVT;
+
 		/**
 		* Get the array of scissor rectangles bound to the rasterizer stage.
 		*
@@ -19,7 +25,7 @@ namespace DirectX.D3D11.DeviceContextStages
 		*/
 		public void GetScissorRects(UINT *pNumRects, Rectangle *pRects) mut
 		{
-			VT.RSGetScissorRects(&this, pNumRects, pRects);
+			VT.RSGetScissorRects((.)&this, pNumRects, pRects);
 		}
 
 		/**
@@ -31,7 +37,7 @@ namespace DirectX.D3D11.DeviceContextStages
 		*/
 		public void GetState(ID3D11RasterizerState **ppRasterizerState) mut
 		{
-			VT.RSGetState(&this, ppRasterizerState);
+			VT.RSGetState((.)&this, ppRasterizerState);
 		}
 
 		/**
@@ -45,7 +51,7 @@ namespace DirectX.D3D11.DeviceContextStages
 		*/
 		public void GetViewports(UINT *pNumViewports, Viewport *pViewports) mut
 		{
-			VT.RSGetViewports(&this, pNumViewports, pViewports);
+			VT.RSGetViewports((.)&this, pNumViewports, pViewports);
 		}
 
 		/**
@@ -56,7 +62,7 @@ namespace DirectX.D3D11.DeviceContextStages
 		*/
 		public void SetScissorRects(UINT numRects, Rectangle *pRects) mut
 		{
-			VT.RSSetScissorRects(&this, numRects, pRects);
+			VT.RSSetScissorRects((.)&this, numRects, pRects);
 		}
 
 		/**
@@ -67,7 +73,7 @@ namespace DirectX.D3D11.DeviceContextStages
 		*/
 		public void SetState(ID3D11RasterizerState *pRasterizerState) mut
 		{
-			VT.RSSetState(&this, pRasterizerState);
+			VT.RSSetState((.)&this, pRasterizerState);
 		}
 
 		/**
@@ -78,7 +84,7 @@ namespace DirectX.D3D11.DeviceContextStages
 		*/
 		public void SetViewports(UINT numViewports, Viewport *pViewports) mut
 		{
-			VT.RSSetViewports(&this, numViewports, pViewports);
+			VT.RSSetViewports((.)&this, numViewports, pViewports);
 		}
 	}
 }
