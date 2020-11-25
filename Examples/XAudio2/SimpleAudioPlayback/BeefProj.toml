@@ -6,4 +6,4 @@ Name = "SimpleAudioPlayback"
 StartupObject = "SimpleAudioPlayback.Program"
 
 [Configs.Debug.Win64]
-PreBuildCmds = ["ROBOCOPY \"$(ProjectDir)/content\" \"$(BuildDir)/content\" /S /XO"]
+PreBuildCmds = ["CopyFilesIfNewer(\"$(ProjectDir)/content\", \"$(BuildDir)\")"]

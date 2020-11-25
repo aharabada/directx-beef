@@ -7,6 +7,7 @@ using DirectX.Common;
 using DirectX.D3D11.SDKLayers;
 using DirectX.Math;
 using System.Diagnostics;
+using DirectX.D3DCompiler;
 
 namespace SimpleTriangleExample
 {

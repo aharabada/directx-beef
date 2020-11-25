@@ -5,7 +5,6 @@ Dependencies = {corlib = "*", DirectX = "*"}
 Name = "SimpleTriangleExample"
 TargetType = "BeefGUIApplication"
 StartupObject = "SimpleTriangleExample.Program"
-DefaultNamespace = "SimpleTriangleExample"
 
 [Configs.Debug.Win64]
-PreBuildCmds = ["ROBOCOPY \"$(ProjectDir)/content\" \"$(BuildDir)/content\" /S /XO"]
+PreBuildCmds = ["CopyFilesIfNewer(\"$(ProjectDir)/content\", \"$(BuildDir)\")"]
