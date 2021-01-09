@@ -651,7 +651,7 @@ namespace DirectX.Math
 			// Lengyel, Eric. Foundations of Game Engine Development, Volume 2: Rendering (Seite91).  . Kindle-Version.
 
 			float w_inv = 1.0f / (right - left);
-			float h_inv = 1.0f / (bottom - top);
+			float h_inv = 1.0f / (top - bottom);
 			float d_inv = 1.0f / (far - near);
 
 			return .(2.0f * w_inv,	0.0f, 	  0.0f, -(right + left) * w_inv,
