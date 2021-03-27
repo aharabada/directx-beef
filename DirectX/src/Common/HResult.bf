@@ -170,7 +170,8 @@ namespace DirectX.Common
 				0,
 				null);
 
-			strBuffer.Append(wCharMsg);
+			if(wCharMsg != null)
+				strBuffer.Append(wCharMsg);
 		}
 
 		// actually from winerror.h
