@@ -463,6 +463,36 @@ namespace DirectX.Math
 					  0,    0,  0, 1);
 		}
 
+		/**
+		 * Calculates a view Matrix that is located at specified postion and looks at the given target.
+		 * @param position The cameras position.
+		 * @param target The point the camera looks at.
+		 * @param up A vector defining the up direction of the camera.
+		 * @returns a view matrix.
+		 */
+		public static Matrix LookAt(Vector3 position, Vector3 target, Vector3 up)
+		{
+			Vector3 forward = target - position;
+			forward.Normalize();
+
+			Vector3 right = Vector3.Cross(up, forward);
+			right.Normalize();
+
+			Vector3 newUp = Vector3.Cross(forward, right);
+			newUp.Normalize();
+
+			Matrix result = .Identity;
+
+			result.Forward = forward;
+			result.Up = up;
+			result.Right = right;
+			result.Translation.X = -Vector3.Dot(position, right);
+			result.Translation.Y = -Vector3.Dot(position, up);
+			result.Translation.Z = -Vector3.Dot(position, forward);
+
+			return result;
+		}
+
 		/// Returns the transpose of this matrix
 		[DisableChecks]
 		public Matrix Transpose()
@@ -587,7 +617,7 @@ namespace DirectX.Math
 		 * @param ε An offset to account for floating point round-off errors at infinity.
 		 *			Note: Use a tiny value significant compared to the floating-point value of one.
 		 */
-		public static Matrix InfinitePerspectiveProjection(float fovY, float aspectRatio, float nearPlane, float ε = 2e-20f)
+		public static Matrix InfinitePerspectiveProjection(float fovY, float aspectRatio, float nearPlane, float ε = 1e-6f)
 		{
 			// Lengyel, Eric. Foundations of Game Engine Development, Volume 2: Rendering (Seite83).  . Kindle-Version.
 
@@ -610,7 +640,7 @@ namespace DirectX.Math
 		 * @param ε An offset to account for floating point round-off errors at infinity.
 		 *			Note: Use a tiny value significant compared to the floating-point value of one.
 		 */
-		public static Matrix ReversedInfinitePerspectiveProjection(float fovY, float aspectRatio, float nearPlane, float ε = 2e-20f)
+		public static Matrix ReversedInfinitePerspectiveProjection(float fovY, float aspectRatio, float nearPlane, float ε = 1e-6f)
 		{
 			// Lengyel, Eric. Foundations of Game Engine Development, Volume 2: Rendering (Seite88).  . Kindle-Version. 
 
