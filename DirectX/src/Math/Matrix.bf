@@ -705,6 +705,11 @@ namespace DirectX.Math
 			return left.Values == right.Values;
 		}
 
+		public static explicit operator Matrix3x3(Matrix value)
+		{
+			return .(value.Right, value.Up, value.Forward);
+		}
+
 		public static void Exponent(ref Matrix matrix, int exponent, out Matrix result)
 		{
 			if(exponent == 0)
@@ -735,6 +740,27 @@ namespace DirectX.Math
 				Matrix m = matrix.Invert();
 				Exponent(ref m, -exponent, out result);
 			}
+		}
+		
+		/**
+		 * Orthogonalizes the matrix.
+		*/
+		public void Orthogonalize() mut
+		{
+			Columns[1] -= .Project(Columns[1], Columns[0]);
+			Columns[2] -= .Project(Columns[2], Columns[0]) + .Project(Columns[2], Columns[1]);
+			Columns[3] -= .Project(Columns[3], Columns[0]) + .Project(Columns[3], Columns[1]) + .Project(Columns[3], Columns[2]);
+		}
+
+		/**
+		 * Orthonormalizes the matrix.
+		*/
+		public void Orthonormalize() mut
+		{
+			Columns[0].Normalize();
+			Columns[1] = .Normalize(.Reject(Columns[1], Columns[0]));
+			Columns[2] = .Normalize(.Reject(.Reject(Columns[2], Columns[0]), Columns[1]));
+			Columns[3] = .Normalize(.Reject(.Reject(.Reject(Columns[2], Columns[0]), Columns[1]), Columns[2]));
 		}
 	}
 }

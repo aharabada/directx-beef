@@ -4,12 +4,14 @@ namespace DirectX.Math
 {
 	public struct Vector4
 	{
-		public static readonly Vector4 Zero 	= .(0f, 0f, 0f, 0f);
-		public static readonly Vector4 UnitX 	= .(1f, 0f, 0f, 0f);
-		public static readonly Vector4 UnitY 	= .(0f, 1f, 0f, 0f);
-		public static readonly Vector4 UnitZ 	= .(0f, 0f, 1f, 0f);
-		public static readonly Vector4 UnitW 	= .(0f, 0f, 0f, 1f);
-		public static readonly Vector4 One 		= .(1f, 1f, 1f, 1f);
+		public const Vector4 Zero  = .(0f, 0f, 0f, 0f);
+		public const Vector4 UnitX = .(1f, 0f, 0f, 0f);
+		public const Vector4 UnitY = .(0f, 1f, 0f, 0f);
+		public const Vector4 UnitZ = .(0f, 0f, 1f, 0f);
+		public const Vector4 UnitW = .(0f, 0f, 0f, 1f);
+		public const Vector4 One   = .(1f, 1f, 1f, 1f);
+
+		public const int Components = 4;
 
 		public float X, Y, Z, W;
 
@@ -58,16 +60,43 @@ namespace DirectX.Math
 		public ref float this[int index]
 		{
 			[Checked]
-			get
+			get mut
 			{
-				if(index < 0 || index > 3)
-					Internal.ThrowIndexOutOfRange();
-
+				if(index < 0 || index >= Components)
+					Internal.ThrowIndexOutOfRange(1);
+				
 				return ref (&X)[index];
 			}
 
 			[Inline]
-			get => ref (&X)[index];
+			get mut => ref (&X)[index];
+		}
+
+		public float this[int index]
+		{
+			get
+			{
+				switch(index)
+				{
+				case 0: return X;
+				case 1: return Y;
+				case 2: return Z;
+				case 3: return W;
+				default: Internal.ThrowIndexOutOfRange();
+				}
+			}
+
+			set mut
+			{
+				switch(index)
+				{
+				case 0: X = value;
+				case 1: Y = value;
+				case 2: Z = value;
+				case 3: W = value;
+				default: Internal.ThrowIndexOutOfRange();
+				}
+			}
 		}
 
 		/**
@@ -121,7 +150,8 @@ namespace DirectX.Math
 		}
 
 		/**
-		 * Calculates the projection of a onto b
+		 * Calculates the projection of a onto b.
+		 * @returns The component of a that is parallel to b.
 		 */
 		public static Vector4 Project(Vector4 a, Vector4 b)
 		{
@@ -129,7 +159,8 @@ namespace DirectX.Math
 		}
 
 		/**
-		 * Calculates the rejection of a from b
+		 * Calculates the rejection of a from b.
+		 * @returns The component of a that is perpendicular to b.
 		 */
 		public static Vector4 Reject(Vector4 a, Vector4 b)
 		{

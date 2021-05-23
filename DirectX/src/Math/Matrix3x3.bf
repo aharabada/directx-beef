@@ -430,5 +430,24 @@ namespace DirectX.Math
 					r1.X, r1.Y, r1.Z,
 					r2.X, r2.Y, r2.Z) * invDet;
 		}
+		
+		/**
+		 * Orthogonalizes the matrix.
+		*/
+		public void Orthogonalize() mut
+		{
+			Columns[1] -= .Project(Columns[1], Columns[0]);
+			Columns[2] -= .Project(Columns[2], Columns[0]) + .Project(Columns[2], Columns[1]);
+		}
+
+		/**
+		 * Orthonormalizes the matrix.
+		*/
+		public void Orthonormalize() mut
+		{
+			Columns[0].Normalize();
+			Columns[1] = .Normalize(.Reject(Columns[1], Columns[0]));
+			Columns[2] = .Normalize(.Reject(.Reject(Columns[2], Columns[0]), Columns[1]));
+		}
 	}
 }

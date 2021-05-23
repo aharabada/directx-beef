@@ -4,10 +4,12 @@ namespace DirectX.Math
 {
 	public struct Vector2
 	{
-		public static readonly Vector2 Zero 	= .(0f, 0f);
-		public static readonly Vector2 UnitX 	= .(1f, 0f);
-		public static readonly Vector2 UnitY 	= .(0f, 1f);
-		public static readonly Vector2 One 		= .(1f, 1f);
+		public const Vector2 Zero  = .(0f, 0f);
+		public const Vector2 UnitX = .(1f, 0f);
+		public const Vector2 UnitY = .(0f, 1f);
+		public const Vector2 One   = .(1f, 1f);
+		
+		public const int Components = 2;
 
 		public float X, Y;
 
@@ -25,19 +27,65 @@ namespace DirectX.Math
 			Y = y;
 		}
 
+		
 		public ref float this[int index]
 		{
 			[Checked]
-			get
+			get mut
 			{
-				if(index < 0 || index > 2)
-					Internal.ThrowIndexOutOfRange();
-
+				if(index < 0 || index >= Components)
+					Internal.ThrowIndexOutOfRange(1);
+				
 				return ref (&X)[index];
 			}
 
 			[Inline]
-			get => ref (&X)[index];
+			get mut => ref (&X)[index];
+		}
+
+		public float this[int index]
+		{
+			[Checked]
+			get
+			{
+				if(index < 0 || index >= Components)
+					Internal.ThrowIndexOutOfRange(1);
+				
+				if(index == 0)
+					return X;
+				else
+					return Y;
+			}
+
+			[Inline]
+			get
+			{
+				if(index == 0)
+					return X;
+				else
+					return Y;
+			}
+			
+			[Checked]
+			set mut
+			{
+				if(index < 0 || index >= Components)
+					Internal.ThrowIndexOutOfRange(1);
+				
+				if(index == 0)
+					X = value;
+				else
+					Y = value;
+			}
+
+			[Inline]
+			set mut
+			{
+				if(index == 0)
+					X = value;
+				else
+					Y = value;
+			}
 		}
 		
 		/**
@@ -82,16 +130,18 @@ namespace DirectX.Math
 		}
 
 		/**
-		* Calculates the projection of a onto b
-		*/
+		 * Calculates the projection of a onto b.
+		 * @returns The component of a that is parallel to b.
+		 */
 		public Vector2 Project(Vector2 a, Vector2 b)
 		{
 			return (b * (Dot(a, b) / Dot(b, b)));
 		}
 
 		/**
-		* Calculates the rejection of a from b
-		*/
+		 * Calculates the rejection of a from b.
+		 * @returns The component of a that is perpendicular to b.
+		 */
 		public Vector2 Reject(Vector2 a, Vector2 b)
 		{
 			return (a - b * (Dot(a, b) / Dot(b, b)));
