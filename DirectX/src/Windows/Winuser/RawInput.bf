@@ -47,6 +47,8 @@ namespace DirectX.Windows.Winuser.RawInput
 				public uint16 usButtonFlags;
 				public uint16 usButtonData;
 			};
+
+			public DUMMYSTRUCTNAME DUMMYSTRUCTNAME;
 		}
 
 		public uint16 usFlags;
