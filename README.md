@@ -10,13 +10,11 @@ Basically everything should be considered subject to change.
 
 # Quick Start (Beef IDE)
 1. **Download** directx-beef
-2. **copy** the *DirectX*-Folder it into the *BeefLibs*-Directory (usualy **C:\Program Files\BeefLang\BeefLibs**)
+2. **Copy** the *DirectX*-Folder into the *BeefLibs*-Directory (usualy `C:\Program Files\BeefLang\BeefLibs`)
 3. Right-click your Workspace, click **Add from Installed...** and select **DirectX**
-4. Mark DirectX as dependency for your project
-5. ...
-6. Profit
+4. Add **DirectX** as dependency for your project
 
-Instead of executing step 4 you can alternatively open the Example-Project to get started even quicker.
+There is also an example in this repository to demonstrate basic initialization and usage.
 
 # Credits
 Beef language website: https://www.beeflang.org
