@@ -209,10 +209,10 @@ namespace DirectX
 		*/
 		public this(float r, float g, float b, float a)
 		{
-			R = (uint8)(r * 255.0f);
-			G = (uint8)(g * 255.0f);
-			B = (uint8)(b * 255.0f);
-			A = (uint8)(a * 255.0f);
+			R = (uint8)Math.Clamp(r * 255.0f, uint8.MinValue, uint8.MaxValue);
+			G = (uint8)Math.Clamp(g * 255.0f, uint8.MinValue, uint8.MaxValue);
+			B = (uint8)Math.Clamp(b * 255.0f, uint8.MinValue, uint8.MaxValue);
+			A = (uint8)Math.Clamp(a * 255.0f, uint8.MinValue, uint8.MaxValue);
 		}
 
 		public ref uint8 this[int index]
