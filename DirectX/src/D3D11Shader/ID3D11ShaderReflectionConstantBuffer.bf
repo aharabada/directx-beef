@@ -12,10 +12,10 @@ namespace DirectX.D3D11Shader
 
 		public struct VTable
 		{
-			public function HResult(ID3D11ShaderReflectionConstantBuffer* self, ShaderBufferDescription *pDesc) GetDesc;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11ShaderReflectionConstantBuffer* self, ShaderBufferDescription *pDesc) GetDesc;
 
-			public function ID3D11ShaderReflectionVariable*(ID3D11ShaderReflectionConstantBuffer* self, uint32 index) GetVariableByIndex;
-			public function ID3D11ShaderReflectionVariable*(ID3D11ShaderReflectionConstantBuffer* self, char8* name) GetVariableByName;
+			public function [CallingConvention(.Stdcall)] ID3D11ShaderReflectionVariable*(ID3D11ShaderReflectionConstantBuffer* self, uint32 index) GetVariableByIndex;
+			public function [CallingConvention(.Stdcall)] ID3D11ShaderReflectionVariable*(ID3D11ShaderReflectionConstantBuffer* self, char8* name) GetVariableByName;
 		}
 
 		protected VTable* _vt;

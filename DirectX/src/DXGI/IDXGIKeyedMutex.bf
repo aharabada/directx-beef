@@ -9,8 +9,8 @@ namespace DirectX.DXGI
 
 		public struct VTable : IDXGIDeviceSubObject.VTable
 		{
-			public function HResult(IDXGIKeyedMutex *self, uint64 Key, uint32 dwMilliseconds)AcquireSync;
-			public function HResult(IDXGIKeyedMutex *self, uint64 Key)ReleaseSync;
+			public function [CallingConvention(.Stdcall)] HResult(IDXGIKeyedMutex *self, uint64 Key, uint32 dwMilliseconds)AcquireSync;
+			public function [CallingConvention(.Stdcall)] HResult(IDXGIKeyedMutex *self, uint64 Key)ReleaseSync;
 		}
 
 		public new VTable* VT

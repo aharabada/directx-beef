@@ -12,11 +12,11 @@ namespace DirectX.D3D11
 
 		public struct VTable : ID3D11DeviceChild.VTable
 		{
-			public function void(ID3D11CryptoSession *self, Guid *pCryptoType)GetCryptoType;
-			public function void(ID3D11CryptoSession *self, Guid *pDecoderProfile)GetDecoderProfile;
-			public function void(ID3D11CryptoSession *self, UINT *pCertificateSize)GetCertificateSize;
-			public function void(ID3D11CryptoSession *self, UINT certificateSize, uint8 *pCertificate)GetCertificate;
-			public function void(ID3D11CryptoSession *self, Windows.Handle *pCryptoSessionHandle)GetCryptoSessionHandle;
+			public function [CallingConvention(.Stdcall)] void(ID3D11CryptoSession *self, Guid *pCryptoType)GetCryptoType;
+			public function [CallingConvention(.Stdcall)] void(ID3D11CryptoSession *self, Guid *pDecoderProfile)GetDecoderProfile;
+			public function [CallingConvention(.Stdcall)] void(ID3D11CryptoSession *self, UINT *pCertificateSize)GetCertificateSize;
+			public function [CallingConvention(.Stdcall)] void(ID3D11CryptoSession *self, UINT certificateSize, uint8 *pCertificate)GetCertificate;
+			public function [CallingConvention(.Stdcall)] void(ID3D11CryptoSession *self, Windows.Handle *pCryptoSessionHandle)GetCryptoSessionHandle;
 		}
 
 		public new VTable *VT

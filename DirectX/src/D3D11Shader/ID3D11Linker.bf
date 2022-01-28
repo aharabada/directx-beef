@@ -13,11 +13,11 @@ namespace DirectX.D3D11Shader
 		public struct VTable : IUnknown.VTable
 		{
 			// Link the shader and produce a shader blob suitable to D3D runtime.
-			public function HResult(ID3D11Linker* self, ID3D11ModuleInstance* entry, char8* entryName, char8* targetName, uint32 flags, ID3DBlob** ppShaderBlob, ID3DBlob** ppErrorBuffer) Link;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11Linker* self, ID3D11ModuleInstance* entry, char8* entryName, char8* targetName, uint32 flags, ID3DBlob** ppShaderBlob, ID3DBlob** ppErrorBuffer) Link;
 			// Add an instance of a library module to be used for linking.
-			public function HResult(ID3D11Linker* self, ID3D11ModuleInstance* pLibraryMI) UseLibrary;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11Linker* self, ID3D11ModuleInstance* pLibraryMI) UseLibrary;
 			// Add a clip plane with the plane coefficients taken from a cbuffer entry for 10L9 shaders.
-			public function HResult(ID3D11Linker* self, uint32 cBufferSlot, uint32 cBufferEntry) AddClipPlaneFromCBuffer;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11Linker* self, uint32 cBufferSlot, uint32 cBufferEntry) AddClipPlaneFromCBuffer;
 		}
 
 		public new VTable* VT

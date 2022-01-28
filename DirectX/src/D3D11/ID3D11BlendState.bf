@@ -12,7 +12,7 @@ namespace DirectX.D3D11
 		
 		public struct VTable : ID3D11DeviceChild.VTable
 		{
-			public function void(ID3D11BlendState* self, BlendDescription *pDesc)GetDesc;
+			public function [CallingConvention(.Stdcall)] void(ID3D11BlendState* self, BlendDescription *pDesc)GetDesc;
 		}
 
 		public new VTable* VT

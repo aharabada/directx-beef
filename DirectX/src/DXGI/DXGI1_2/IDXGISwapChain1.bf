@@ -13,17 +13,17 @@ namespace DirectX.DXGI.DXGI1_2
 		
 		public struct VTable : IDXGISwapChain.VTable
 		{
-			public function HResult(IDXGISwapChain1* self, SwapChainDescription1* pDesc) GetDesc1;
-			public function HResult(IDXGISwapChain1* self, SwapChainFullscreenDescription* pDesc) GetFullscreenDesc;
-			public function HResult(IDXGISwapChain1* self,  Windows.Handle* hwnd) GetHwnd;
-			public function HResult(IDXGISwapChain1* self, Guid* guid, void **ppUnk) GetCoreWindow; 
-			public function HResult(IDXGISwapChain1* self, uint32 syncInterval, PresentFlags presentFlags, PresentParameters *pPresentParameters) Present1;
-			public function BOOL(IDXGISwapChain1* self) IsTemporaryMonoSupported;
-			public function HResult(IDXGISwapChain1* self, IDXGIOutput **ppRestrictToOutput) GetRestrictToOutput;
-			public function HResult(IDXGISwapChain1* self, ColorRGBA* pColor) SetBackgroundColor;
-			public function HResult(IDXGISwapChain1* self, ColorRGBA* pColor) GetBackgroundColor;
-			public function HResult(IDXGISwapChain1* self, ModeRotation rotation) SetRotation;
-			public function HResult(IDXGISwapChain1* self, ModeRotation* pRotation) GetRotation;
+			public function [CallingConvention(.Stdcall)] HResult(IDXGISwapChain1* self, SwapChainDescription1* pDesc) GetDesc1;
+			public function [CallingConvention(.Stdcall)] HResult(IDXGISwapChain1* self, SwapChainFullscreenDescription* pDesc) GetFullscreenDesc;
+			public function [CallingConvention(.Stdcall)] HResult(IDXGISwapChain1* self,  Windows.Handle* hwnd) GetHwnd;
+			public function [CallingConvention(.Stdcall)] HResult(IDXGISwapChain1* self, Guid* guid, void **ppUnk) GetCoreWindow; 
+			public function [CallingConvention(.Stdcall)] HResult(IDXGISwapChain1* self, uint32 syncInterval, PresentFlags presentFlags, PresentParameters *pPresentParameters) Present1;
+			public function [CallingConvention(.Stdcall)] BOOL(IDXGISwapChain1* self) IsTemporaryMonoSupported;
+			public function [CallingConvention(.Stdcall)] HResult(IDXGISwapChain1* self, IDXGIOutput **ppRestrictToOutput) GetRestrictToOutput;
+			public function [CallingConvention(.Stdcall)] HResult(IDXGISwapChain1* self, ColorRGBA* pColor) SetBackgroundColor;
+			public function [CallingConvention(.Stdcall)] HResult(IDXGISwapChain1* self, ColorRGBA* pColor) GetBackgroundColor;
+			public function [CallingConvention(.Stdcall)] HResult(IDXGISwapChain1* self, ModeRotation rotation) SetRotation;
+			public function [CallingConvention(.Stdcall)] HResult(IDXGISwapChain1* self, ModeRotation* pRotation) GetRotation;
 		}
 
 		public new VTable* VT

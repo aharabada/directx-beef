@@ -12,10 +12,10 @@ namespace DirectX.DXGI
 
 		public struct VTable : IDXGIDeviceSubObject.VTable
 		{
-			public function HResult(IDXGIResource *self, Windows.Handle *sharedHandle) GetSharedHandle;
-			public function HResult(IDXGIResource *self, Usage *usage) GetUsage;
-			public function HResult(IDXGIResource *self, ResourcePriority evictionPriority) SetEvictionPriority;
-			public function HResult(IDXGIResource *self, ResourcePriority *pEvictionPriority) GetEvictionPriority;
+			public function [CallingConvention(.Stdcall)] HResult(IDXGIResource *self, Windows.Handle *sharedHandle) GetSharedHandle;
+			public function [CallingConvention(.Stdcall)] HResult(IDXGIResource *self, Usage *usage) GetUsage;
+			public function [CallingConvention(.Stdcall)] HResult(IDXGIResource *self, ResourcePriority evictionPriority) SetEvictionPriority;
+			public function [CallingConvention(.Stdcall)] HResult(IDXGIResource *self, ResourcePriority *pEvictionPriority) GetEvictionPriority;
 		}
 
 		public new VTable* VT

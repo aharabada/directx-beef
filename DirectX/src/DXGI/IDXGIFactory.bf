@@ -12,11 +12,11 @@ namespace DirectX.DXGI
 		
 		public struct VTable : IDXGIObject.VTable
 		{
-			public function HResult(IDXGIFactory* self, uint32 adapter, IDXGIAdapter** ppAdapter) EnumAdapters;
-			public function HResult(IDXGIFactory* self,	Windows.HWnd windowHandle, WindowAssociationFlags falgs) MakeWindowAssociation;
-			public function HResult(IDXGIFactory* self, Windows.HWnd* pWindowHandle) GetWindowAssociation;
-			public function HResult(IDXGIFactory* self, IUnknown* pDevice, SwapChainDescription* desc, IDXGISwapChain** ppSwapChain) CreateSwapChain;
-			public function HResult(IDXGIFactory* self,	Windows.HModule modlue, IDXGIAdapter **ppAdapter) CreateSoftwareAdapter;
+			public function [CallingConvention(.Stdcall)] HResult(IDXGIFactory* self, uint32 adapter, IDXGIAdapter** ppAdapter) EnumAdapters;
+			public function [CallingConvention(.Stdcall)] HResult(IDXGIFactory* self,	Windows.HWnd windowHandle, WindowAssociationFlags falgs) MakeWindowAssociation;
+			public function [CallingConvention(.Stdcall)] HResult(IDXGIFactory* self, Windows.HWnd* pWindowHandle) GetWindowAssociation;
+			public function [CallingConvention(.Stdcall)] HResult(IDXGIFactory* self, IUnknown* pDevice, SwapChainDescription* desc, IDXGISwapChain** ppSwapChain) CreateSwapChain;
+			public function [CallingConvention(.Stdcall)] HResult(IDXGIFactory* self,	Windows.HModule modlue, IDXGIAdapter **ppAdapter) CreateSoftwareAdapter;
 		}
 
 		public new VTable* VT

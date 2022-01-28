@@ -13,10 +13,10 @@ namespace DirectX.DXGI.DXGI1_2
 
 		public struct VTable : IDXGIOutput.VTable
 		{
-			public function HResult(IDXGIOutput* self, Format enumFormat, EnumerationMode flags, UINT *pNumModes, ModeDescription1 *pDescs) GetDisplayModeList1;
-			public function HResult(IDXGIOutput* self, ModeDescription1 *modeToMatch, ModeDescription1 *clostestMatch, IUnknown *concernedDevice) FindClosestMatchingMode1;
-			public function HResult(IDXGIOutput* self, IDXGIResource *pDestination) GetDisplaySurfaceData1;
-			public function HResult(IDXGIOutput* self, IUnknown *pDevice, IDXGIOutputDuplication **pOutputDuplication) DuplicateOutput;
+			public function [CallingConvention(.Stdcall)] HResult(IDXGIOutput* self, Format enumFormat, EnumerationMode flags, UINT *pNumModes, ModeDescription1 *pDescs) GetDisplayModeList1;
+			public function [CallingConvention(.Stdcall)] HResult(IDXGIOutput* self, ModeDescription1 *modeToMatch, ModeDescription1 *clostestMatch, IUnknown *concernedDevice) FindClosestMatchingMode1;
+			public function [CallingConvention(.Stdcall)] HResult(IDXGIOutput* self, IDXGIResource *pDestination) GetDisplaySurfaceData1;
+			public function [CallingConvention(.Stdcall)] HResult(IDXGIOutput* self, IUnknown *pDevice, IDXGIOutputDuplication **pOutputDuplication) DuplicateOutput;
 		}
 
 		public new VTable* VT

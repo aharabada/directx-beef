@@ -12,7 +12,7 @@ namespace DirectX.D3D11
 		
 		public struct VTable : ID3D11DeviceChild.VTable
 		{
-			public function void(ID3D11View* self, ID3D11Resource **ppResource) GetResource;
+			public function [CallingConvention(.Stdcall)] void(ID3D11View* self, ID3D11Resource **ppResource) GetResource;
 		}
 
 		public new VTable* VT

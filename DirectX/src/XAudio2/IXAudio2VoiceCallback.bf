@@ -14,36 +14,36 @@ namespace DirectX.XAudio2
 			/**
 			 * Called during each processing pass for each voice, just before XAudio2 reads data from the voice's buffer queue.
 			 */
-			public function void(IXAudio2VoiceCallback* self, uint32 BytesRequired) OnVoiceProcessingPassStart;
+			public function [CallingConvention(.Stdcall)] void(IXAudio2VoiceCallback* self, uint32 BytesRequired) OnVoiceProcessingPassStart;
 			/**
 			* Called just after the processing pass for the voice ends.
 			*/
-			public function void(IXAudio2VoiceCallback* self) OnVoiceProcessingPassEnd;
+			public function [CallingConvention(.Stdcall)] void(IXAudio2VoiceCallback* self) OnVoiceProcessingPassEnd;
 			/**
 			* Called when the voice has just finished playing a contiguous audio stream.
 			*/
-			public function void(IXAudio2VoiceCallback* self) OnStreamEnd;
+			public function [CallingConvention(.Stdcall)] void(IXAudio2VoiceCallback* self) OnStreamEnd;
 			/**
 			* Called when the voice is about to start processing a new audio buffer.
 			* @param bufferContext Context pointer that was assigned to the pContext member of the XAUDIO2_BUFFER structure when the buffer was submitted.
 			*/
-			public function void(IXAudio2VoiceCallback* self, void *pBufferContext) OnBufferStart;
+			public function [CallingConvention(.Stdcall)] void(IXAudio2VoiceCallback* self, void *pBufferContext) OnBufferStart;
 			/**
 			* Called when the voice finishes processing a buffer.
 			* @param bufferContext Context pointer assigned to the pContext member of the XAUDIO2_BUFFER structure when the buffer was submitted.
 			*/
-			public function void(IXAudio2VoiceCallback* self, void *pBufferContext) OnBufferEnd;
+			public function [CallingConvention(.Stdcall)] void(IXAudio2VoiceCallback* self, void *pBufferContext) OnBufferEnd;
 			/**
 			* Called when the voice reaches the end position of a loop.
 			* @param bufferContext Context pointer that was assigned to the pContext member of the XAUDIO2_BUFFER structure when the buffer was submitted.
 			*/
-			public function void(IXAudio2VoiceCallback* self, void *pBufferContext) OnLoopEnd;
+			public function [CallingConvention(.Stdcall)] void(IXAudio2VoiceCallback* self, void *pBufferContext) OnLoopEnd;
 			/**
 			* Called when a critical error occurs during voice processing.
 			* @param bufferContext Context pointer that was assigned to the pContext member of the XAUDIO2_BUFFER structure when the buffer was submitted.
 			* @param error The HRESULT code of the error encountered.
 			*/
-			public function void(IXAudio2VoiceCallback* self, void *pBufferContext, HResult Error) OnVoiceError;
+			public function [CallingConvention(.Stdcall)] void(IXAudio2VoiceCallback* self, void *pBufferContext, HResult Error) OnVoiceError;
 		}
 
 		protected VTable* mVT;

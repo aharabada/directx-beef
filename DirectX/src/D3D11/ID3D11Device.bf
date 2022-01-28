@@ -16,63 +16,64 @@ namespace DirectX.D3D11
 		public struct VTable : IUnknown.VTable
 		{
 			// Todo: alle private functions müssen noch gemacht werden
-			public function HResult(ID3D11Device* self, BufferDescription* pDesc, SubresourceData* pInitialData, ID3D11Buffer** ppBuffer) CreateBuffer;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11Device* self, BufferDescription* pDesc, SubresourceData* pInitialData, ID3D11Buffer** ppBuffer) CreateBuffer;
 
-			public function HResult(ID3D11Device* self, Texture1DDescription* desc, SubresourceData* initialData, ID3D11Texture1D** texture1D) CreateTexture1D;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11Device* self, Texture1DDescription* desc, SubresourceData* initialData, ID3D11Texture1D** texture1D) CreateTexture1D;
 
-			public function HResult(ID3D11Device* self, Texture2DDescription *pDesc, SubresourceData* pInitialData, ID3D11Texture2D** ppTexture2D) CreateTexture2D;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11Device* self, Texture2DDescription *pDesc, SubresourceData* pInitialData, ID3D11Texture2D** ppTexture2D) CreateTexture2D;
 			
-			public function HResult(ID3D11Device* self, Texture3DDescription *pDesc, SubresourceData* pInitialData, ID3D11Texture3D** ppTexture3D) CreateTexture3D;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11Device* self, Texture3DDescription *pDesc, SubresourceData* pInitialData, ID3D11Texture3D** ppTexture3D) CreateTexture3D;
 
-			public function HResult(ID3D11Device* self, ID3D11Resource* pResource, ShaderResourceViewDescription* pDesc, ID3D11ShaderResourceView** ppSRView) CreateShaderResourceView;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11Device* self, ID3D11Resource* pResource, ShaderResourceViewDescription* pDesc, ID3D11ShaderResourceView** ppSRView) CreateShaderResourceView;
 
-			public function HResult(ID3D11Device* self, ID3D11Resource *resource, UnorderedAccessViewDescription* description, ID3D11UnorderedAccessView **uaView) CreateUnorderedAccessView;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11Device* self, ID3D11Resource *resource, UnorderedAccessViewDescription* description, ID3D11UnorderedAccessView **uaView) CreateUnorderedAccessView;
 
-			public function HResult(ID3D11Device* self, ID3D11Resource *pResource, RenderTargetViewDescription *pDesc, ID3D11RenderTargetView **ppRTView) CreateRenderTargetView;
-			public function HResult(ID3D11Device* self, ID3D11Resource *pResource, DepthStencilViewDescription *pDesc, ID3D11DepthStencilView **ppDepthStencilView) CreateDepthStencilView;
-			public function HResult(ID3D11Device* self, InputElementDescription* pInputElementDescs, uint32 numElements, void* pShaderBytecodeWithInputSignature, uint64 bytecodeLength, ID3D11InputLayout** ppInputLayout) CreateInputLayout;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11Device* self, ID3D11Resource *pResource, RenderTargetViewDescription *pDesc, ID3D11RenderTargetView **ppRTView) CreateRenderTargetView;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11Device* self, ID3D11Resource *pResource, DepthStencilViewDescription *pDesc, ID3D11DepthStencilView **ppDepthStencilView) CreateDepthStencilView;
 
-			public function HResult(ID3D11Device* self, void* pShaderBytecode, uint64 bytecodeLength, ID3D11ClassLinkage* pClassLinkage, ID3D11VertexShader** ppVertexShader) CreateVertexShader;
-			public function HResult(ID3D11Device* self, void* pShaderBytecode, uint64 bytecodeLength, ID3D11ClassLinkage* pClassLinkage, ID3D11GeometryShader** ppGeometryShader) CreateGeometryShader;
-			public function HResult(ID3D11Device* self, void *pShaderBytecode, SIZE_T bytecodeLength, StreamOutputDeclarationEntry *pSODeclaration, UINT numEntries, UINT *pBufferStrides, UINT numStrides, UINT rasterizedStream,
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11Device* self, InputElementDescription* pInputElementDescs, uint32 numElements, void* pShaderBytecodeWithInputSignature, SIZE_T bytecodeLength, ID3D11InputLayout** ppInputLayout) CreateInputLayout;
+
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11Device* self, void* pShaderBytecode, SIZE_T bytecodeLength, ID3D11ClassLinkage* pClassLinkage, ID3D11VertexShader** ppVertexShader) CreateVertexShader;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11Device* self, void* pShaderBytecode, SIZE_T bytecodeLength, ID3D11ClassLinkage* pClassLinkage, ID3D11GeometryShader** ppGeometryShader) CreateGeometryShader;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11Device* self, void *pShaderBytecode, SIZE_T bytecodeLength, StreamOutputDeclarationEntry *pSODeclaration, UINT numEntries, UINT *pBufferStrides, UINT numStrides, UINT rasterizedStream,
 				ID3D11ClassLinkage *pClassLinkage, ID3D11GeometryShader **ppGeometryShader) CreateGeometryShaderWithStreamOutput;
-			public function HResult(ID3D11Device* self, void* pShaderBytecode, uint64 bytecodeLength, ID3D11ClassLinkage* pClassLinkage, ID3D11PixelShader** ppPixelShader) CreatePixelShader;
-			public function HResult(ID3D11Device* self, void* pShaderBytecode, uint64 bytecodeLength, ID3D11ClassLinkage* pClassLinkage, ID3D11HullShader** ppHullShader) CreateHullShader;
-			public function HResult(ID3D11Device* self, void* pShaderBytecode, uint64 bytecodeLength, ID3D11ClassLinkage* pClassLinkage, ID3D11DomainShader** ppDomainShader) CreateDomainShader;
-			public function HResult(ID3D11Device* self, void* pShaderBytecode, uint64 bytecodeLength, ID3D11ClassLinkage* pClassLinkage, ID3D11ComputeShader** ppComputeShader) CreateComputeShader;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11Device* self, void* pShaderBytecode, SIZE_T bytecodeLength, ID3D11ClassLinkage* pClassLinkage, ID3D11PixelShader** ppPixelShader) CreatePixelShader;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11Device* self, void* pShaderBytecode, SIZE_T bytecodeLength, ID3D11ClassLinkage* pClassLinkage, ID3D11HullShader** ppHullShader) CreateHullShader;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11Device* self, void* pShaderBytecode, SIZE_T bytecodeLength, ID3D11ClassLinkage* pClassLinkage, ID3D11DomainShader** ppDomainShader) CreateDomainShader;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11Device* self, void* pShaderBytecode, SIZE_T bytecodeLength, ID3D11ClassLinkage* pClassLinkage, ID3D11ComputeShader** ppComputeShader) CreateComputeShader;
 
-			public function HResult(ID3D11Device* self, ID3D11ClassLinkage **ppLinkage) CreateClassLinkage;
-			public function HResult(ID3D11Device* self, BlendDescription *pBlendStateDesc, ID3D11BlendState **ppBlendState) CreateBlendState;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11Device* self, ID3D11ClassLinkage **ppLinkage) CreateClassLinkage;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11Device* self, BlendDescription *pBlendStateDesc, ID3D11BlendState **ppBlendState) CreateBlendState;
 
-			public function HResult(ID3D11Device* self, DepthStencilStateDescription* pDepthStencilStateDescription, ID3D11DepthStencilState** ppDepthStencilState) CreateDepthStencilState;
-			public function HResult(ID3D11Device* self, RasterizerStateDescription* pRasterizerDesc, ID3D11RasterizerState** ppRasterizerState) CreateRasterizerState;
-			public function HResult(ID3D11Device* self, SamplerStateDescription* pSamplerDesc, ID3D11SamplerState** ppSamplerState) CreateSamplerState;	
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11Device* self, DepthStencilStateDescription* pDepthStencilStateDescription, ID3D11DepthStencilState** ppDepthStencilState) CreateDepthStencilState;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11Device* self, RasterizerStateDescription* pRasterizerDesc, ID3D11RasterizerState** ppRasterizerState) CreateRasterizerState;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11Device* self, SamplerStateDescription* pSamplerDesc, ID3D11SamplerState** ppSamplerState) CreateSamplerState;	
 
-			public function HResult(ID3D11Device* self, QueryDescription *pPredicateDesc, ID3D11Query **ppQuery) CreateQuery;
-			public function HResult(ID3D11Device* self, QueryDescription *pPredicateDesc, ID3D11Predicate **ppPredicate) CreatePredicate;
-			public function HResult(ID3D11Device* self, CounterDescription *counterDesc, Counter **ppCounter) CreateCounter;
-			public function HResult(ID3D11Device* self, UINT contextFlags, ID3D11DeviceContext **ppDeferredContext) CreateDeferredContext;
-			public function HResult(ID3D11Device* self, Windows.Handle hResource, Guid *iid, void **ppResource) OpenSharedResource;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11Device* self, QueryDescription *pPredicateDesc, ID3D11Query **ppQuery) CreateQuery;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11Device* self, QueryDescription *pPredicateDesc, ID3D11Predicate **ppPredicate) CreatePredicate;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11Device* self, CounterDescription *counterDesc, Counter **ppCounter) CreateCounter;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11Device* self, UINT contextFlags, ID3D11DeviceContext **ppDeferredContext) CreateDeferredContext;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11Device* self, Windows.Handle hResource, Guid *iid, void **ppResource) OpenSharedResource;
 
-			public function HResult(ID3D11Device* self, Format format, FormatSupport* formatSupport) CheckFormatSupport;
-			public function HResult(ID3D11Device* self, Format format, UINT sampleCount, UINT *pNumQualityLevels) CheckMultisampleQualityLevels;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11Device* self, Format format, FormatSupport* formatSupport) CheckFormatSupport;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11Device* self, Format format, UINT sampleCount, UINT *pNumQualityLevels) CheckMultisampleQualityLevels;
 
-			public function void(ID3D11Device* self, CounterInfo *counterInfo) CheckCounterInfo;
-			public function HResult(ID3D11Device* self, CounterDescription *desc, CounterType *type, UINT *pActiveCounters, LPSTR szName, UINT *pNameLength, LPSTR szUnits, UINT *pUnitsLength, LPSTR szDescription, UINT *pDescriptionLength) CheckCounter;
-			public function HResult(ID3D11Device* self, Feature feature, void *featureSupportData, uint32 featureSupportDataSize) CheckFeatureSupport;
+			public function [CallingConvention(.Stdcall)] void(ID3D11Device* self, CounterInfo *counterInfo) CheckCounterInfo;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11Device* self, CounterDescription *desc, CounterType *type, UINT *pActiveCounters, LPSTR szName, UINT *pNameLength, LPSTR szUnits, UINT *pUnitsLength, LPSTR szDescription, UINT *pDescriptionLength) CheckCounter;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11Device* self, Feature feature, void *featureSupportData, uint32 featureSupportDataSize) CheckFeatureSupport;
 			
-			public function HResult(ID3D11Device* self, ref Guid name, uint32* pDataSize, void* pData) GetPrivateData;	
-			public function HResult(ID3D11Device* self, ref Guid name, uint32 dataSize, void* pData) SetPrivateData; 
-			public function HResult(ID3D11Device* self, ref Guid name, IUnknown* pUnknown) SetPrivateDataInterface;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11Device* self, ref Guid name, uint32* pDataSize, void* pData) GetPrivateData;	
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11Device* self, ref Guid name, uint32 dataSize, void* pData) SetPrivateData; 
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11Device* self, ref Guid name, IUnknown* pUnknown) SetPrivateDataInterface;
 
-			public function FeatureLevel(ID3D11Device* self) GetFeatureLevel;	
-			public function DeviceCreationFlags(ID3D11Device* self) GetCreationFlags;
-			public function HResult(ID3D11Device* self) GetDeviceRemovedReason;
+			public function [CallingConvention(.Stdcall)] FeatureLevel(ID3D11Device* self) GetFeatureLevel;	
+			public function [CallingConvention(.Stdcall)] DeviceCreationFlags(ID3D11Device* self) GetCreationFlags;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11Device* self) GetDeviceRemovedReason;
 
-			public function void(ID3D11Device* self, ID3D11DeviceContext** ppImmediateContext) GetImmediateContext;
+			public function [CallingConvention(.Stdcall)] void(ID3D11Device* self, ID3D11DeviceContext** ppImmediateContext) GetImmediateContext;
 
-			public function HResult(ID3D11Device* self, RaiseFlags raiseFlags) SetExceptionMode;
-			public function RaiseFlags(ID3D11Device* self) GetExceptionMode;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11Device* self, RaiseFlags raiseFlags) SetExceptionMode;
+			public function [CallingConvention(.Stdcall)] RaiseFlags(ID3D11Device* self) GetExceptionMode;
 		}
 
 		public new VTable* VT

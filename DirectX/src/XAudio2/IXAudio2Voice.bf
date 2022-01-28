@@ -10,25 +10,25 @@ namespace DirectX.XAudio2
 	{
 		public struct VTable
 		{
-			public function void(IXAudio2Voice* self, VoiceDetails *pVoiceDetails)GetVoiceDetails;
-			public function HResult(IXAudio2Voice* self, VoiceSends *pSendList)SetOutputVoices;
-			public function HResult(IXAudio2Voice* self, EffectChain *pEffectChain)SetEffectChain;
-			public function HResult(IXAudio2Voice* self, uint32 EffectIndex, uint32 OperationSet)EnableEffect;
-			public function HResult(IXAudio2Voice* self, uint32 EffectIndex, uint32 OperationSet)DisableEffect;
-			public function void(IXAudio2Voice* self, uint32 EffectIndex, BOOL *pEnabled)GetEffectState;
-			public function HResult(IXAudio2Voice* self, uint32 EffectIndex, void *pParameters, uint32 ParametersByteSize, uint32 OperationSet)SetEffectParameters;
-			public function HResult(IXAudio2Voice* self, uint32 EffectIndex, void *pParameters, uint32 ParametersByteSize)GetEffectParameters;
-			public function HResult(IXAudio2Voice* self, FilterParameters *pParameters, uint32 OperationSet)SetFilterParameters;
-			public function void(IXAudio2Voice* self, FilterParameters *pParameters)GetFilterParameters;
-			public function HResult(IXAudio2Voice* self, IXAudio2Voice *pDestinationVoice, FilterParameters *pParameters, uint32 OperationSet)SetOutputFilterParameters;
-			public function void(IXAudio2Voice* self, IXAudio2Voice *pDestinationVoice, FilterParameters *pParameters)GetOutputFilterParameters;
-			public function HResult(IXAudio2Voice* self, float Volume, uint32 OperationSet)SetVolume;
-			public function void(IXAudio2Voice* self, float *pVolume)GetVolume;
-			public function HResult(IXAudio2Voice* self, uint32 channels, float *pVolumes, uint32 OperationSet)SetChannelVolumes;
-			public function void(IXAudio2Voice* self, uint32 Channels, float *pVolumes)GetChannelVolumes;
-			public function HResult(IXAudio2Voice* self, IXAudio2Voice *pDestinationVoice, uint32 SourceChannels, uint32 DestinationChannels, float *pLevelMatrix, uint32 OperationSet)SetOutputMatrix;
-			public function void(IXAudio2Voice* self, IXAudio2Voice *pDestinationVoice, uint32 SourceChannels, uint32 DestinationChannels, float *pLevelMatrix)GetOutputMatrix;
-			public function void(IXAudio2Voice* self)DestroyVoice;
+			public function [CallingConvention(.Stdcall)] void(IXAudio2Voice* self, VoiceDetails *pVoiceDetails)GetVoiceDetails;
+			public function [CallingConvention(.Stdcall)] HResult(IXAudio2Voice* self, VoiceSends *pSendList)SetOutputVoices;
+			public function [CallingConvention(.Stdcall)] HResult(IXAudio2Voice* self, EffectChain *pEffectChain)SetEffectChain;
+			public function [CallingConvention(.Stdcall)] HResult(IXAudio2Voice* self, uint32 EffectIndex, uint32 OperationSet)EnableEffect;
+			public function [CallingConvention(.Stdcall)] HResult(IXAudio2Voice* self, uint32 EffectIndex, uint32 OperationSet)DisableEffect;
+			public function [CallingConvention(.Stdcall)] void(IXAudio2Voice* self, uint32 EffectIndex, BOOL *pEnabled)GetEffectState;
+			public function [CallingConvention(.Stdcall)] HResult(IXAudio2Voice* self, uint32 EffectIndex, void *pParameters, uint32 ParametersByteSize, uint32 OperationSet)SetEffectParameters;
+			public function [CallingConvention(.Stdcall)] HResult(IXAudio2Voice* self, uint32 EffectIndex, void *pParameters, uint32 ParametersByteSize)GetEffectParameters;
+			public function [CallingConvention(.Stdcall)] HResult(IXAudio2Voice* self, FilterParameters *pParameters, uint32 OperationSet)SetFilterParameters;
+			public function [CallingConvention(.Stdcall)] void(IXAudio2Voice* self, FilterParameters *pParameters)GetFilterParameters;
+			public function [CallingConvention(.Stdcall)] HResult(IXAudio2Voice* self, IXAudio2Voice *pDestinationVoice, FilterParameters *pParameters, uint32 OperationSet)SetOutputFilterParameters;
+			public function [CallingConvention(.Stdcall)] void(IXAudio2Voice* self, IXAudio2Voice *pDestinationVoice, FilterParameters *pParameters)GetOutputFilterParameters;
+			public function [CallingConvention(.Stdcall)] HResult(IXAudio2Voice* self, float Volume, uint32 OperationSet)SetVolume;
+			public function [CallingConvention(.Stdcall)] void(IXAudio2Voice* self, float *pVolume)GetVolume;
+			public function [CallingConvention(.Stdcall)] HResult(IXAudio2Voice* self, uint32 channels, float *pVolumes, uint32 OperationSet)SetChannelVolumes;
+			public function [CallingConvention(.Stdcall)] void(IXAudio2Voice* self, uint32 Channels, float *pVolumes)GetChannelVolumes;
+			public function [CallingConvention(.Stdcall)] HResult(IXAudio2Voice* self, IXAudio2Voice *pDestinationVoice, uint32 SourceChannels, uint32 DestinationChannels, float *pLevelMatrix, uint32 OperationSet)SetOutputMatrix;
+			public function [CallingConvention(.Stdcall)] void(IXAudio2Voice* self, IXAudio2Voice *pDestinationVoice, uint32 SourceChannels, uint32 DestinationChannels, float *pLevelMatrix)GetOutputMatrix;
+			public function [CallingConvention(.Stdcall)] void(IXAudio2Voice* self)DestroyVoice;
 		}
 
 		protected VTable* mVT;

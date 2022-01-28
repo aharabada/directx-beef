@@ -12,8 +12,8 @@ namespace DirectX.D3D11
 
 		public struct VTable : ID3D11DeviceChild.VTable
 		{
-			public function HResult(ID3D11ClassLinkage *self, char8 *pClassInstanceName, UINT instanceIndex, ID3D11ClassInstance **ppInstance) GetClassInstance;
-			public function HResult(ID3D11ClassLinkage *self, char8 *pClassTypeName, UINT constantBufferOffset, UINT constantVectorOffset, UINT textureOffset, UINT samplerOffset, ID3D11ClassInstance **ppInstance) CreateClassInstance;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11ClassLinkage *self, char8 *pClassInstanceName, UINT instanceIndex, ID3D11ClassInstance **ppInstance) GetClassInstance;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11ClassLinkage *self, char8 *pClassTypeName, UINT constantBufferOffset, UINT constantVectorOffset, UINT textureOffset, UINT samplerOffset, ID3D11ClassInstance **ppInstance) CreateClassInstance;
 		};
 
 		public new VTable* VT

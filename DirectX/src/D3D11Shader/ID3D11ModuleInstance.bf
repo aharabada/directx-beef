@@ -12,20 +12,20 @@ namespace DirectX.D3D11Shader
 
 		public struct VTable : IUnknown.VTable
 		{
-			public function HResult(ID3D11ModuleInstance* self, uint32 srcSlot, uint32 dstSlot, uint32 dscOffset) BindConstantBuffer;
-			public function HResult(ID3D11ModuleInstance* self, char8* pName, uint32 dstSlot, uint32 dscOffset) BindConstantBufferByName;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11ModuleInstance* self, uint32 srcSlot, uint32 dstSlot, uint32 dscOffset) BindConstantBuffer;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11ModuleInstance* self, char8* pName, uint32 dstSlot, uint32 dscOffset) BindConstantBufferByName;
 			
-			public function HResult(ID3D11ModuleInstance* self, uint32 srcSlot, uint32 dstSlot, uint32 count) BindResource;
-			public function HResult(ID3D11ModuleInstance* self, char8* pName, uint32 dstSlot, uint32 count) BindResourceByName;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11ModuleInstance* self, uint32 srcSlot, uint32 dstSlot, uint32 count) BindResource;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11ModuleInstance* self, char8* pName, uint32 dstSlot, uint32 count) BindResourceByName;
 
-			public function HResult(ID3D11ModuleInstance* self, uint32 srcSlot, uint32 dstSlot, uint32 count) BindSampler;
-			public function HResult(ID3D11ModuleInstance* self, char8* pName, uint32 dstSlot, uint32 count) BindSamplerByName;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11ModuleInstance* self, uint32 srcSlot, uint32 dstSlot, uint32 count) BindSampler;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11ModuleInstance* self, char8* pName, uint32 dstSlot, uint32 count) BindSamplerByName;
 			
-			public function HResult(ID3D11ModuleInstance* self, uint32 srcSlot, uint32 dstSlot, uint32 count) BindUnorderedAccessView;
-			public function HResult(ID3D11ModuleInstance* self, char8* pName, uint32 dstSlot, uint32 count) BindUnorderedAccessViewByName;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11ModuleInstance* self, uint32 srcSlot, uint32 dstSlot, uint32 count) BindUnorderedAccessView;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11ModuleInstance* self, char8* pName, uint32 dstSlot, uint32 count) BindUnorderedAccessViewByName;
 
-			public function HResult(ID3D11ModuleInstance* self, uint32 srcSrvSlot, uint32 dstUavSlot, uint32 count) BindResourceAsUnorderedAccessView;
-			public function HResult(ID3D11ModuleInstance* self, char8* pSrvName, uint32 dstUavSlot, uint32 count) BindResourceAsUnorderedAccessViewByName;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11ModuleInstance* self, uint32 srcSrvSlot, uint32 dstUavSlot, uint32 count) BindResourceAsUnorderedAccessView;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11ModuleInstance* self, char8* pSrvName, uint32 dstUavSlot, uint32 count) BindResourceAsUnorderedAccessViewByName;
 		}
 
 		public new VTable* VT

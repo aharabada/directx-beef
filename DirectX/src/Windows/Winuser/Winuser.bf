@@ -137,8 +137,13 @@ namespace DirectX.Windows.Winuser
 		 * @return 	If the function succeeds, the return value is the previous value of the specified offset.
 		 * 			If the function fails, the return value is zero.
 		*/
+#if BF_64_BIT
 		[Import("user32.lib"), CallingConvention(.Stdcall), CLink]
 		public static extern LONG_PTR SetWindowLongPtrW(HWND windowHandle, int32 index, LONG_PTR dwNewLong);
+#else
+		[Import("user32.lib"), CallingConvention(.Stdcall), LinkName("SetWindowLongW")]
+		public static extern LONG_PTR SetWindowLongPtrW(HWND windowHandle, int32 index, LONG_PTR dwNewLong);
+#endif
 
 		/**
 		 * Retrieves information about the specified window.
@@ -148,8 +153,13 @@ namespace DirectX.Windows.Winuser
 		 * @param index			The zero-based offset to the value to be retrieved.
 		 *						Valid values are in the range zero through the number of bytes of extra window memory, minus the size of a LONG_PTR.
 		*/
+#if BF_64_BIT
 		[Import("user32.lib"), CallingConvention(.Stdcall), CLink]
 		public static extern LONG_PTR GetWindowLongPtrW(HWND windowHandle, int32 index);
+#else
+		[Import("user32.lib"), CallingConvention(.Stdcall), LinkName("GetWindowLongW")]
+		public static extern LONG_PTR GetWindowLongPtrW(HWND windowHandle, int32 index);
+#endif
 
 		[Import("user32.lib"), CallingConvention(.Stdcall), CLink]
 		public static extern int32 GetWindowTextW(HWND windowHandle, char16 *string, int32 maxCount);
@@ -182,13 +192,13 @@ namespace DirectX.Windows.Winuser
 		 * Retrieves the status of the specified virtual key.
 		 * The status specifies whether the key is up, down, or toggled (on, off—alternating each time the key is pressed).
 		*/
-		[Import("User32.lib"), CLink]
+		[Import("User32.lib"), CallingConvention(.Stdcall), CLink]
 		public static extern uint16 GetKeyState(int32 nVrtKey);
 
 		/**
 		 * Determines whether a key is up or down at the time the function is called, and whether the key was pressed after a previous call to GetAsyncKeyState.
 		*/
-		[Import("User32.lib"), CLink]
+		[Import("User32.lib"), CallingConvention(.Stdcall), CLink]
 		public static extern uint16 GetAsyncKeyState(int32 nVrtKey);
 
 		/**
@@ -197,7 +207,7 @@ namespace DirectX.Windows.Winuser
 		 * @param lpKeyState	The 256-byte array that receives the status data for each virtual key.
 		 * @return If the function succeeds, the return value is nonzero.
 		*/
-		[Import("User32.lib"), CLink]
+		[Import("User32.lib"), CallingConvention(.Stdcall), CLink]
 		public static extern BOOL GetKeyboardState(uint8 *lpKeyState);
 
 		/**
@@ -209,7 +219,7 @@ namespace DirectX.Windows.Winuser
 		 *					(This parameter should be equal to the size of the buffer pointed to by the lpString parameter.)
 		 * @return	If the function succeeds, a null-terminated string is copied into the specified buffer, and the return value is the length of the string, in characters, not counting the terminating null character.
 		*/
-		[Import("User32.lib"), CLink]
+		[Import("User32.lib"), CallingConvention(.Stdcall), CLink]
 		public static extern int32 GetKeyNameTextW(int32 lParam, char16* lpString, int cchSize);
 
 		public const uint32 MAPVK_VK_TO_VSC = 0;
@@ -220,7 +230,7 @@ namespace DirectX.Windows.Winuser
 		/**
 		 * Translates (maps) a virtual-key code into a scan code or character value, or translates a scan code into a virtual-key code.
 		*/
-		[Import("User32.lib"), CLink]
+		[Import("User32.lib"), CallingConvention(.Stdcall), CLink]
 		public static extern uint32 MapVirtualKeyW(uint32 uCode, uint32 uMapType);
 
 		/**

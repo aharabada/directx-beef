@@ -12,19 +12,19 @@ namespace DirectX.D3D11Shader
 
 		public struct VTable
 		{
-			public function HResult(ID3D11ShaderReflectionType* self, ShaderTypeDescription *pDesc) GetDesc;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11ShaderReflectionType* self, ShaderTypeDescription *pDesc) GetDesc;
 
-			public function ID3D11ShaderReflectionType*(ID3D11ShaderReflectionType* self, uint32 index) GetMemberTypeByIndex;
-			public function ID3D11ShaderReflectionType*(ID3D11ShaderReflectionType* self, char8* name) GetMemberTypeByName;
-			public function char8*(ID3D11ShaderReflectionType* self, uint32 index) GetMemberTypeName;
+			public function [CallingConvention(.Stdcall)] ID3D11ShaderReflectionType*(ID3D11ShaderReflectionType* self, uint32 index) GetMemberTypeByIndex;
+			public function [CallingConvention(.Stdcall)] ID3D11ShaderReflectionType*(ID3D11ShaderReflectionType* self, char8* name) GetMemberTypeByName;
+			public function [CallingConvention(.Stdcall)] char8*(ID3D11ShaderReflectionType* self, uint32 index) GetMemberTypeName;
 			
-			public function HResult(ID3D11ShaderReflectionType* self, ID3D11ShaderReflectionType* pType) IsEqual;
-			public function ID3D11ShaderReflectionType*(ID3D11ShaderReflectionType* self) GetSubType;
-			public function ID3D11ShaderReflectionType*(ID3D11ShaderReflectionType* self) GetBaseClass;
-			public function uint32(ID3D11ShaderReflectionType* self) GetNumInterfaces;
-			public function ID3D11ShaderReflectionType*(ID3D11ShaderReflectionType* self, uint32 index) GetInterfaceByIndex;
-			public function HResult(ID3D11ShaderReflectionType* self, ID3D11ShaderReflectionType* pType) IsOfType;
-			public function HResult(ID3D11ShaderReflectionType* self, ID3D11ShaderReflectionType* pBase) ImplementsInterface;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11ShaderReflectionType* self, ID3D11ShaderReflectionType* pType) IsEqual;
+			public function [CallingConvention(.Stdcall)] ID3D11ShaderReflectionType*(ID3D11ShaderReflectionType* self) GetSubType;
+			public function [CallingConvention(.Stdcall)] ID3D11ShaderReflectionType*(ID3D11ShaderReflectionType* self) GetBaseClass;
+			public function [CallingConvention(.Stdcall)] uint32(ID3D11ShaderReflectionType* self) GetNumInterfaces;
+			public function [CallingConvention(.Stdcall)] ID3D11ShaderReflectionType*(ID3D11ShaderReflectionType* self, uint32 index) GetInterfaceByIndex;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11ShaderReflectionType* self, ID3D11ShaderReflectionType* pType) IsOfType;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11ShaderReflectionType* self, ID3D11ShaderReflectionType* pBase) ImplementsInterface;
 		}
 
 		protected VTable* _vt;

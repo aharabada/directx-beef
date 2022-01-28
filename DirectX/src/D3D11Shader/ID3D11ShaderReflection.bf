@@ -12,35 +12,35 @@ namespace DirectX.D3D11Shader
 
 		public struct VTable : IUnknown.VTable
 		{
-			public function HResult(ID3D11ShaderReflection* self, ShaderDescription *pDesc) GetDesc;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11ShaderReflection* self, ShaderDescription *pDesc) GetDesc;
 
-			public function ID3D11ShaderReflectionConstantBuffer*(ID3D11ShaderReflection* self, uint32 index) GetConstantBufferByIndex;
-			public function ID3D11ShaderReflectionConstantBuffer*(ID3D11ShaderReflection* self, char8* name) GetConstantBufferByName;
+			public function [CallingConvention(.Stdcall)] ID3D11ShaderReflectionConstantBuffer*(ID3D11ShaderReflection* self, uint32 index) GetConstantBufferByIndex;
+			public function [CallingConvention(.Stdcall)] ID3D11ShaderReflectionConstantBuffer*(ID3D11ShaderReflection* self, char8* name) GetConstantBufferByName;
 
-			public function HResult(ID3D11ShaderReflection* self, uint32 resourceIndex, ShaderInputBindDescription *pDesc) GetResourceBindingDesc;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11ShaderReflection* self, uint32 resourceIndex, ShaderInputBindDescription *pDesc) GetResourceBindingDesc;
 
-			public function HResult(ID3D11ShaderReflection* self, uint32 parameterIndex, SignatureParameterDescription *pDesc) GetInputParameterDesc;
-			public function HResult(ID3D11ShaderReflection* self, uint32 parameterIndex, SignatureParameterDescription *pDesc) GetOutputParameterDesc;
-			public function HResult(ID3D11ShaderReflection* self, uint32 parameterIndex, SignatureParameterDescription *pDesc) GetPatchConstantParameterDesc;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11ShaderReflection* self, uint32 parameterIndex, SignatureParameterDescription *pDesc) GetInputParameterDesc;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11ShaderReflection* self, uint32 parameterIndex, SignatureParameterDescription *pDesc) GetOutputParameterDesc;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11ShaderReflection* self, uint32 parameterIndex, SignatureParameterDescription *pDesc) GetPatchConstantParameterDesc;
 
-			public function ID3D11ShaderReflectionVariable*(ID3D11ShaderReflection* self, char8* name) GetVariableByName;
+			public function [CallingConvention(.Stdcall)] ID3D11ShaderReflectionVariable*(ID3D11ShaderReflection* self, char8* name) GetVariableByName;
 
-			public function HResult(ID3D11ShaderReflection* self, char8* name, ShaderInputBindDescription *pDesc) GetResourceBindingDescByName;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11ShaderReflection* self, char8* name, ShaderInputBindDescription *pDesc) GetResourceBindingDescByName;
 
-			public function uint32(ID3D11ShaderReflection* self) GetMovInstructionCount;
-			public function uint32(ID3D11ShaderReflection* self) GetMovcInstructionCount;
-			public function uint32(ID3D11ShaderReflection* self) GetConversionInstructionCount;
-			public function uint32(ID3D11ShaderReflection* self) GetBitwiseInstructionCount;
+			public function [CallingConvention(.Stdcall)] uint32(ID3D11ShaderReflection* self) GetMovInstructionCount;
+			public function [CallingConvention(.Stdcall)] uint32(ID3D11ShaderReflection* self) GetMovcInstructionCount;
+			public function [CallingConvention(.Stdcall)] uint32(ID3D11ShaderReflection* self) GetConversionInstructionCount;
+			public function [CallingConvention(.Stdcall)] uint32(ID3D11ShaderReflection* self) GetBitwiseInstructionCount;
 
-			public function Primitive(ID3D11ShaderReflection* self) GetGSInputPrimitive;
-			public function BOOL(ID3D11ShaderReflection* self) IsSampleFrequencyShader;
+			public function [CallingConvention(.Stdcall)] Primitive(ID3D11ShaderReflection* self) GetGSInputPrimitive;
+			public function [CallingConvention(.Stdcall)] BOOL(ID3D11ShaderReflection* self) IsSampleFrequencyShader;
 
-			public function uint32(ID3D11ShaderReflection* self) GetNumInterfaceSlots;
-			public function HResult(ID3D11ShaderReflection* self, FeatureLevel* pLevel) GetMinFeatureLevel;
+			public function [CallingConvention(.Stdcall)] uint32(ID3D11ShaderReflection* self) GetNumInterfaceSlots;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11ShaderReflection* self, FeatureLevel* pLevel) GetMinFeatureLevel;
 
-			public function uint32(ID3D11ShaderReflection* self, uint32* pSizeX, uint32* pSizeY, uint32* pSizeZ) GetThreadGroupSize;
+			public function [CallingConvention(.Stdcall)] uint32(ID3D11ShaderReflection* self, uint32* pSizeX, uint32* pSizeY, uint32* pSizeZ) GetThreadGroupSize;
 
-			public function uint64(ID3D11ShaderReflection* self) GetRequiresFlags;
+			public function [CallingConvention(.Stdcall)] uint64(ID3D11ShaderReflection* self) GetRequiresFlags;
 		}
 
 		public new VTable* VT

@@ -12,21 +12,21 @@ namespace DirectX.D3D11Shader
 
 		public struct VTable : IUnknown.VTable
 		{
-			public function HResult(ID3D11FunctionLinkingGraph* self, ID3D11ModuleInstance** ppModuleInstance, ID3DBlob** ppErrorBuffer) CreateModuleInstance;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11FunctionLinkingGraph* self, ID3D11ModuleInstance** ppModuleInstance, ID3DBlob** ppErrorBuffer) CreateModuleInstance;
 
-			public function HResult(ID3D11FunctionLinkingGraph* self, ParameterDescription* pInputParameters, uint32 inputParameterCount, ID3D11LinkingNode** ppInputNode) SetInputSignature;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11FunctionLinkingGraph* self, ParameterDescription* pInputParameters, uint32 inputParameterCount, ID3D11LinkingNode** ppInputNode) SetInputSignature;
 
-			public function HResult(ID3D11FunctionLinkingGraph* self, ParameterDescription* poutputParameters, uint32 outputParameterCount, ID3D11LinkingNode** ppOutputNode) SetOutputSignature;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11FunctionLinkingGraph* self, ParameterDescription* poutputParameters, uint32 outputParameterCount, ID3D11LinkingNode** ppOutputNode) SetOutputSignature;
 
-			public function HResult(ID3D11FunctionLinkingGraph* self, char8* pModuleInstanceNamespace, ID3D11Module* pModuleWithFunctionPrototype, char8* pFunctionName, ID3D11LinkingNode** ppCallNode) CallFunction;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11FunctionLinkingGraph* self, char8* pModuleInstanceNamespace, ID3D11Module* pModuleWithFunctionPrototype, char8* pFunctionName, ID3D11LinkingNode** ppCallNode) CallFunction;
 
-			public function HResult(ID3D11FunctionLinkingGraph* self, ID3D11LinkingNode* srcNode, int32 srcParameterIndex, ID3D11LinkingNode* dstNode, int32 dstParameterIndex) PassValue;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11FunctionLinkingGraph* self, ID3D11LinkingNode* srcNode, int32 srcParameterIndex, ID3D11LinkingNode* dstNode, int32 dstParameterIndex) PassValue;
 
-			public function HResult(ID3D11FunctionLinkingGraph* self, ID3D11LinkingNode* srcNode, int32 srcParameterIndex, ID3D11LinkingNode* dstNode, int32 dstParameterIndex, char8* dstSwizzle) PassValueWithSwizzle;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11FunctionLinkingGraph* self, ID3D11LinkingNode* srcNode, int32 srcParameterIndex, ID3D11LinkingNode* dstNode, int32 dstParameterIndex, char8* dstSwizzle) PassValueWithSwizzle;
 
-			public function HResult(ID3D11FunctionLinkingGraph* self, ID3DBlob** ppErrorBuffer) GetLastError;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11FunctionLinkingGraph* self, ID3DBlob** ppErrorBuffer) GetLastError;
 
-			public function HResult(ID3D11FunctionLinkingGraph* self, uint32 flags, ID3DBlob** ppBuffer) GenerateHlsl;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11FunctionLinkingGraph* self, uint32 flags, ID3DBlob** ppBuffer) GenerateHlsl;
 		}
 
 		public new VTable* VT

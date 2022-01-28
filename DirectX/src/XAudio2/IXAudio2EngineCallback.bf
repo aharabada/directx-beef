@@ -14,16 +14,16 @@ namespace DirectX.XAudio2
 			/**
 			 * Called by XAudio2 just before an audio processing pass begins.
 			 */
-			public function void(IXAudio2EngineCallback* self) OnProcessingPassStart;
+			public function [CallingConvention(.Stdcall)] void(IXAudio2EngineCallback* self) OnProcessingPassStart;
 			/**
 			 * Called by XAudio2 just after an audio processing pass ends.
 			 */
-			public function void(IXAudio2EngineCallback* self) OnProcessingPassEnd;
+			public function [CallingConvention(.Stdcall)] void(IXAudio2EngineCallback* self) OnProcessingPassEnd;
 			/**
 			 * Called if a critical system error occurs that requires XAudio2 to be closed down and restarted.
 			 * @param error Error code returned by XAudio2.
 			 */
-			public function void(IXAudio2EngineCallback* self, HResult Error) OnCriticalError;
+			public function [CallingConvention(.Stdcall)] void(IXAudio2EngineCallback* self, HResult Error) OnCriticalError;
 		}
 
 		protected VTable* mVT;

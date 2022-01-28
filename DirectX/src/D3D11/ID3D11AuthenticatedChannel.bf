@@ -12,9 +12,9 @@ namespace DirectX.D3D11
 		
 		public struct VTable : IUnknown.VTable
 		{
-			public function HResult(ID3D11AuthenticatedChannel *self, UINT certificateSize, uint8 *pCertificate) GetCertificate;
-			public function HResult(ID3D11AuthenticatedChannel *self, UINT *pCertificateSize) GetCertificateSize;
-			public function void(ID3D11AuthenticatedChannel *self, Windows.Handle *pChannelHandle) GetChannelHandle;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11AuthenticatedChannel *self, UINT certificateSize, uint8 *pCertificate) GetCertificate;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11AuthenticatedChannel *self, UINT *pCertificateSize) GetCertificateSize;
+			public function [CallingConvention(.Stdcall)] void(ID3D11AuthenticatedChannel *self, Windows.Handle *pChannelHandle) GetChannelHandle;
 		}
 
 		public new VTable* VT

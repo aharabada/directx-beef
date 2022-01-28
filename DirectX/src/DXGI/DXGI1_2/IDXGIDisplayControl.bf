@@ -13,8 +13,8 @@ namespace DirectX.DXGI.DXGI1_2
 		
 		public struct VTable : IUnknown.VTable
 		{
-			public function BOOL(IDXGIDisplayControl* self) IsStereoEnabled;
-			public function void(IDXGIDisplayControl* self, BOOL enabled) SetStereoEnabled;
+			public function [CallingConvention(.Stdcall)] BOOL(IDXGIDisplayControl* self) IsStereoEnabled;
+			public function [CallingConvention(.Stdcall)] void(IDXGIDisplayControl* self, BOOL enabled) SetStereoEnabled;
 		}
 
 		public new VTable* VT

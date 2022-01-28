@@ -19,9 +19,9 @@ namespace DirectX.Common
 
 		public struct VTable
 		{
-			public function HResult(IUnknown* self, ref Guid riid, void** result) QueryInterface;
-			public function uint32(IUnknown* self) AddRef;
-			public function uint32(IUnknown* self) Release;
+			public function [CallingConvention(.Stdcall)] HResult(IUnknown* self, ref Guid riid, void** result) QueryInterface;
+			public function [CallingConvention(.Stdcall)] uint32(IUnknown* self) AddRef;
+			public function [CallingConvention(.Stdcall)] uint32(IUnknown* self) Release;
 		}
 
 		protected VTable* mVT;

@@ -9,41 +9,41 @@ namespace DirectX.D3D11.SDKLayers
 		
 		public struct VTable : IUnknown.VTable
 		{
-			public function HResult(ID3D11InfoQueue* self, uint64 messageCountLimit)SetMessageCountLimit;
-			public function void(ID3D11InfoQueue* self)ClearStoredMessages;
-			public function HResult(ID3D11InfoQueue* self, uint64 messageIndex, Message* pMessage, /*SIZE_T*/uint32 *pMessageByteLength)GetMessage;
-			public function uint64(ID3D11InfoQueue* self)GetNumMessagesAllowedByStorageFilter;
-			public function uint64(ID3D11InfoQueue* self)GetNumMessagesDeniedByStorageFilter;
-			public function uint64(ID3D11InfoQueue* self)GetNumStoredMessages;
-			public function uint64(ID3D11InfoQueue* self)GetNumStoredMessagesAllowedByRetrievalFilter;
-			public function uint64(ID3D11InfoQueue* self)GetNumMessagesDiscardedByMessageCountLimit;
-			public function uint64(ID3D11InfoQueue* self)GetMessageCountLimit;
-			public function HResult(ID3D11InfoQueue* self, InfoQueueFilter* pFilter)AddStorageFilterEntries;
-			public function HResult(ID3D11InfoQueue* self, InfoQueueFilter* pFilter, /*SIZE_T*/uint32* pFilterByteLength)GetStorageFilter;
-			public function void(ID3D11InfoQueue* self)ClearStorageFilter;
-			public function HResult(ID3D11InfoQueue* self)PushEmptyStorageFilter;
-			public function HResult(ID3D11InfoQueue* self)PushCopyOfStorageFilter;
-			public function HResult(ID3D11InfoQueue* self, InfoQueueFilter* pFilter)PushStorageFilter;
-			public function void(ID3D11InfoQueue* self)PopStorageFilter;
-			public function uint32(ID3D11InfoQueue* self)GetStorageFilterStackSize;
-			public function HResult(ID3D11InfoQueue* self, InfoQueueFilter* pFilter)AddRetrievalFilterEntries;
-			public function HResult(ID3D11InfoQueue* self, InfoQueueFilter* pFilter, /*SIZE_T*/uint32* pFilterByteLength)GetRetrievalFilter;
-			public function void(ID3D11InfoQueue* self)ClearRetrievalFilter;
-			public function HResult(ID3D11InfoQueue* self)PushEmptyRetrievalFilter;
-			public function HResult(ID3D11InfoQueue* self)PushCopyOfRetrievalFilter;
-			public function HResult(ID3D11InfoQueue* self, InfoQueueFilter* pFilter) PushRetrievalFilter;
-			public function void(ID3D11InfoQueue* self) PopRetrievalFilter;
-			public function uint32(ID3D11InfoQueue* self) GetRetrievalFilterStackSize;
-			public function HResult(ID3D11InfoQueue* self, MessageCategory category, MessageSeverity severity, MessageID id, /*LPCSTR*/char8* pDescription) AddMessage;
-			public function HResult(ID3D11InfoQueue* self, MessageSeverity severity, /*LPCSTR*/char8* pDescription)AddApplicationMessage;
-			public function HResult(ID3D11InfoQueue* self, MessageCategory category, bool bEnable)SetBreakOnCategory; 
-			public function HResult(ID3D11InfoQueue* self, MessageSeverity severity, bool bEnable)SetBreakOnSeverity;
-			public function HResult(ID3D11InfoQueue* self, MessageID id, bool bEnable)SetBreakOnID;
-			public function bool(ID3D11InfoQueue* self, MessageCategory category)GetBreakOnCategory;
-			public function bool(ID3D11InfoQueue* self, MessageSeverity severity)GetBreakOnSeverity;
-			public function bool(ID3D11InfoQueue* self, MessageID id)GetBreakOnID;
-			public function void(ID3D11InfoQueue* self, bool bMute)SetMuteDebugOutput;
-			public function bool(ID3D11InfoQueue* self)GetMuteDebugOutput;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11InfoQueue* self, uint64 messageCountLimit)SetMessageCountLimit;
+			public function [CallingConvention(.Stdcall)] void(ID3D11InfoQueue* self)ClearStoredMessages;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11InfoQueue* self, uint64 messageIndex, Message* pMessage, /*SIZE_T*/uint32 *pMessageByteLength)GetMessage;
+			public function [CallingConvention(.Stdcall)] uint64(ID3D11InfoQueue* self)GetNumMessagesAllowedByStorageFilter;
+			public function [CallingConvention(.Stdcall)] uint64(ID3D11InfoQueue* self)GetNumMessagesDeniedByStorageFilter;
+			public function [CallingConvention(.Stdcall)] uint64(ID3D11InfoQueue* self)GetNumStoredMessages;
+			public function [CallingConvention(.Stdcall)] uint64(ID3D11InfoQueue* self)GetNumStoredMessagesAllowedByRetrievalFilter;
+			public function [CallingConvention(.Stdcall)] uint64(ID3D11InfoQueue* self)GetNumMessagesDiscardedByMessageCountLimit;
+			public function [CallingConvention(.Stdcall)] uint64(ID3D11InfoQueue* self)GetMessageCountLimit;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11InfoQueue* self, InfoQueueFilter* pFilter)AddStorageFilterEntries;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11InfoQueue* self, InfoQueueFilter* pFilter, /*SIZE_T*/uint32* pFilterByteLength)GetStorageFilter;
+			public function [CallingConvention(.Stdcall)] void(ID3D11InfoQueue* self)ClearStorageFilter;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11InfoQueue* self)PushEmptyStorageFilter;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11InfoQueue* self)PushCopyOfStorageFilter;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11InfoQueue* self, InfoQueueFilter* pFilter)PushStorageFilter;
+			public function [CallingConvention(.Stdcall)] void(ID3D11InfoQueue* self)PopStorageFilter;
+			public function [CallingConvention(.Stdcall)] uint32(ID3D11InfoQueue* self)GetStorageFilterStackSize;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11InfoQueue* self, InfoQueueFilter* pFilter)AddRetrievalFilterEntries;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11InfoQueue* self, InfoQueueFilter* pFilter, /*SIZE_T*/uint32* pFilterByteLength)GetRetrievalFilter;
+			public function [CallingConvention(.Stdcall)] void(ID3D11InfoQueue* self)ClearRetrievalFilter;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11InfoQueue* self)PushEmptyRetrievalFilter;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11InfoQueue* self)PushCopyOfRetrievalFilter;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11InfoQueue* self, InfoQueueFilter* pFilter) PushRetrievalFilter;
+			public function [CallingConvention(.Stdcall)] void(ID3D11InfoQueue* self) PopRetrievalFilter;
+			public function [CallingConvention(.Stdcall)] uint32(ID3D11InfoQueue* self) GetRetrievalFilterStackSize;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11InfoQueue* self, MessageCategory category, MessageSeverity severity, MessageID id, /*LPCSTR*/char8* pDescription) AddMessage;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11InfoQueue* self, MessageSeverity severity, /*LPCSTR*/char8* pDescription)AddApplicationMessage;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11InfoQueue* self, MessageCategory category, bool bEnable)SetBreakOnCategory; 
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11InfoQueue* self, MessageSeverity severity, bool bEnable)SetBreakOnSeverity;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11InfoQueue* self, MessageID id, bool bEnable)SetBreakOnID;
+			public function [CallingConvention(.Stdcall)] bool(ID3D11InfoQueue* self, MessageCategory category)GetBreakOnCategory;
+			public function [CallingConvention(.Stdcall)] bool(ID3D11InfoQueue* self, MessageSeverity severity)GetBreakOnSeverity;
+			public function [CallingConvention(.Stdcall)] bool(ID3D11InfoQueue* self, MessageID id)GetBreakOnID;
+			public function [CallingConvention(.Stdcall)] void(ID3D11InfoQueue* self, bool bMute)SetMuteDebugOutput;
+			public function [CallingConvention(.Stdcall)] bool(ID3D11InfoQueue* self)GetMuteDebugOutput;
 		}
 
 		public new VTable* VT

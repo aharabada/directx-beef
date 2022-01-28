@@ -12,7 +12,7 @@ namespace DirectX.D3D11
 		
 		public struct VTable : ID3D11DeviceChild.VTable
 		{
-			public function UINT(ID3D11Asynchronous *self) GetDataSize;
+			public function [CallingConvention(.Stdcall)] UINT(ID3D11Asynchronous *self) GetDataSize;
 		}
 
 		public new VTable* VT => (.)mVT;

@@ -17,17 +17,17 @@ namespace DirectX.DXGI
 
 		public struct VTable : IDXGIDeviceSubObject.VTable
 		{
-			public function HResult(IDXGISwapChain* self, uint32 syncInterval, PresentFlags flags) Present;
-			public function HResult(IDXGISwapChain* self, uint32 buffer, Guid* riid, void **ppSurface) GetBuffer;
-			public function HResult(IDXGISwapChain* self, bool fullscreen, IDXGIOutput* pTarget) SetFullscreenState;
-			public function HResult(IDXGISwapChain* self, bool* fullscreen, IDXGIOutput** pTarget) GetFullscreenState;
-			public function HResult(IDXGISwapChain* self, SwapChainDescription* pDesc) GetDesc;
-			public function HResult(IDXGISwapChain* self, uint32 bufferCount, uint32 width, uint32 height,
+			public function [CallingConvention(.Stdcall)] HResult(IDXGISwapChain* self, uint32 syncInterval, PresentFlags flags) Present;
+			public function [CallingConvention(.Stdcall)] HResult(IDXGISwapChain* self, uint32 buffer, Guid* riid, void **ppSurface) GetBuffer;
+			public function [CallingConvention(.Stdcall)] HResult(IDXGISwapChain* self, bool fullscreen, IDXGIOutput* pTarget) SetFullscreenState;
+			public function [CallingConvention(.Stdcall)] HResult(IDXGISwapChain* self, bool* fullscreen, IDXGIOutput** pTarget) GetFullscreenState;
+			public function [CallingConvention(.Stdcall)] HResult(IDXGISwapChain* self, SwapChainDescription* pDesc) GetDesc;
+			public function [CallingConvention(.Stdcall)] HResult(IDXGISwapChain* self, uint32 bufferCount, uint32 width, uint32 height,
 				Format format, SwapChainFlags flags) ResizeBuffers;
-			public function HResult(IDXGISwapChain* self, ModeDescription* pNewTargetParameters) ResizeTarget;
-			public function HResult(IDXGISwapChain* self, IDXGIOutput** ppOutput) GetContainingOutput;
-			public function HResult(IDXGISwapChain* self, FrameStatistics* pStats) GetFrameStatistics;
-			public function HResult(IDXGISwapChain* self, uint32* pLastPresentCount) GetLastPresentCount;
+			public function [CallingConvention(.Stdcall)] HResult(IDXGISwapChain* self, ModeDescription* pNewTargetParameters) ResizeTarget;
+			public function [CallingConvention(.Stdcall)] HResult(IDXGISwapChain* self, IDXGIOutput** ppOutput) GetContainingOutput;
+			public function [CallingConvention(.Stdcall)] HResult(IDXGISwapChain* self, FrameStatistics* pStats) GetFrameStatistics;
+			public function [CallingConvention(.Stdcall)] HResult(IDXGISwapChain* self, uint32* pLastPresentCount) GetLastPresentCount;
 		}
 
 		public new VTable* VT

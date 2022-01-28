@@ -12,7 +12,7 @@ namespace DirectX.DXGI
 		
 		public struct VTable : IDXGIObject.VTable
 		{
-			public function HResult(IDXGIDeviceSubObject* self, Guid* riid, void** ppDevice) GetDevice;
+			public function [CallingConvention(.Stdcall)] HResult(IDXGIDeviceSubObject* self, Guid* riid, void** ppDevice) GetDevice;
 		}
 
 		public new VTable* VT

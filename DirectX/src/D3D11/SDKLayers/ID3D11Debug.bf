@@ -10,15 +10,15 @@ namespace DirectX.D3D11.SDKLayers
 		
 		public struct VTable : IUnknown.VTable
 		{
-			public function HResult(ID3D11Debug* self, FeatureMaskFlags mask) SetFeatureMask;
-			public function FeatureMaskFlags(ID3D11Debug* self) GetFeatureMask;
-			public function HResult(ID3D11Debug* self, uint32 milliseconds) SetPresentPerRenderOpDelay;
-			public function uint32(ID3D11Debug* self) GetPresentPerRenderOpDelay;
-			public function HResult(ID3D11Debug* self, IDXGISwapChain* pSwapChain) SetSwapChain; 
-			public function HResult(ID3D11Debug* self, IDXGISwapChain** ppSwapChain) GetSwapChain;
-			public function HResult(ID3D11Debug* self, ID3D11DeviceContext *pContext) ValidateContext;
-			public function HResult(ID3D11Debug* self, ReportLiveDeviceObjectFlags flags) ReportLiveDeviceObjects;
-			public function HResult(ID3D11Debug* self, ID3D11DeviceContext *pContext) ValidateContextForDispatch;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11Debug* self, FeatureMaskFlags mask) SetFeatureMask;
+			public function [CallingConvention(.Stdcall)] FeatureMaskFlags(ID3D11Debug* self) GetFeatureMask;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11Debug* self, uint32 milliseconds) SetPresentPerRenderOpDelay;
+			public function [CallingConvention(.Stdcall)] uint32(ID3D11Debug* self) GetPresentPerRenderOpDelay;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11Debug* self, IDXGISwapChain* pSwapChain) SetSwapChain; 
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11Debug* self, IDXGISwapChain** ppSwapChain) GetSwapChain;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11Debug* self, ID3D11DeviceContext *pContext) ValidateContext;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11Debug* self, ReportLiveDeviceObjectFlags flags) ReportLiveDeviceObjects;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11Debug* self, ID3D11DeviceContext *pContext) ValidateContextForDispatch;
 		}
 
 		public new VTable* VT

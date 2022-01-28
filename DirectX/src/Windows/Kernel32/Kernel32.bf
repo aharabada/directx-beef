@@ -27,7 +27,7 @@ namespace DirectX.Windows.Kernel32
 		[Import("Kernel32.lib"), CallingConvention(.Stdcall), CLink]
 		public static extern HMODULE GetModuleHandleW(LPCWSTR moduleName);
 		
-		[Import("Kernel32.lib"), CLink]
+		[Import("Kernel32.lib"), CallingConvention(.Stdcall), CLink]
 		public static extern uint32 FormatMessageW(uint32 dwFlags, void* lpSouce, uint32 dwMessageId, uint32 dwLangugageId, char16* lpBuffer, uint32 nSize, char8* arguments);
 
 		public const uint32 FORMAT_MESSAGE_ALLOCATE_BUFFER = 0x00000100;
@@ -40,7 +40,7 @@ namespace DirectX.Windows.Kernel32
 		/**
 		 * A slightly more convenient variant of FormatMessageW
 		*/
-		[Import("Kernel32.lib"), LinkName("FormatMessageW")]
+		[Import("Kernel32.lib"), CallingConvention(.Stdcall), LinkName("FormatMessageW")]
 		public static extern uint32 FormatMessage(MessageFormatFlags dwFlags, void* lpSouce, uint32 dwMessageId, uint32 dwLangugageId, char16* lpBuffer, uint32 nSize, char8* arguments);
 
 		public static mixin MakeLangId(uint16 primarylanguage, uint16 sublanguage)

@@ -12,10 +12,10 @@ namespace DirectX.D3D11
 		
 		public struct VTable : IUnknown.VTable
 		{
-			public function void(ID3D11DeviceChild* self, ID3D11Device** ppDevice) GetDevice;
-			public function HResult(ID3D11DeviceChild* self, Guid* guid, uint32* pDataSize, void* pData) GetPrivateData;
-			public function HResult(ID3D11DeviceChild* self, Guid* guid, uint32 pDataSize, void* pData) SetPrivateData;
-			public function HResult(ID3D11DeviceChild* self, Guid* guid, IUnknown* pData) SetPrivateDataInterface;
+			public function [CallingConvention(.Stdcall)] void(ID3D11DeviceChild* self, ID3D11Device** ppDevice) GetDevice;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11DeviceChild* self, Guid* guid, uint32* pDataSize, void* pData) GetPrivateData;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11DeviceChild* self, Guid* guid, uint32 pDataSize, void* pData) SetPrivateData;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11DeviceChild* self, Guid* guid, IUnknown* pData) SetPrivateDataInterface;
 		};
 
 		public new VTable* VT

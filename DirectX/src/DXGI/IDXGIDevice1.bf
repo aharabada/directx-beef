@@ -12,8 +12,8 @@ namespace DirectX.DXGI
 
 		public struct VTable : IDXGIDevice.VTable
 		{
-			public function HResult(IDXGIDevice1* self, UINT maxLatency) SetMaximumFrameLatency;
-			public function HResult(IDXGIDevice1* self, UINT *pMaxLatency) GetMaximumFrameLatency;
+			public function [CallingConvention(.Stdcall)] HResult(IDXGIDevice1* self, UINT maxLatency) SetMaximumFrameLatency;
+			public function [CallingConvention(.Stdcall)] HResult(IDXGIDevice1* self, UINT *pMaxLatency) GetMaximumFrameLatency;
 		}
 
 		public new VTable* VT

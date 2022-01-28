@@ -13,19 +13,19 @@ namespace DirectX.D3D11Shader
 
 		public struct VTable
 		{
-			public function HResult(ID3D11FunctionReflection* self, FunctionDescription *pDesc) GetDesc;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11FunctionReflection* self, FunctionDescription *pDesc) GetDesc;
 			
-			public function ID3D11ShaderReflectionConstantBuffer*(ID3D11FunctionReflection* self, uint32 index) GetConstantBufferByIndex;
-			public function ID3D11ShaderReflectionConstantBuffer*(ID3D11FunctionReflection* self, char8* name) GetConstantBufferByName;
+			public function [CallingConvention(.Stdcall)] ID3D11ShaderReflectionConstantBuffer*(ID3D11FunctionReflection* self, uint32 index) GetConstantBufferByIndex;
+			public function [CallingConvention(.Stdcall)] ID3D11ShaderReflectionConstantBuffer*(ID3D11FunctionReflection* self, char8* name) GetConstantBufferByName;
 			
-			public function HResult(ID3D11FunctionReflection* self, uint32 resourceIndex, ShaderInputBindDescription *pDesc) GetResourceBindingDesc;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11FunctionReflection* self, uint32 resourceIndex, ShaderInputBindDescription *pDesc) GetResourceBindingDesc;
 			
-			public function ID3D11ShaderReflectionVariable*(ID3D11FunctionReflection* self, char8* name) GetVariableByName;
+			public function [CallingConvention(.Stdcall)] ID3D11ShaderReflectionVariable*(ID3D11FunctionReflection* self, char8* name) GetVariableByName;
 			
-			public function HResult(ID3D11FunctionReflection* self, char8* name, ShaderInputBindDescription *pDesc) GetResourceBindingDescByName;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11FunctionReflection* self, char8* name, ShaderInputBindDescription *pDesc) GetResourceBindingDescByName;
 
 			// Use D3D_RETURN_PARAMETER_INDEX to get description of the return value.
-			public function ID3D11FunctionParameterReflection*(ID3D11FunctionReflection* self, int32 parameterIndex) GetFunctionParameter;
+			public function [CallingConvention(.Stdcall)] ID3D11FunctionParameterReflection*(ID3D11FunctionReflection* self, int32 parameterIndex) GetFunctionParameter;
 		}
 
 		protected VTable* _vt;

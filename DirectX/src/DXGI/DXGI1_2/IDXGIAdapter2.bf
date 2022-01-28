@@ -13,7 +13,7 @@ namespace DirectX.DXGI.DXGI1_2
 		
 		public struct VTable : IDXGIAdapter1.VTable
 		{
-			public function HResult(IDXGIAdapter2* self, AdapterDescription2 *pDesc) GetDesc2;
+			public function [CallingConvention(.Stdcall)] HResult(IDXGIAdapter2* self, AdapterDescription2 *pDesc) GetDesc2;
 		}
 
 		public new VTable* VT

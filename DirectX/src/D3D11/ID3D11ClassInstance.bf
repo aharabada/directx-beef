@@ -13,10 +13,10 @@ namespace DirectX.D3D11
 
 		public struct VTable : ID3D11DeviceChild.VTable
 		{
-			public function void (ID3D11ClassInstance *self, ID3D11ClassLinkage **ppLinkage) GetClassLinkage;
-			public function void (ID3D11ClassInstance *self, ClassInstanceDescription *pDesc) GetDesc;
-			public function void (ID3D11ClassInstance *self, LPSTR pInstanceName, SIZE_T *pBufferLength) GetInstanceName;
-			public function void (ID3D11ClassInstance *self, LPSTR pTypeName, SIZE_T *pBufferLength) GetTypeName;
+			public function [CallingConvention(.Stdcall)] void (ID3D11ClassInstance *self, ID3D11ClassLinkage **ppLinkage) GetClassLinkage;
+			public function [CallingConvention(.Stdcall)] void (ID3D11ClassInstance *self, ClassInstanceDescription *pDesc) GetDesc;
+			public function [CallingConvention(.Stdcall)] void (ID3D11ClassInstance *self, LPSTR pInstanceName, SIZE_T *pBufferLength) GetInstanceName;
+			public function [CallingConvention(.Stdcall)] void (ID3D11ClassInstance *self, LPSTR pTypeName, SIZE_T *pBufferLength) GetTypeName;
 		}
 
 		public new VTable* VT

@@ -12,24 +12,24 @@ namespace DirectX.XAudio2
 
 		public struct VTable : IUnknown.VTable
 		{
-			public function HResult(IXAudio2* self, IXAudio2EngineCallback *pCallback) RegisterForCallbacks;
-			public function void(IXAudio2* self, IXAudio2EngineCallback *pCallback) UnregisterForCallbacks;
+			public function [CallingConvention(.Stdcall)] HResult(IXAudio2* self, IXAudio2EngineCallback *pCallback) RegisterForCallbacks;
+			public function [CallingConvention(.Stdcall)] void(IXAudio2* self, IXAudio2EngineCallback *pCallback) UnregisterForCallbacks;
 
-			public function HResult(IXAudio2* self, IXAudio2SourceVoice **ppSourceVoice,
+			public function [CallingConvention(.Stdcall)] HResult(IXAudio2* self, IXAudio2SourceVoice **ppSourceVoice,
 				WAVEFORMATEX *pSourceFormat, VoiceFlags Flags, float MaxFrequencyRatio,
 				IXAudio2VoiceCallback *pCallback, VoiceSends *pSendList, EffectChain *pEffectChain) CreateSourceVoice;
 
-			public function HResult(IXAudio2* self, IXAudio2SubmixVoice **ppSubmixVoice, uint32 InputChannels, uint32 InputSampleRate,
+			public function [CallingConvention(.Stdcall)] HResult(IXAudio2* self, IXAudio2SubmixVoice **ppSubmixVoice, uint32 InputChannels, uint32 InputSampleRate,
 				VoiceFlags Flags, uint32 ProcessingStage, VoiceSends *pSendList, EffectChain *pEffectChain) CreateSubmixVoice;
 
-			public function HResult(IXAudio2* self, IXAudio2MasteringVoice **ppMasteringVoice, uint32 InputChannels, uint32 InputSampleRate, uint32 Flags,
+			public function [CallingConvention(.Stdcall)] HResult(IXAudio2* self, IXAudio2MasteringVoice **ppMasteringVoice, uint32 InputChannels, uint32 InputSampleRate, uint32 Flags,
 				LPCWSTR szDeviceId, EffectChain *pEffectChain, AudioStreamCategory StreamCategory) CreateMasteringVoice;
 
-			public function HResult(IXAudio2* self) StartEngine;
-			public function void(IXAudio2* self) StopEngine;
-			public function HResult(IXAudio2* self, uint32 operationSet) CommitChanges;
-			public function void(IXAudio2* self, PerformaceData *pPerfData) GetPerformanceData;
-			public function void(IXAudio2* self, DebugConfiguration *pDebugConfiguration, void *pReserved) SetDebugConfiguration;
+			public function [CallingConvention(.Stdcall)] HResult(IXAudio2* self) StartEngine;
+			public function [CallingConvention(.Stdcall)] void(IXAudio2* self) StopEngine;
+			public function [CallingConvention(.Stdcall)] HResult(IXAudio2* self, uint32 operationSet) CommitChanges;
+			public function [CallingConvention(.Stdcall)] void(IXAudio2* self, PerformaceData *pPerfData) GetPerformanceData;
+			public function [CallingConvention(.Stdcall)] void(IXAudio2* self, DebugConfiguration *pDebugConfiguration, void *pReserved) SetDebugConfiguration;
 		}
 
 		public new VTable* VT

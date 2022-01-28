@@ -21,7 +21,7 @@ namespace SimpleTriangleExample
 			if(blob == null)
 				return;
 
-			Debug.WriteLine(scope String((char8*)blob.GetBufferPointer(), blob.GetBufferSize()));
+			Debug.WriteLine(scope String((char8*)blob.GetBufferPointer(), (.)blob.GetBufferSize()));
 		}
 
 		[CallingConvention(.Cdecl), LinkName("FormatMessageW")]

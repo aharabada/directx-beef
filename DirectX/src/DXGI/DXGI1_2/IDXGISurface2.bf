@@ -13,7 +13,7 @@ namespace DirectX.DXGI.DXGI1_2
 
 		public struct VTable : IDXGISurface1.VTable
 		{
-			public function HResult(IDXGISurface2 *self, Guid *riid, void **ppParentResource, UINT *pSubresourceIndex) GetResource;
+			public function [CallingConvention(.Stdcall)] HResult(IDXGISurface2 *self, Guid *riid, void **ppParentResource, UINT *pSubresourceIndex) GetResource;
 		}
 
 		public new VTable* VT

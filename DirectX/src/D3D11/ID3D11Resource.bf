@@ -13,9 +13,9 @@ namespace DirectX.D3D11
 
 		public struct VTable : ID3D11DeviceChild.VTable
 		{
-			public function void(ID3D11Resource* self, ResourceDimension* pResourceDimension) GetResourceType;
-			public function void(ID3D11Resource* self, ResourcePriority evictionPriority) SetEvictionPriority; 
-			public function ResourcePriority(ID3D11Resource* self) GetEvictionPriority;
+			public function [CallingConvention(.Stdcall)] void(ID3D11Resource* self, ResourceDimension* pResourceDimension) GetResourceType;
+			public function [CallingConvention(.Stdcall)] void(ID3D11Resource* self, ResourcePriority evictionPriority) SetEvictionPriority; 
+			public function [CallingConvention(.Stdcall)] ResourcePriority(ID3D11Resource* self) GetEvictionPriority;
 		}
 
 		public new VTable* VT

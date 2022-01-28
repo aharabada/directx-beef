@@ -13,8 +13,8 @@ namespace DirectX.DXGI
 
 		public struct VTable : IDXGISurface.VTable
 		{
-			public function HResult(IDXGISurface *self, BOOL discard, Windows.Handle *phdc) GetDC;
-			public function HResult(IDXGISurface *self, Rectangle *pDirctyRect) ReleaseDC;
+			public function [CallingConvention(.Stdcall)] HResult(IDXGISurface *self, BOOL discard, Windows.Handle *phdc) GetDC;
+			public function [CallingConvention(.Stdcall)] HResult(IDXGISurface *self, Rectangle *pDirctyRect) ReleaseDC;
 		}
 
 		public new VTable* VT

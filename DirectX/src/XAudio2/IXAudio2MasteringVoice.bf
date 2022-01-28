@@ -10,7 +10,7 @@ namespace DirectX.XAudio2
 	{
 		public struct VTable : IXAudio2Voice.VTable
 		{
-			public function HResult(IXAudio2MasteringVoice *self, int32 *pChannelmask) GetChannelMask;
+			public function [CallingConvention(.Stdcall)] HResult(IXAudio2MasteringVoice *self, int32 *pChannelmask) GetChannelMask;
 		}
 
 		public new VTable* VT

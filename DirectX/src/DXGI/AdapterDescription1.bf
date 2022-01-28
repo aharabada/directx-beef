@@ -11,9 +11,9 @@ namespace DirectX.DXGI
 		public uint32 DeviceId;
 		public uint32 SubSysId;
 		public uint32 Revision;
-		public uint64 DedicatedVideoMemory; // SIZE_T
-		public uint64 DedicatedSystemMemory; // SIZE_T
-		public uint64 SharedSystemMemory; // SIZE_T
+		public SIZE_T DedicatedVideoMemory;
+		public SIZE_T DedicatedSystemMemory;
+		public SIZE_T SharedSystemMemory;
 		public Luid AdapterLuid;
 		public AdapterFlags Flags;
 	}

@@ -14,18 +14,18 @@ namespace DirectX.DXGI
 		
 		public struct VTable : IDXGIFactory1.VTable
 		{
-			public function BOOL(IDXGIFactory2* self) IsWindowStereoEnabled;
-			public function HResult(IDXGIFactory2* self, IUnknown* pDevice, Windows.HWnd hwnd, SwapChainDescription1* pDesc,
+			public function [CallingConvention(.Stdcall)] BOOL(IDXGIFactory2* self) IsWindowStereoEnabled;
+			public function [CallingConvention(.Stdcall)] HResult(IDXGIFactory2* self, IUnknown* pDevice, Windows.HWnd hwnd, SwapChainDescription1* pDesc,
 				SwapChainFullscreenDescription* pFullscreenDesc, IDXGIOutput* pRestrictToOutput, IDXGISwapChain1** ppSwapChain) CreateSwapChainForHwnd;
-			public function HResult(IDXGIFactory2* self, IUnknown *pDevice, IUnknown *pWindow, SwapChainDescription1 *pDesc, IDXGIOutput *pRestrictToOutput, IDXGISwapChain1 **ppSwapChain) CreateSwapChainForCoreWindow;
-			public function HResult(IDXGIFactory2* self, Windows.Handle hResource, Luid *pLuid) GetSharedResourceAdapterLuid;
-			public function HResult(IDXGIFactory2* self, Windows.Handle windowHandle, UINT wMsg, DWORD *pdwCookie) RegisterStereoStatusWindow;
-			public function HResult(IDXGIFactory2* self, Windows.Handle hEvent, DWORD *pdwCookie) RegisterStereoStatusEvent;
-			public function void(IDXGIFactory2* self, DWORD dwCookie) UnregisterStereoStatus;
-			public function HResult(IDXGIFactory2* self, Windows.Handle windowHandle, UINT wMsg, DWORD *pdwCookie) RegisterOcclusionStatusWindow;
-			public function HResult(IDXGIFactory2* self, Windows.Handle hEvent, DWORD *pdwCookie) RegisterOcclusionStatusEvent;
-			public function void(IDXGIFactory2* self, DWORD dwCookie) UnregisterOcclusionStatus;
-			public function HResult(IDXGIFactory2* self, IUnknown *pDevice, SwapChainDescription1 *pDesc, IDXGIOutput *pRestrictToOutput, IDXGISwapChain1 **ppSwapChain) CreateSwapChainForComposition;
+			public function [CallingConvention(.Stdcall)] HResult(IDXGIFactory2* self, IUnknown *pDevice, IUnknown *pWindow, SwapChainDescription1 *pDesc, IDXGIOutput *pRestrictToOutput, IDXGISwapChain1 **ppSwapChain) CreateSwapChainForCoreWindow;
+			public function [CallingConvention(.Stdcall)] HResult(IDXGIFactory2* self, Windows.Handle hResource, Luid *pLuid) GetSharedResourceAdapterLuid;
+			public function [CallingConvention(.Stdcall)] HResult(IDXGIFactory2* self, Windows.Handle windowHandle, UINT wMsg, DWORD *pdwCookie) RegisterStereoStatusWindow;
+			public function [CallingConvention(.Stdcall)] HResult(IDXGIFactory2* self, Windows.Handle hEvent, DWORD *pdwCookie) RegisterStereoStatusEvent;
+			public function [CallingConvention(.Stdcall)] void(IDXGIFactory2* self, DWORD dwCookie) UnregisterStereoStatus;
+			public function [CallingConvention(.Stdcall)] HResult(IDXGIFactory2* self, Windows.Handle windowHandle, UINT wMsg, DWORD *pdwCookie) RegisterOcclusionStatusWindow;
+			public function [CallingConvention(.Stdcall)] HResult(IDXGIFactory2* self, Windows.Handle hEvent, DWORD *pdwCookie) RegisterOcclusionStatusEvent;
+			public function [CallingConvention(.Stdcall)] void(IDXGIFactory2* self, DWORD dwCookie) UnregisterOcclusionStatus;
+			public function [CallingConvention(.Stdcall)] HResult(IDXGIFactory2* self, IUnknown *pDevice, SwapChainDescription1 *pDesc, IDXGIOutput *pRestrictToOutput, IDXGISwapChain1 **ppSwapChain) CreateSwapChainForComposition;
 		}
 
 		public new VTable* VT

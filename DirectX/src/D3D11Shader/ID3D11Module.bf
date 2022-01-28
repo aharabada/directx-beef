@@ -12,7 +12,7 @@ namespace DirectX.D3D11Shader
 
 		public struct VTable : IUnknown.VTable
 		{
-			public function HResult(ID3D11Module* self, char8* pNamespace, ID3D11ModuleInstance** ppModuleInstance) CreateInstance;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11Module* self, char8* pNamespace, ID3D11ModuleInstance** ppModuleInstance) CreateInstance;
 		}
 
 		public new VTable* VT

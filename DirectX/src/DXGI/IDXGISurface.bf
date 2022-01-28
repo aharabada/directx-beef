@@ -12,9 +12,9 @@ namespace DirectX.DXGI
 
 		public struct VTable : IDXGIDeviceSubObject.VTable
 		{
-			public function HResult(IDXGISurface *self, SurfaceDescription *pDesc) GetDesc;
-			public function HResult(IDXGISurface *self, MappedRectangle *pLockedRect, MapFlags mapFlags) Map;
-			public function HResult(IDXGISurface *self) Unmap;
+			public function [CallingConvention(.Stdcall)] HResult(IDXGISurface *self, SurfaceDescription *pDesc) GetDesc;
+			public function [CallingConvention(.Stdcall)] HResult(IDXGISurface *self, MappedRectangle *pLockedRect, MapFlags mapFlags) Map;
+			public function [CallingConvention(.Stdcall)] HResult(IDXGISurface *self) Unmap;
 		}
 
 		public new VTable* VT

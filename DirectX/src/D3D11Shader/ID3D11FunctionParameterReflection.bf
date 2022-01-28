@@ -12,7 +12,7 @@ namespace DirectX.D3D11Shader
 
 		public struct VTable
 		{
-			public function HResult(ID3D11FunctionParameterReflection* self, ParameterDescription *pDesc) GetDesc;
+			public function [CallingConvention(.Stdcall)] HResult(ID3D11FunctionParameterReflection* self, ParameterDescription *pDesc) GetDesc;
 		}
 
 		protected VTable _vt;

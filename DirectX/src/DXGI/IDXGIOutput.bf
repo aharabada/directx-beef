@@ -13,18 +13,18 @@ namespace DirectX.DXGI
 
 		public struct VTable : IDXGIObject.VTable
 		{
-			public function HResult(IDXGIOutput* self, out OutputDescription outputDesc) GetDesc;
-			public function HResult(IDXGIOutput* self, Format enumFormat, EnumerationMode flags, UINT *pNumModes, ModeDescription *pDesc) GetDisplayModeList;
-			public function HResult(IDXGIOutput* self, ModeDescription *pModeToMatch, ModeDescription *pClosestMatch, IUnknown *pConcernedDevice) FindClosestMatchingMode; 
-			public function HResult(IDXGIOutput* self) WaitForVBlank; 
-			public function HResult(IDXGIOutput* self, IUnknown* pDevice, bool exclusive) TakeOwnership;
-			public function void(IDXGIOutput* self) ReleaseOwnership;
-			public function HResult (IDXGIOutput* self, GammaControlCapabilities *pGammaCaps) GetGammaControlCapabilities;
-			public function HResult(IDXGIOutput* self, GammaControl *pArray) SetGammaControl;
-			public function HResult(IDXGIOutput* self, GammaControl *pArray) GetGammaControl;
-			public function HResult(IDXGIOutput* self, IDXGISurface *pScanoutSurface) SetDisplaySurface;
-			public function HResult(IDXGIOutput* self, IDXGISurface *pDestination) GetDisplaySurfaceData;
-			public function HResult(IDXGIOutput* self, FrameStatistics *pStats) GetFrameStatistics;
+			public function [CallingConvention(.Stdcall)] HResult(IDXGIOutput* self, out OutputDescription outputDesc) GetDesc;
+			public function [CallingConvention(.Stdcall)] HResult(IDXGIOutput* self, Format enumFormat, EnumerationMode flags, UINT *pNumModes, ModeDescription *pDesc) GetDisplayModeList;
+			public function [CallingConvention(.Stdcall)] HResult(IDXGIOutput* self, ModeDescription *pModeToMatch, ModeDescription *pClosestMatch, IUnknown *pConcernedDevice) FindClosestMatchingMode; 
+			public function [CallingConvention(.Stdcall)] HResult(IDXGIOutput* self) WaitForVBlank; 
+			public function [CallingConvention(.Stdcall)] HResult(IDXGIOutput* self, IUnknown* pDevice, bool exclusive) TakeOwnership;
+			public function [CallingConvention(.Stdcall)] void(IDXGIOutput* self) ReleaseOwnership;
+			public function [CallingConvention(.Stdcall)] HResult (IDXGIOutput* self, GammaControlCapabilities *pGammaCaps) GetGammaControlCapabilities;
+			public function [CallingConvention(.Stdcall)] HResult(IDXGIOutput* self, GammaControl *pArray) SetGammaControl;
+			public function [CallingConvention(.Stdcall)] HResult(IDXGIOutput* self, GammaControl *pArray) GetGammaControl;
+			public function [CallingConvention(.Stdcall)] HResult(IDXGIOutput* self, IDXGISurface *pScanoutSurface) SetDisplaySurface;
+			public function [CallingConvention(.Stdcall)] HResult(IDXGIOutput* self, IDXGISurface *pDestination) GetDisplaySurfaceData;
+			public function [CallingConvention(.Stdcall)] HResult(IDXGIOutput* self, FrameStatistics *pStats) GetFrameStatistics;
 		}
 
 		public new VTable* VT

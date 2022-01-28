@@ -11,8 +11,8 @@ namespace DirectX.Common
 		
 		public struct VTable : IUnknown.VTable
 		{
-			public function void*(ID3DBlob *self) GetBufferPointer;
-			public function uint32(ID3DBlob *self) GetBufferSize; 
+			public function [CallingConvention(.Stdcall)] void*(ID3DBlob *self) GetBufferPointer;
+			public function [CallingConvention(.Stdcall)] SIZE_T(ID3DBlob *self) GetBufferSize; 
 		}
 
 		public new VTable* VT
@@ -28,7 +28,7 @@ namespace DirectX.Common
 		 * Retrieves the size, in bytes, of the blob's data.
 		 * @return The size of the blob's data, in bytes.
 		 */
-		public uint32 GetBufferSize() mut
+		public SIZE_T GetBufferSize() mut
 		{
 			return VT.GetBufferSize(&this);
 		}

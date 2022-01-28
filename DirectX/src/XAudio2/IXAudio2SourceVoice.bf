@@ -11,9 +11,9 @@ namespace DirectX.XAudio2
 		public struct VTable : IXAudio2Voice.VTable
 		{
 			// Todo:
-			public function HResult(IXAudio2SourceVoice *self, uint32 Flags, uint32 OperationSet) Start;
-			public function HResult(IXAudio2SourceVoice *self) Stop;
-			public function HResult(IXAudio2SourceVoice *self, XAudio2Buffer *pBuffer, BufferWMA *pBufferWNA) SubmitSourceBuffer;
+			public function [CallingConvention(.Stdcall)] HResult(IXAudio2SourceVoice *self, uint32 Flags, uint32 OperationSet) Start;
+			public function [CallingConvention(.Stdcall)] HResult(IXAudio2SourceVoice *self) Stop;
+			public function [CallingConvention(.Stdcall)] HResult(IXAudio2SourceVoice *self, XAudio2Buffer *pBuffer, BufferWMA *pBufferWNA) SubmitSourceBuffer;
 		}
 
 		public new VTable* VT

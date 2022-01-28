@@ -13,10 +13,10 @@ namespace DirectX.DXGI
 
 		public struct VTable : IUnknown.VTable
 		{
-			public function HResult(IDXGIObject* self, ref Guid Name, uint32 DataSize, void* pData) SetPrivateData;
-			public function HResult(IDXGIObject* self, ref Guid Name, IUnknown* pUnknown) SetPrivateDataInterface;
-			public function HResult(IDXGIObject* self, ref Guid Name, UINT *pDataSize, void* pData) GetPrivateData;
-			public function HResult(IDXGIObject* self, ref Guid riid, void** ppParent) GetParent;
+			public function [CallingConvention(.Stdcall)] HResult(IDXGIObject* self, ref Guid Name, uint32 DataSize, void* pData) SetPrivateData;
+			public function [CallingConvention(.Stdcall)] HResult(IDXGIObject* self, ref Guid Name, IUnknown* pUnknown) SetPrivateDataInterface;
+			public function [CallingConvention(.Stdcall)] HResult(IDXGIObject* self, ref Guid Name, UINT *pDataSize, void* pData) GetPrivateData;
+			public function [CallingConvention(.Stdcall)] HResult(IDXGIObject* self, ref Guid riid, void** ppParent) GetParent;
 		}
 
 		public new VTable* VT

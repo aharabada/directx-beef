@@ -12,8 +12,8 @@ namespace DirectX.DXGI
 
 		public struct VTable : IDXGIFactory.VTable
 		{
-			public function HResult(IDXGIFactory1* self, uint32 adapter, IDXGIAdapter1** ppAdapter) EnumAdapters1; 
-			public function BOOL(IDXGIFactory1* self) IsCurrent;
+			public function [CallingConvention(.Stdcall)] HResult(IDXGIFactory1* self, uint32 adapter, IDXGIAdapter1** ppAdapter) EnumAdapters1; 
+			public function [CallingConvention(.Stdcall)] BOOL(IDXGIFactory1* self) IsCurrent;
 		}
 
 		public new VTable* VT

@@ -12,11 +12,11 @@ namespace DirectX.DXGI
 
 		public struct VTable : IDXGIObject.VTable
 		{
-			public function DirectX.Common.HResult(IDXGIDevice* self, out IDXGIAdapter* adapter) GetAdapter;
-			public function DirectX.Common.HResult(IDXGIDevice* self, SurfaceDescription *desc, UINT numSurface, Usage usage, SharedResource *sharedResource, IDXGISurface **surface) CreateSurface;
-			public function DirectX.Common.HResult(IDXGIDevice* self, IUnknown **ppResources, Residency *pResidencyStatus, UINT numResources) QueryResourceResidency;
-			public function DirectX.Common.HResult(IDXGIDevice* self, INT priority) SetGPUThreadPriority;
-			public function DirectX.Common.HResult(IDXGIDevice* self, out INT priority) GetGPUThreadPriority;
+			public function [CallingConvention(.Stdcall)] DirectX.Common.HResult(IDXGIDevice* self, out IDXGIAdapter* adapter) GetAdapter;
+			public function [CallingConvention(.Stdcall)] DirectX.Common.HResult(IDXGIDevice* self, SurfaceDescription *desc, UINT numSurface, Usage usage, SharedResource *sharedResource, IDXGISurface **surface) CreateSurface;
+			public function [CallingConvention(.Stdcall)] DirectX.Common.HResult(IDXGIDevice* self, IUnknown **ppResources, Residency *pResidencyStatus, UINT numResources) QueryResourceResidency;
+			public function [CallingConvention(.Stdcall)] DirectX.Common.HResult(IDXGIDevice* self, INT priority) SetGPUThreadPriority;
+			public function [CallingConvention(.Stdcall)] DirectX.Common.HResult(IDXGIDevice* self, out INT priority) GetGPUThreadPriority;
 		}
 
 		public new VTable* VT

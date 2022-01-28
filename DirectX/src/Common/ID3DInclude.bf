@@ -1,4 +1,5 @@
 using DirectX.D3DCompiler;
+using System;
 
 namespace DirectX.Common
 {
@@ -24,7 +25,7 @@ namespace DirectX.Common
     		 * 	- The high-level shader language (HLSL) shader fails one of the D3D10CompileShader*** functions.
     		 * 	- The effect fails one of the D3D10CreateEffect*** functions.
 			*/
-			public function HResult(ID3DInclude* self, IncludeType includeType, /*LPCSTR*/ char8 *pFileName, /*LPCVOID*/ void *pParentData, /*LPCVOID*/ void **ppData, uint32 *pBytes) Open;
+			public function [CallingConvention(.Stdcall)] HResult(ID3DInclude* self, IncludeType includeType, /*LPCSTR*/ char8 *pFileName, /*LPCVOID*/ void *pParentData, /*LPCVOID*/ void **ppData, uint32 *pBytes) Open;
 
 			/**
 			 * A user-implemented method for closing a shader #include file.
@@ -36,7 +37,7 @@ namespace DirectX.Common
     		 * 		- The high-level shader language (HLSL) shader fails one of the D3D10CompileShader*** functions.
     		 * 		- The effect fails one of the D3D10CreateEffect*** functions.
 			*/
-			public function HResult(ID3DInclude* self, /*LPCVOID*/ void **ppData) Close;
+			public function [CallingConvention(.Stdcall)] HResult(ID3DInclude* self, /*LPCVOID*/ void **ppData) Close;
 		}
 
 		protected VTable* _vt;

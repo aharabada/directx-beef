@@ -12,7 +12,7 @@ namespace DirectX.D3D11
 		
 		public struct VTable : ID3D11DeviceChild
 		{
-			public function UINT(ID3D11CommandList *self) GetContextFlags;
+			public function [CallingConvention(.Stdcall)] UINT(ID3D11CommandList *self) GetContextFlags;
 		}
 
 		public new VTable* VT

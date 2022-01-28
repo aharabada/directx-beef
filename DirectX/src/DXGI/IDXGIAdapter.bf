@@ -13,9 +13,9 @@ namespace DirectX.DXGI
 
 		public struct VTable : IDXGIObject.VTable
 		{
-			public function HResult(IDXGIAdapter* self, UINT output, IDXGIOutput** ppOutput) EnumOutputs;
-			public function HResult(IDXGIAdapter* self, AdapterDescription* ppOutput) GetDesc;
-			public function HResult(IDXGIAdapter* self, Guid* interfaceName, LargerInteger *pUMDVersion) CheckInterfaceSupport;
+			public function [CallingConvention(.Stdcall)] HResult(IDXGIAdapter* self, UINT output, IDXGIOutput** ppOutput) EnumOutputs;
+			public function [CallingConvention(.Stdcall)] HResult(IDXGIAdapter* self, AdapterDescription* ppOutput) GetDesc;
+			public function [CallingConvention(.Stdcall)] HResult(IDXGIAdapter* self, Guid* interfaceName, LargerInteger *pUMDVersion) CheckInterfaceSupport;
 		}
 
 		public new VTable* VT

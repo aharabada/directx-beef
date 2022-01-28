@@ -12,7 +12,7 @@ namespace DirectX.D3D11
 
 		public struct VTable : ID3D11Asynchronous.VTable
 		{
-			public function void(ID3D11Query *self, QueryDescription *pDesc) GetDesc;
+			public function [CallingConvention(.Stdcall)] void(ID3D11Query *self, QueryDescription *pDesc) GetDesc;
 		}
 
 		public new VTable* VT

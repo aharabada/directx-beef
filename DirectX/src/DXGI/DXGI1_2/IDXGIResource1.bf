@@ -13,8 +13,8 @@ namespace DirectX.DXGI.DXGI1_2
 
 		public struct VTable : IDXGIResource.VTable
 		{
-			public function HResult(IDXGIResource1 *self, UINT index, IDXGISurface2 **ppSurface) CreateSubresourceSurface;
-			public function HResult(IDXGIResource1 *self, SecurityAttributes *pAttributes, DWORD dwAccess, LPCWSTR lpName, Windows.Handle *pHandle) CreateSharedHandle;
+			public function [CallingConvention(.Stdcall)] HResult(IDXGIResource1 *self, UINT index, IDXGISurface2 **ppSurface) CreateSubresourceSurface;
+			public function [CallingConvention(.Stdcall)] HResult(IDXGIResource1 *self, SecurityAttributes *pAttributes, DWORD dwAccess, LPCWSTR lpName, Windows.Handle *pHandle) CreateSharedHandle;
 		}
 
 		public new VTable* VT

@@ -13,9 +13,9 @@ namespace DirectX.DXGI.DXGI1_2
 
 		public struct VTable : IDXGIDevice1.VTable
 		{
-			public function HResult(IDXGIDevice2* self, UINT numResources, IDXGIResource **ppResources, OfferResourcePriority priority) OfferResources;
-			public function HResult(IDXGIDevice2* self,  UINT numResources, IDXGIResource **ppResources, BOOL *pDiscarded) ReclaimResources;
-			public function HResult(IDXGIDevice2* self, Windows.Handle hEvent) EnqueueSetEvent;
+			public function [CallingConvention(.Stdcall)] HResult(IDXGIDevice2* self, UINT numResources, IDXGIResource **ppResources, OfferResourcePriority priority) OfferResources;
+			public function [CallingConvention(.Stdcall)] HResult(IDXGIDevice2* self,  UINT numResources, IDXGIResource **ppResources, BOOL *pDiscarded) ReclaimResources;
+			public function [CallingConvention(.Stdcall)] HResult(IDXGIDevice2* self, Windows.Handle hEvent) EnqueueSetEvent;
 		}
 
 		public new VTable* VT
