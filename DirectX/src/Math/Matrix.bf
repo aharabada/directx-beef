@@ -16,8 +16,8 @@ namespace DirectX.Math
 						_14, _24, _34, _44;
 		}
 
-		public static readonly Matrix Zero = .();
-		public static readonly Matrix Identity = .(.UnitX, .UnitY, .UnitZ, .UnitW);
+		public const Matrix Zero = .();
+		public const Matrix Identity = .(.UnitX, .UnitY, .UnitZ, .UnitW);
 
 		public Values V;
 		public float[4][4] Values;
@@ -532,13 +532,17 @@ namespace DirectX.Math
 		/**
 		Calculates the inverse of the matrix.
 		*/
-		public Matrix Invert()mut
+		public Matrix Invert()
 		{
 			// From: Lengyel, Eric. Foundations of Game Engine Development, Volume 1: Mathematics (S.61). Kindle-Version. 
 
+#unwarn
 			Vector3 a = *(Vector3*)&Columns[0];
+#unwarn
 			Vector3 b = *(Vector3*)&Columns[1];
+#unwarn
 			Vector3 c = *(Vector3*)&Columns[2]; 
+#unwarn
 			Vector3 d = *(Vector3*)&Columns[3];  
 
 			float x = this[3, 0];
@@ -546,12 +550,12 @@ namespace DirectX.Math
 			float z = this[3, 2];
 			float w = this[3, 3];
 
-			Vector3 s = Vector3.Cross( a,  b);
-			Vector3 t = Vector3.Cross( c,  d);
+			Vector3 s = Vector3.Cross(a, b);
+			Vector3 t = Vector3.Cross(c, d);
 			Vector3 u = y * a - x * b;
 			Vector3 v = w * c - z * d;
 
-			float invDet = 1.0f / (Vector3.Dot( s,  v) + Vector3.Dot( t,  u));
+			float invDet = 1.0f / (Vector3.Dot(s, v) + Vector3.Dot(t, u));
 
 			s *= invDet;
 			t *= invDet;
@@ -563,9 +567,50 @@ namespace DirectX.Math
 			Vector3 r2 = Vector3.Cross(d, u) + s * w;
 			Vector3 r3 = Vector3.Cross(u, c) - s * z;
 			return .(r0.X, r0.Y, r0.Z, -Vector3.Dot(b, t),
-					r1.X, r1.Y, r1.Z, Vector3.Dot(a, t),
-					r2.X, r2.Y, r2.Z, -Vector3.Dot(d, s),
-					r3.X, r3.Y, r3.Z, Vector3.Dot(c, s));
+					 r1.X, r1.Y, r1.Z,  Vector3.Dot(a, t),
+					 r2.X, r2.Y, r2.Z, -Vector3.Dot(d, s),
+					 r3.X, r3.Y, r3.Z,  Vector3.Dot(c, s));
+		}
+
+		/// Calculates the inverse of the matrix.
+		public static Matrix Invert(in Matrix matrix)
+		{
+			// From: Lengyel, Eric. Foundations of Game Engine Development, Volume 1: Mathematics (S.61). Kindle-Version. 
+			
+#unwarn
+			Vector3 a = *(Vector3*)&matrix.Columns[0];
+#unwarn
+			Vector3 b = *(Vector3*)&matrix.Columns[1];
+#unwarn
+			Vector3 c = *(Vector3*)&matrix.Columns[2]; 
+#unwarn
+			Vector3 d = *(Vector3*)&matrix.Columns[3];  
+
+			float x = matrix[3, 0];
+			float y = matrix[3, 1];
+			float z = matrix[3, 2];
+			float w = matrix[3, 3];
+
+			Vector3 s = Vector3.Cross(a, b);
+			Vector3 t = Vector3.Cross(c, d);
+			Vector3 u = y * a - x * b;
+			Vector3 v = w * c - z * d;
+
+			float invDet = 1.0f / (Vector3.Dot(s, v) + Vector3.Dot(t, u));
+
+			s *= invDet;
+			t *= invDet;
+			u *= invDet;
+			v *= invDet;
+ 
+			Vector3 r0 = Vector3.Cross(b, v) + t * y;
+			Vector3 r1 = Vector3.Cross(v, a) - t * x;
+			Vector3 r2 = Vector3.Cross(d, u) + s * w;
+			Vector3 r3 = Vector3.Cross(u, c) - s * z;
+			return .(r0.X, r0.Y, r0.Z, -Vector3.Dot(b, t),
+					 r1.X, r1.Y, r1.Z,  Vector3.Dot(a, t),
+					 r2.X, r2.Y, r2.Z, -Vector3.Dot(d, s),
+					 r3.X, r3.Y, r3.Z,  Vector3.Dot(c, s));
 		}
 		
 		/**
