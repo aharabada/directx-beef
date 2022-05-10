@@ -397,7 +397,7 @@ namespace DirectX.Math
 		/**
 		Returns the transpose of this matrix
 		*/
-		public Matrix3x3 Transpose() mut
+		public Matrix3x3 Transpose()
 		{
 			return .(V._11, V._21, V._31,
 					V._12, V._22, V._32,
