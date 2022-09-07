@@ -54,7 +54,7 @@ namespace DirectX.D3D11
 			public function [CallingConvention(.Stdcall)] void(ID3D11DeviceContext* self, UINT numRTVs, ID3D11RenderTargetView **ppRenderTargetViews, ID3D11DepthStencilView *pDepthStencilView,
 				UINT uavStartSlot, UINT numUAVs, ID3D11UnorderedAccessView **ppUnorderedAccessViews, UINT *pUAVInitialCounts) OMSetRenderTargetsAndUnorderedAccessViews;
 
-			public function [CallingConvention(.Stdcall)] void(ID3D11DeviceContext* self, ID3D11BlendState *pBlendState, ColorRGBA blendFactor, UINT sampleMask = 0xffffffff) OMSetBlendState;
+			public function [CallingConvention(.Stdcall)] void(ID3D11DeviceContext* self, ID3D11BlendState *pBlendState, ColorRGBA blendFactor, UINT sampleMask) OMSetBlendState;
 			public function [CallingConvention(.Stdcall)] void(ID3D11DeviceContext* self, ID3D11DepthStencilState* pDepthStencilState, uint32 stencilRef) OMSetDepthStencilState;
 
 			public function [CallingConvention(.Stdcall)] void(ID3D11DeviceContext* self, UINT numBuffers, ID3D11Buffer **ppSOTargets, UINT *pOffsets) SOSetTargets;
