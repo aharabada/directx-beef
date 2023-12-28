@@ -93,14 +93,22 @@ namespace System
 			else if(format == "B" || format == "X")
 				strBuf.Append('}');
 		}
+
 		
-		// Todo: implementation gets the job done but is kinda dirty
-		public static new Result<Guid, ParsingError> Parse(String s)
+		public static new Result<Guid> Parse(StringView val)
 		{
-			if(s == null)
+			return Try!(ParseError(val));
+		}
+
+		// Todo: implementation gets the job done but is kinda dirty
+		public static Result<Guid, ParsingError> ParseError(StringView s)
+		{
+			var s;
+
+			if(s.IsNull)
 				return .Err(.NullInput);
 			s.Trim();
-			if(s == String.Empty)
+			if(s.IsEmpty)
 				return Guid.Empty;
 
 			// Skip the first brace
