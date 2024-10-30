@@ -61,6 +61,10 @@ namespace DirectX.Windows.Winuser
 		[Import("user32.lib"), CallingConvention(.Stdcall), CLink]
 		public static extern HCURSOR LoadCursorW(HINSTANCE hInstance, LPCWSTR lpCursorName);
 
+		
+		[Import("user32.lib"), CallingConvention(.Stdcall), CLink]
+		public static extern HCURSOR SetCursor(HCURSOR hCursor);
+
 		/**
 		 * Converts an integer value to a resource type compatible with the resource-management functions.
 		 * This macro is used in place of a string containing the name of the resource.
