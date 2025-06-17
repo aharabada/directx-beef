@@ -16,6 +16,8 @@ namespace DirectX.Common
 		public const HResult E_OUTOFMEMORY = (.)0x8007000E; 
 		public const HResult E_NOTIMPL = (.)0x80004001;
 
+		public const HResult E_NOINTERFACE = (.)0x80004002L;
+
 		/**
 		The file was not found.
 		*/
