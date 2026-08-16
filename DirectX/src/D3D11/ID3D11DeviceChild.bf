@@ -1,5 +1,7 @@
 using System;
 using DirectX.Common;
+using System.Text;
+using System.Interop;
 
 namespace DirectX.D3D11
 {
@@ -90,17 +92,19 @@ namespace DirectX.D3D11
 		 */
 		public HResult SetDebugName(StringView debugName) mut
 		{
-			char16* str = debugName.ToScopedNativeWChar!();
+			SetPrivateData(DirectX.Common.WKPDID_D3DDebugObjectNameW, 0, null);
 
-			uint32 length = 0;
-			char16* strWalker = str;
-			while(*strWalker != '\0')
+			int maxEncodedLen = UTF16.GetEncodedLen(debugName);
+			c_wchar* buffer = new:ScopedAlloc! c_wchar[maxEncodedLen]*;
+
+			if (UTF16.Encode(debugName, buffer, maxEncodedLen) case .Ok(let encodedLength))
 			{
-				length++;
-				strWalker++;
+				return SetPrivateData(DirectX.Common.WKPDID_D3DDebugObjectNameW, (uint32)(encodedLength * sizeof(char16)), buffer);
 			}
-
-			return SetPrivateData(DirectX.Common.WKPDID_D3DDebugObjectNameW, length * 2, str);
+			else
+			{
+				return .E_FAIL;
+			}
 		}
 		
 		/**
