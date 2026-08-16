@@ -159,6 +159,12 @@ namespace DirectX.Common
 			}
 		}
 
+		public bool Failed(out HResult result)
+		{
+			result = this;
+			return Failed;
+		}
+
 		public override void ToString(String strBuffer)
 		{
 			char16* wCharMsg = ?;
